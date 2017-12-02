@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "37310cf791ea62750c78"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "327bfda0b18c24772e50"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1245,7 +1245,7 @@ exports = module.exports = __webpack_require__(16)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n", ""]);
+exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n", ""]);
 
 // exports
 
@@ -36238,7 +36238,7 @@ var Header = exports.Header = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { 'class': 'header' },
+                { className: 'header' },
                 _react2.default.createElement(_navbar.Navbar, null),
                 'This is my header!'
             );
@@ -36398,7 +36398,7 @@ var Main = exports.Main = function (_React$Component) {
 
             return _react2.default.createElement(
                 "div",
-                { "class": "main" },
+                { className: "main" },
                 "Welcome to our main content area"
             );
         }
@@ -36448,7 +36448,7 @@ var Footer = exports.Footer = function (_React$Component) {
 
             return _react2.default.createElement(
                 "div",
-                { "class": "footer" },
+                { className: "footer" },
                 "This is my footer!"
             );
         }
