@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar } from './navbar.jsx';
 import { Header } from './header.jsx';
+import { Main } from './main.jsx';
 import { Footer } from './footer.jsx';
 
 export class Layout extends React.Component{
@@ -12,8 +12,8 @@ export class Layout extends React.Component{
             
             
             <div>
-                <Navbar />
                 <Header />
+                <Main />
                 <Footer />
             </div>
             

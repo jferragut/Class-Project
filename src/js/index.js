@@ -10,7 +10,7 @@ import $ from 'jquery';
 import { Layout } from './components/layout.jsx';
 
 // Add CSS files to bundle
-// require('../css/styles.scss');
+require('../css/styles.scss');
 
 
 // Render application to DOM

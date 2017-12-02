@@ -7,7 +7,7 @@ export class Footer extends React.Component{
         
         
         return(
-            <div>
+            <div class="footer">
                 This is my footer!
             </div>            
             );
