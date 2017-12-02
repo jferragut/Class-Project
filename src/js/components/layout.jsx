@@ -11,6 +11,8 @@ export class Layout extends React.Component{
             
             
             <div>
+                <Alert />
+                <Ticker />
                 <DataArea />
                 <AdBar />
             </div>
