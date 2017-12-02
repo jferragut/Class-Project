@@ -1,7 +1,6 @@
 import React from 'react';
-import { Header } from './header.jsx';
 import { Main } from './main.jsx';
-import { Footer } from './footer.jsx';
+import { AdBar } from './adbar.jsx';
 
 export class Layout extends React.Component{
     
@@ -12,9 +11,8 @@ export class Layout extends React.Component{
             
             
             <div>
-                <Header />
                 <Main />
-                <Footer />
+                <AdBar />
             </div>
             
             
