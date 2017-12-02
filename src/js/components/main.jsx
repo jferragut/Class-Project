@@ -7,7 +7,7 @@ export class Main extends React.Component{
         
         
         return(
-            <div class="main">
+            <div className="main">
                 Welcome to our main content area
             </div>
             );
