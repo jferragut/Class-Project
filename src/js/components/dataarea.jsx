@@ -1,14 +1,14 @@
 import React from 'react';
 
 
-export class Main extends React.Component{
+export class DataArea extends React.Component{
     
     render(){
         
         
         return(
-            <div className="main">
-                Welcome to our main content area
+            <div className="dataArea">
+                Welcome to our Data area
             </div>
             );
     }

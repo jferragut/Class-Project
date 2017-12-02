@@ -1,5 +1,5 @@
 import React from 'react';
-import { Main } from './main.jsx';
+import { DataArea } from './dataarea.jsx';
 import { AdBar } from './adbar.jsx';
 
 export class Layout extends React.Component{
@@ -11,7 +11,7 @@ export class Layout extends React.Component{
             
             
             <div>
-                <Main />
+                <DataArea />
                 <AdBar />
             </div>
             
