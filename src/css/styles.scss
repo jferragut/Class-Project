@@ -3,3 +3,14 @@
 @import 'components/footer';
 @import 'components/main';
 @import 'components/adbar';
+@import 'components/alert';
+
+
+.navbar{
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#app{
+    margin-top:56px;   //make app appear just below the navbar
+    padding-top:10px;
+}

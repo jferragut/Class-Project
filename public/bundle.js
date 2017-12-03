@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "327bfda0b18c24772e50"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0c65138b3d604cbbdbf4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1245,7 +1245,7 @@ exports = module.exports = __webpack_require__(16)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n", ""]);
+exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n\n.siteAlert {\n  padding: 20px 0px; }\n\n.navbar {\n  border-bottom: 1px solid gray; }\n\n#app {\n  margin-top: 56px;\n  padding-top: 10px; }\n", ""]);
 
 // exports
 
@@ -36155,11 +36155,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _header = __webpack_require__(38);
+var _dataarea = __webpack_require__(38);
 
-var _main = __webpack_require__(40);
+var _adbar = __webpack_require__(39);
 
-var _footer = __webpack_require__(41);
+var _ticker = __webpack_require__(40);
+
+var _alert = __webpack_require__(41);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36181,13 +36183,13 @@ var Layout = exports.Layout = function (_React$Component) {
     _createClass(Layout, [{
         key: 'render',
         value: function render() {
-
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement(_header.Header, null),
-                _react2.default.createElement(_main.Main, null),
-                _react2.default.createElement(_footer.Footer, null)
+                { className: 'container-fluid position-relative' },
+                _react2.default.createElement(_alert.Alert, null),
+                _react2.default.createElement(_ticker.Ticker, null),
+                _react2.default.createElement(_dataarea.DataArea, null),
+                _react2.default.createElement(_adbar.AdBar, null)
             );
         }
     }]);
@@ -36205,15 +36207,13 @@ var Layout = exports.Layout = function (_React$Component) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Header = undefined;
+exports.DataArea = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _navbar = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36223,29 +36223,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Header = exports.Header = function (_React$Component) {
-    _inherits(Header, _React$Component);
+var DataArea = exports.DataArea = function (_React$Component) {
+    _inherits(DataArea, _React$Component);
 
-    function Header() {
-        _classCallCheck(this, Header);
+    function DataArea() {
+        _classCallCheck(this, DataArea);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).apply(this, arguments));
     }
 
-    _createClass(Header, [{
-        key: 'render',
+    _createClass(DataArea, [{
+        key: "render",
         value: function render() {
 
             return _react2.default.createElement(
-                'div',
-                { className: 'header' },
-                _react2.default.createElement(_navbar.Navbar, null),
-                'This is my header!'
+                "div",
+                { className: "dataArea" },
+                "Welcome to our Data area"
             );
         }
     }]);
 
-    return Header;
+    return DataArea;
 }(_react2.default.Component);
 
 /***/ }),
@@ -36256,9 +36255,9 @@ var Header = exports.Header = function (_React$Component) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.Navbar = undefined;
+exports.AdBar = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -36274,87 +36273,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Navbar = exports.Navbar = function (_React$Component) {
-  _inherits(Navbar, _React$Component);
+var AdBar = exports.AdBar = function (_React$Component) {
+    _inherits(AdBar, _React$Component);
 
-  function Navbar() {
-    _classCallCheck(this, Navbar);
+    function AdBar() {
+        _classCallCheck(this, AdBar);
 
-    return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
-  }
-
-  _createClass(Navbar, [{
-    key: "render",
-    value: function render() {
-
-      return _react2.default.createElement(
-        "nav",
-        { className: "navbar navbar-toggleable-md navbar-light bg-faded" },
-        _react2.default.createElement(
-          "button",
-          { className: "navbar-toggler navbar-toggler-right", type: "button", "data-toggle": "collapse", "data-target": "#navbarSupportedContent", "aria-controls": "navbarSupportedContent", "aria-expanded": "false", "aria-label": "Toggle navigation" },
-          _react2.default.createElement("span", { className: "navbar-toggler-icon" })
-        ),
-        _react2.default.createElement(
-          "a",
-          { className: "navbar-brand", href: "#" },
-          "Navbar"
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "collapse navbar-collapse", id: "navbarSupportedContent" },
-          _react2.default.createElement(
-            "ul",
-            { className: "navbar-nav mr-auto" },
-            _react2.default.createElement(
-              "li",
-              { className: "nav-item active" },
-              _react2.default.createElement(
-                "a",
-                { className: "nav-link", href: "#" },
-                "Home ",
-                _react2.default.createElement(
-                  "span",
-                  { className: "sr-only" },
-                  "(current)"
-                )
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              { className: "nav-item" },
-              _react2.default.createElement(
-                "a",
-                { className: "nav-link", href: "#" },
-                "Link"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              { className: "nav-item" },
-              _react2.default.createElement(
-                "a",
-                { className: "nav-link disabled", href: "#" },
-                "Disabled"
-              )
-            )
-          ),
-          _react2.default.createElement(
-            "form",
-            { className: "form-inline my-2 my-lg-0" },
-            _react2.default.createElement("input", { className: "form-control mr-sm-2", type: "text", placeholder: "Search" }),
-            _react2.default.createElement(
-              "button",
-              { className: "btn btn-outline-success my-2 my-sm-0", type: "submit" },
-              "Search"
-            )
-          )
-        )
-      );
+        return _possibleConstructorReturn(this, (AdBar.__proto__ || Object.getPrototypeOf(AdBar)).apply(this, arguments));
     }
-  }]);
 
-  return Navbar;
+    _createClass(AdBar, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                { className: "adBar" },
+                "This is my Adbar!"
+            );
+        }
+    }]);
+
+    return AdBar;
 }(_react2.default.Component);
 
 /***/ }),
@@ -36367,7 +36307,7 @@ var Navbar = exports.Navbar = function (_React$Component) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Main = undefined;
+exports.Ticker = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -36383,28 +36323,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Main = exports.Main = function (_React$Component) {
-    _inherits(Main, _React$Component);
+var Ticker = exports.Ticker = function (_React$Component) {
+    _inherits(Ticker, _React$Component);
 
-    function Main() {
-        _classCallCheck(this, Main);
+    function Ticker() {
+        _classCallCheck(this, Ticker);
 
-        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Ticker.__proto__ || Object.getPrototypeOf(Ticker)).apply(this, arguments));
     }
 
-    _createClass(Main, [{
+    _createClass(Ticker, [{
         key: "render",
         value: function render() {
 
             return _react2.default.createElement(
                 "div",
-                { className: "main" },
-                "Welcome to our main content area"
+                { className: "ticker" },
+                "This is my Ticker!"
             );
         }
     }]);
 
-    return Main;
+    return Ticker;
 }(_react2.default.Component);
 
 /***/ }),
@@ -36417,7 +36357,7 @@ var Main = exports.Main = function (_React$Component) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Footer = undefined;
+exports.Alert = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -36433,28 +36373,44 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Footer = exports.Footer = function (_React$Component) {
-    _inherits(Footer, _React$Component);
+var Alert = exports.Alert = function (_React$Component) {
+    _inherits(Alert, _React$Component);
 
-    function Footer() {
-        _classCallCheck(this, Footer);
+    function Alert() {
+        _classCallCheck(this, Alert);
 
-        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Alert.__proto__ || Object.getPrototypeOf(Alert)).call(this));
+
+        _this.state = {
+            content: ""
+        };
+
+        return _this;
     }
 
-    _createClass(Footer, [{
+    _createClass(Alert, [{
         key: "render",
         value: function render() {
+            var displayProp = "siteAlert d-none";
+            if (this.state.content == "") {
+                displayProp = "siteAlert d-none";
+            } else {
+                displayProp = "siteAlert container-fluid text-center d-block";
+            };
 
             return _react2.default.createElement(
                 "div",
-                { className: "footer" },
-                "This is my footer!"
+                { className: displayProp },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    this.state.content
+                )
             );
         }
     }]);
 
-    return Footer;
+    return Alert;
 }(_react2.default.Component);
 
 /***/ }),
