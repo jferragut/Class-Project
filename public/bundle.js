@@ -61,7 +61,11 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 /******/ 	var hotCurrentHash = "157d38bd9ebeb0a89a2c"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "9a12ad8a71654ba0e531"; // eslint-disable-line no-unused-vars
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1228,10 +1232,10 @@ module.exports = warning;
 
 exports = module.exports = __webpack_require__(33)(undefined);
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Michroma);", ""]);
 
 // module
-exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n", ""]);
+exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n\n.adSideBar {\n  border: 1px solid #e2e2e2;\n  height: 500px;\n  background: url(\"https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg\");\n  background-size: cover; }\n\n.innerShadow, .adSideBar, .adSideBar .adSideBarMobile {\n  -moz-box-shadow: inset 0 0 5px #000000;\n  -webkit-box-shadow: inset 0 0 5px #000000;\n  box-shadow: inset 0 0 5px #000000; }\n\n.siteAlert {\n  padding: 20px 0px; }\n\n.tickerData {\n  font-family: 'Michroma', sans-serif;\n  font-size: 14px;\n  font-weight: 300;\n  background: slategray;\n  color: palegoldenrod; }\n\n.navbar {\n  border-bottom: 1px solid #e2e2e2; }\n\n#app {\n  margin-top: 56px;\n  padding-top: 10px; }\n", ""]);
 
 // exports
 
@@ -29559,12 +29563,22 @@ module.exports = function(list, options) {
 	// By default, add <style> tags to the bottom of the target
 	if (!options.insertAt) options.insertAt = "bottom";
 
+<<<<<<< HEAD
 	var styles = listToStyles(list, options);
 
 	addStylesToDom(styles, options);
 
 	return function update (newList) {
 		var mayRemove = [];
+=======
+var _dataarea = __webpack_require__(38);
+
+var _adbar = __webpack_require__(39);
+
+var _ticker = __webpack_require__(40);
+
+var _alert = __webpack_require__(41);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 		for (var i = 0; i < styles.length; i++) {
 			var item = styles[i];
@@ -29596,12 +29610,40 @@ function addStylesToDom (styles, options) {
 		var item = styles[i];
 		var domStyle = stylesInDom[item.id];
 
+<<<<<<< HEAD
 		if(domStyle) {
 			domStyle.refs++;
 
 			for(var j = 0; j < domStyle.parts.length; j++) {
 				domStyle.parts[j](item.parts[j]);
 			}
+=======
+    _createClass(Layout, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'container-fluid no-gutters px-0' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'topBarRegion' },
+                    _react2.default.createElement(_alert.Alert, null),
+                    _react2.default.createElement(_ticker.Ticker, null)
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'middleContent' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(_dataarea.DataArea, null),
+                        _react2.default.createElement(_adbar.AdSideBar, null)
+                    )
+                )
+            );
+        }
+    }]);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 			for(; j < item.parts.length; j++) {
 				domStyle.parts.push(addStyle(item.parts[j], options));
@@ -29622,6 +29664,7 @@ function listToStyles (list, options) {
 	var styles = [];
 	var newStyles = {};
 
+<<<<<<< HEAD
 	for (var i = 0; i < list.length; i++) {
 		var item = list[i];
 		var id = options.base ? item[0] + options.base : item[0];
@@ -29629,6 +29672,12 @@ function listToStyles (list, options) {
 		var media = item[2];
 		var sourceMap = item[3];
 		var part = {css: css, media: media, sourceMap: sourceMap};
+=======
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.DataArea = undefined;
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
 		else newStyles[id].parts.push(part);
@@ -29640,11 +29689,15 @@ function listToStyles (list, options) {
 function insertStyleElement (options, style) {
 	var target = getElement(options.insertInto)
 
+<<<<<<< HEAD
 	if (!target) {
 		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
 	}
 
 	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+=======
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 	if (options.insertAt === "top") {
 		if (!lastStyleElementInsertedAtTop) {
@@ -29675,6 +29728,7 @@ function removeStyleElement (style) {
 	}
 }
 
+<<<<<<< HEAD
 function createStyleElement (options) {
 	var style = document.createElement("style");
 
@@ -29691,6 +29745,44 @@ function createLinkElement (options) {
 
 	options.attrs.type = "text/css";
 	options.attrs.rel = "stylesheet";
+=======
+var DataArea = exports.DataArea = function (_React$Component) {
+    _inherits(DataArea, _React$Component);
+
+    function DataArea() {
+        _classCallCheck(this, DataArea);
+
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this));
+
+        _this.state = {
+            content: "" //set the inital value of the content state
+        };
+
+        return _this;
+    }
+
+    _createClass(DataArea, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                { className: "dataArea col-12 col-md-10" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Welcome to our Data area! This is where we will display all charts, tables, and data."
+                ),
+                this.state.content
+            );
+        }
+    }]);
+
+    return DataArea;
+}(_react2.default.Component);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 	addAttrs(link, options.attrs);
 	insertStyleElement(options, link);
@@ -29704,8 +29796,15 @@ function addAttrs (el, attrs) {
 	});
 }
 
+<<<<<<< HEAD
 function addStyle (obj, options) {
 	var style, update, remove, result;
+=======
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.AdSideBar = undefined;
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 	// If a transform function was defined, run it on the css
 	if (options.transform && obj.css) {
@@ -29755,7 +29854,56 @@ function addStyle (obj, options) {
 		};
 	}
 
+<<<<<<< HEAD
 	update(obj);
+=======
+var AdSideBar = exports.AdSideBar = function (_React$Component) {
+    _inherits(AdSideBar, _React$Component);
+
+    function AdSideBar() {
+        _classCallCheck(this, AdSideBar);
+
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (AdSideBar.__proto__ || Object.getPrototypeOf(AdSideBar)).call(this));
+
+        _this.state = {
+            content: "" //set the inital value of the content state
+        };
+
+        return _this;
+    }
+
+    _createClass(AdSideBar, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                { className: "adSideBar col-12 col-md-2 d-none d-md-inline-block" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "This is my Desktop Adbar!"
+                ),
+                this.state.content,
+                _react2.default.createElement(
+                    "div",
+                    { className: "adSideBarMobile d-inline-block d-md-none" },
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        "Mobile Adbar!"
+                    ),
+                    this.state.content
+                )
+            );
+        }
+    }]);
+
+    return AdSideBar;
+}(_react2.default.Component);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 	return function updateStyle (newObj) {
 		if (newObj) {
@@ -29777,8 +29925,15 @@ function addStyle (obj, options) {
 var replaceText = (function () {
 	var textStore = [];
 
+<<<<<<< HEAD
 	return function (index, replacement) {
 		textStore[index] = replacement;
+=======
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Ticker = undefined;
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 		return textStore.filter(Boolean).join('\n');
 	};
@@ -29811,6 +29966,7 @@ function applyToTag (style, obj) {
 		style.setAttribute("media", media)
 	}
 
+<<<<<<< HEAD
 	if(style.styleSheet) {
 		style.styleSheet.cssText = css;
 	} else {
@@ -29842,6 +29998,47 @@ function updateLink (link, options, obj) {
 		// http://stackoverflow.com/a/26603875
 		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
 	}
+=======
+var Ticker = exports.Ticker = function (_React$Component) {
+    _inherits(Ticker, _React$Component);
+
+    function Ticker() {
+        _classCallCheck(this, Ticker);
+
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (Ticker.__proto__ || Object.getPrototypeOf(Ticker)).call(this));
+
+        _this.state = {
+            content: "This is where the ticker data will be displayed." //set the inital value of the content state
+        };
+
+        return _this;
+    }
+
+    _createClass(Ticker, [{
+        key: "render",
+        value: function render() {
+            //Begin logic for api pull that will grab the ticker data here.
+            //Make sure to scroll this data to the left.
+
+
+            //Display of the div and data begins here
+            return _react2.default.createElement(
+                "div",
+                { className: "tickerData container-fluid d-block my-auto" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    this.state.content
+                )
+            );
+        }
+    }]);
+
+    return Ticker;
+}(_react2.default.Component);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 	var blob = new Blob([css], { type: "text/css" });
 
@@ -29849,8 +30046,15 @@ function updateLink (link, options, obj) {
 
 	link.href = URL.createObjectURL(blob);
 
+<<<<<<< HEAD
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
+=======
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Alert = undefined;
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 
 /***/ }),
@@ -29884,6 +30088,7 @@ module.exports = function (css) {
 	  return css;
   }
 
+<<<<<<< HEAD
   var baseUrl = location.protocol + "//" + location.host;
   var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
 
@@ -29927,6 +30132,51 @@ module.exports = function (css) {
 
 		// convert the url to a full url
 		var newUrl;
+=======
+var Alert = exports.Alert = function (_React$Component) {
+    _inherits(Alert, _React$Component);
+
+    function Alert() {
+        _classCallCheck(this, Alert);
+
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (Alert.__proto__ || Object.getPrototypeOf(Alert)).call(this));
+
+        _this.state = {
+            content: "" //set the inital value of the content state
+        };
+
+        return _this;
+    }
+
+    _createClass(Alert, [{
+        key: "render",
+        value: function render() {
+            var usedClasses = "siteAlert d-none"; //set initial value of usedClasses
+            if (this.state.content == "") {
+                usedClasses = "siteAlert d-none"; //if no content present, display none
+            } else {
+                usedClasses = "siteAlert container-fluid text-center d-block"; //otherwise, apply all classes and display block
+            };
+
+            return (//Plug usedClasses in the 'className' property, and send content to the innerHTML for p
+                _react2.default.createElement(
+                    "div",
+                    { className: usedClasses },
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        this.state.content
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Alert;
+}(_react2.default.Component);
+>>>>>>> 0f9854959fbafed7f344514049e650477cf0f9a7
 
 		if (unquotedOrigUrl.indexOf("//") === 0) {
 		  	//TODO: should we add protocol?

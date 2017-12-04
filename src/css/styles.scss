@@ -3,3 +3,16 @@
 @import 'components/footer';
 @import 'components/main';
 @import 'components/adbar';
+@import 'components/alert';
+@import 'components/ticker';
+@import 'components/dataarea';
+
+
+.navbar{
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#app{
+    margin-top:56px;   //make app appear just below the navbar
+    padding-top:10px;
+}

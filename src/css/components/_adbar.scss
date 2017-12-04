@@ -1,0 +1,19 @@
+.adSideBar{
+    border: 1px solid #e2e2e2;
+    height: 500px;
+    background: url("https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg");
+    background-size: cover;
+    
+    @extend .innerShadow;
+    
+    .adSideBarMobile{
+        @extend .innerShadow;
+    }
+    
+}
+
+.innerShadow{
+    -moz-box-shadow:    inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow:         inset 0 0 5px #000000;
+}
