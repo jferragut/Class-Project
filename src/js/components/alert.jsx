@@ -23,7 +23,7 @@ export class Alert extends React.Component{
             usedClasses = "siteAlert container-fluid text-center d-block" //otherwise, apply all classes and display block
         };
         
-        return(    //Plug in usedClasses to the 'class' property, and send content to the innerHTML for p
+        return(    //Plug usedClasses in the 'className' property, and send content to the innerHTML for p
             <div className={usedClasses}>
                 <p>{this.state.content}</p>   
             </div>            

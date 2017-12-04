@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0c65138b3d604cbbdbf4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9a12ad8a71654ba0e531"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1242,10 +1242,10 @@ exports.push([module.i, "/*!\n * Bootstrap v4.0.0-beta.2 (https://getbootstrap.c
 
 exports = module.exports = __webpack_require__(16)(undefined);
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Michroma);", ""]);
 
 // module
-exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n\n.siteAlert {\n  padding: 20px 0px; }\n\n.navbar {\n  border-bottom: 1px solid gray; }\n\n#app {\n  margin-top: 56px;\n  padding-top: 10px; }\n", ""]);
+exports.push([module.i, ".header {\n  background: slategray; }\n\n.footer {\n  background: slategray; }\n\n.main {\n  width: 100%;\n  height: 800px; }\n\n.adSideBar {\n  border: 1px solid #e2e2e2;\n  height: 500px;\n  background: url(\"https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg\");\n  background-size: cover; }\n\n.innerShadow, .adSideBar, .adSideBar .adSideBarMobile {\n  -moz-box-shadow: inset 0 0 5px #000000;\n  -webkit-box-shadow: inset 0 0 5px #000000;\n  box-shadow: inset 0 0 5px #000000; }\n\n.siteAlert {\n  padding: 20px 0px; }\n\n.tickerData {\n  font-family: 'Michroma', sans-serif;\n  font-size: 14px;\n  font-weight: 300;\n  background: slategray;\n  color: palegoldenrod; }\n\n.navbar {\n  border-bottom: 1px solid #e2e2e2; }\n\n#app {\n  margin-top: 56px;\n  padding-top: 10px; }\n", ""]);
 
 // exports
 
@@ -36185,11 +36185,23 @@ var Layout = exports.Layout = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'container-fluid position-relative' },
-                _react2.default.createElement(_alert.Alert, null),
-                _react2.default.createElement(_ticker.Ticker, null),
-                _react2.default.createElement(_dataarea.DataArea, null),
-                _react2.default.createElement(_adbar.AdBar, null)
+                { className: 'container-fluid no-gutters px-0' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'topBarRegion' },
+                    _react2.default.createElement(_alert.Alert, null),
+                    _react2.default.createElement(_ticker.Ticker, null)
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'middleContent' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(_dataarea.DataArea, null),
+                        _react2.default.createElement(_adbar.AdSideBar, null)
+                    )
+                )
             );
         }
     }]);
@@ -36229,7 +36241,15 @@ var DataArea = exports.DataArea = function (_React$Component) {
     function DataArea() {
         _classCallCheck(this, DataArea);
 
-        return _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).apply(this, arguments));
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this));
+
+        _this.state = {
+            content: "" //set the inital value of the content state
+        };
+
+        return _this;
     }
 
     _createClass(DataArea, [{
@@ -36238,8 +36258,13 @@ var DataArea = exports.DataArea = function (_React$Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "dataArea" },
-                "Welcome to our Data area"
+                { className: "dataArea col-12 col-md-10" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Welcome to our Data area! This is where we will display all charts, tables, and data."
+                ),
+                this.state.content
             );
         }
     }]);
@@ -36257,7 +36282,7 @@ var DataArea = exports.DataArea = function (_React$Component) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.AdBar = undefined;
+exports.AdSideBar = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -36273,28 +36298,51 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AdBar = exports.AdBar = function (_React$Component) {
-    _inherits(AdBar, _React$Component);
+var AdSideBar = exports.AdSideBar = function (_React$Component) {
+    _inherits(AdSideBar, _React$Component);
 
-    function AdBar() {
-        _classCallCheck(this, AdBar);
+    function AdSideBar() {
+        _classCallCheck(this, AdSideBar);
 
-        return _possibleConstructorReturn(this, (AdBar.__proto__ || Object.getPrototypeOf(AdBar)).apply(this, arguments));
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (AdSideBar.__proto__ || Object.getPrototypeOf(AdSideBar)).call(this));
+
+        _this.state = {
+            content: "" //set the inital value of the content state
+        };
+
+        return _this;
     }
 
-    _createClass(AdBar, [{
+    _createClass(AdSideBar, [{
         key: "render",
         value: function render() {
 
             return _react2.default.createElement(
                 "div",
-                { className: "adBar" },
-                "This is my Adbar!"
+                { className: "adSideBar col-12 col-md-2 d-none d-md-inline-block" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "This is my Desktop Adbar!"
+                ),
+                this.state.content,
+                _react2.default.createElement(
+                    "div",
+                    { className: "adSideBarMobile d-inline-block d-md-none" },
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        "Mobile Adbar!"
+                    ),
+                    this.state.content
+                )
             );
         }
     }]);
 
-    return AdBar;
+    return AdSideBar;
 }(_react2.default.Component);
 
 /***/ }),
@@ -36329,17 +36377,33 @@ var Ticker = exports.Ticker = function (_React$Component) {
     function Ticker() {
         _classCallCheck(this, Ticker);
 
-        return _possibleConstructorReturn(this, (Ticker.__proto__ || Object.getPrototypeOf(Ticker)).apply(this, arguments));
+        //call the super constructor 
+
+        var _this = _possibleConstructorReturn(this, (Ticker.__proto__ || Object.getPrototypeOf(Ticker)).call(this));
+
+        _this.state = {
+            content: "This is where the ticker data will be displayed." //set the inital value of the content state
+        };
+
+        return _this;
     }
 
     _createClass(Ticker, [{
         key: "render",
         value: function render() {
+            //Begin logic for api pull that will grab the ticker data here.
+            //Make sure to scroll this data to the left.
 
+
+            //Display of the div and data begins here
             return _react2.default.createElement(
                 "div",
-                { className: "ticker" },
-                "This is my Ticker!"
+                { className: "tickerData container-fluid d-block my-auto" },
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    this.state.content
+                )
             );
         }
     }]);
@@ -36379,10 +36443,12 @@ var Alert = exports.Alert = function (_React$Component) {
     function Alert() {
         _classCallCheck(this, Alert);
 
+        //call the super constructor 
+
         var _this = _possibleConstructorReturn(this, (Alert.__proto__ || Object.getPrototypeOf(Alert)).call(this));
 
         _this.state = {
-            content: ""
+            content: "" //set the inital value of the content state
         };
 
         return _this;
@@ -36391,20 +36457,22 @@ var Alert = exports.Alert = function (_React$Component) {
     _createClass(Alert, [{
         key: "render",
         value: function render() {
-            var displayProp = "siteAlert d-none";
+            var usedClasses = "siteAlert d-none"; //set initial value of usedClasses
             if (this.state.content == "") {
-                displayProp = "siteAlert d-none";
+                usedClasses = "siteAlert d-none"; //if no content present, display none
             } else {
-                displayProp = "siteAlert container-fluid text-center d-block";
+                usedClasses = "siteAlert container-fluid text-center d-block"; //otherwise, apply all classes and display block
             };
 
-            return _react2.default.createElement(
-                "div",
-                { className: displayProp },
+            return (//Plug usedClasses in the 'className' property, and send content to the innerHTML for p
                 _react2.default.createElement(
-                    "p",
-                    null,
-                    this.state.content
+                    "div",
+                    { className: usedClasses },
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        this.state.content
+                    )
                 )
             );
         }
