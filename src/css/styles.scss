@@ -16,3 +16,13 @@
     margin-top:56px;   //make app appear just below the navbar
     padding-top:10px;
 }
+
+.no-list-style{
+    list-style-type: none;
+    margin-bottom: 0;
+}
+
+.navbar .no-list-style li {
+    display: inline-block;
+}
+
