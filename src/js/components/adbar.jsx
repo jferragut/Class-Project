@@ -18,8 +18,8 @@ export class AdSideBar extends React.Component{
         
         return(
             <div className="adSideBar col-12 col-md-2 d-none d-md-inline-block">
-                <p>This is my Desktop Adbar!</p>
-                {this.state.content}
+                <p>{this.state.content}</p>
+                
                 
                 <div className="adSideBarMobile d-inline-block d-md-none">
                     <p>Mobile Adbar!</p>

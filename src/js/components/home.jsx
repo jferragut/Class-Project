@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Header } from './header.jsx';
 
 
 export class Home extends React.Component{
@@ -9,7 +8,7 @@ export class Home extends React.Component{
             // Begin Carousel
           
             
-                // Begin Sections
+            // Begin Sections
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h1 class="display-3">Fluid jumbotron</h1>
