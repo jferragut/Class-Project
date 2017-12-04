@@ -7,9 +7,9 @@ export class Home extends React.Component{
     render(){
         return(
             // Begin Carousel
+          
             
-            
-            // Begin Sections
+                // Begin Sections
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h1 class="display-3">Fluid jumbotron</h1>
