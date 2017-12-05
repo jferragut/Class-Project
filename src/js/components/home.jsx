@@ -25,7 +25,7 @@ export class Home extends React.Component{
                   <source src="http://192.241.175.50/videos/london.mp4" type="video/mp4" />
                 </video>
                 <div className="slide-overlay door">
-                  <div className='title'>Slide 1</div>
+                  <div className='title'>Banks suck</div>
                   <div className="description"> The First Description </div>
                 </div>
               </div>
@@ -37,7 +37,7 @@ export class Home extends React.Component{
                   <source src="http://192.241.175.50/videos/boston.mp4" type="video/mp4"/>
                 </video>
                 <div className="slide-overlay door">
-                  <div className='title'> Slide 2 </div>
+                  <div className='title'> Go crypto</div>
                   <div className="description"> The Second Description </div>
                 </div>
               </div>
@@ -49,20 +49,20 @@ export class Home extends React.Component{
                   <source src="http://192.241.175.50/videos/split.mp4" type="video/mp4"/>
                 </video>
                 <div className="slide-overlay door">
-                  <div className='title'>Slide 3</div>
+                  <div className='title'>number 3</div>
                   <div className="description"> #AnotherOne #AndAnotherOne</div>
                 </div>
               </div>
             </div>
             <div className="item">
               <div className="slide-content">
-                <video poster="http://192.241.175.50/videos/samo.jpg" webkit-playsinline id="bgvid" loop>
-                  <source src="http://192.241.175.50/videos/samo.webm" type="video/webm"/>
-                  <source src="http://192.241.175.50/videos/samo.mp4" type="video/mp4"/>
+                <video poster="https://ak8.picdn.net/shutterstock/videos/3103138/preview/stock-footage-stock-market-charts-in-looped-animation-hd.jpg" webkit-playsinline id="bgvid" loop>
+                  <source src="https://ak8.picdn.net/shutterstock/videos/3103138/preview/stock-footage-stock-market-charts-in-looped-animation-hd.webm" type="video/webm"/>
+                  <source src="https://ak8.picdn.net/shutterstock/videos/3103138/preview/stock-footage-stock-market-charts-in-looped-animation-hd.mp4" type="video/mp4"/>
                 </video>
                 <div className="slide-overlay door">
-                  <div className='title'>Slide 4</div>
-                  <div className="description"> #PapaBlessUp </div>
+                  <div className='title'>Taco </div>
+                  <div className="description"> some description </div>
                 </div>
               </div>
             </div>
