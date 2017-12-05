@@ -2,8 +2,8 @@
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
-/******/ 	var parentHotUpdateCallback = this["webpackHotUpdate"];
-/******/ 	this["webpackHotUpdate"] = 
+/******/ 	var parentHotUpdateCallback = window["webpackHotUpdate"];
+/******/ 	window["webpackHotUpdate"] = 
 /******/ 	function webpackHotUpdateCallback(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		hotAddUpdateChunk(chunkId, moreModules);
 /******/ 		if(parentHotUpdateCallback) parentHotUpdateCallback(chunkId, moreModules);
@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "900b226ed61abaa585c2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "eb87b6847b520d949b77"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -13156,9 +13156,9 @@ jQuery.nodeName = nodeName;
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( true ) {
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
@@ -41708,7 +41708,6 @@ var Home = exports.Home = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "container-fluid" },
-        "// Begin Carousel",
         _react2.default.createElement(
           "div",
           { id: "carousel", className: "carousel slide carousel-fade", "data-ride": "carousel", "data-interval": "false" },
@@ -41847,7 +41846,6 @@ var Home = exports.Home = function (_React$Component) {
             _react2.default.createElement("span", { className: "glyphicon glyphicon-chevron-right" })
           )
         ),
-        "//  Begin Sections",
         _react2.default.createElement(
           "div",
           { className: "jumbotron jumbotron-fluid" },
@@ -41857,7 +41855,7 @@ var Home = exports.Home = function (_React$Component) {
             _react2.default.createElement(
               "h1",
               { className: "display-3" },
-              "Fluid jumbotron"
+              "What is Crypto Currency?"
             ),
             _react2.default.createElement(
               "p",
@@ -41872,12 +41870,12 @@ var Home = exports.Home = function (_React$Component) {
           _react2.default.createElement(
             "h1",
             { className: "display-3" },
-            "Hello, world!"
+            "What We Do"
           ),
           _react2.default.createElement(
             "p",
             { className: "lead" },
-            "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
+            "nothing yet"
           ),
           _react2.default.createElement("hr", { className: "my-4" }),
           _react2.default.createElement(

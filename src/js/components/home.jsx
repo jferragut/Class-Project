@@ -7,7 +7,7 @@ export class Home extends React.Component{
         return(
             
         <div className="container-fluid">
-            // Begin Carousel
+            
         <div id="carousel" className="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
           <ol className="carousel-indicators">
               <li data-target="#carousel" data-slide-to="0" className="active"></li>
@@ -79,17 +79,17 @@ export class Home extends React.Component{
         </div>
 
             
-        //  Begin Sections
+        
          <div className="jumbotron jumbotron-fluid" >
                 <div className="container">
-                    <h1 className="display-3">Fluid jumbotron</h1>
+                    <h1 className="display-3">What is Crypto Currency?</h1>
                     <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
                 </div>
             </div>
             
             <div className="jumbotron-fluid">
-                <h1 className="display-3">Hello, world!</h1>
-                <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <h1 className="display-3">What We Do</h1>
+                <p className="lead">nothing yet</p>
                 <hr className="my-4" />
                 <p>It uses utility classNamees for typography and spacing to space content out within the larger container.</p>
                 <p className="lead">
