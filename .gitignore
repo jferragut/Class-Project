@@ -1,1 +1,2 @@
 .*  #exclude all files with .
+./public/*

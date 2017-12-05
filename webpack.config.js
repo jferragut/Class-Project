@@ -20,6 +20,8 @@ module.exports = {
                 loader: "sass-loader" // compiles Sass to CSS
             }]
         }, //css only files
+        { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }, //for images
+        { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['file-loader'] } //for fonts
     ]
   },
   resolve: {
