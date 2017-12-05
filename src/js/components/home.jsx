@@ -5,26 +5,98 @@ export class Home extends React.Component{
     
     render(){
         return(
-            // Begin Carousel
-          
             
-            // Begin Sections
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-3">Fluid jumbotron</h1>
-                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <div className="container-fluid">
+            // Begin Carousel
+        <div id="carousel" className="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+          <ol className="carousel-indicators">
+              <li data-target="#carousel" data-slide-to="0" className="active"></li>
+              <li data-target="#carousel" data-slide-to="1"></li>
+              <li data-target="#carousel" data-slide-to="2"></li>
+              <li data-target="#carousel" data-slide-to="3"></li>
+          </ol>
+          
+         
+          <div className="carousel-inner">
+            <div className="item active">
+              <div className="slide-content">
+                <video poster="http://192.241.175.50/videos/london.jpg" webkit-playsinline id="bgvid" loop>
+                  <source src="http://192.241.175.50/videos/london.webm" type="video/webm"/>
+                  <source src="http://192.241.175.50/videos/london.mp4" type="video/mp4" />
+                </video>
+                <div className="slide-overlay door">
+                  <div className='title'>Slide 1</div>
+                  <div className="description"> The First Description </div>
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="slide-content">
+                <video poster="http://192.241.175.50/videos/boston.jpg" webkit-playsinline id="bgvid" loop>
+                  <source src="http://192.241.175.50/videos/boston.webm" type="video/webm"/>
+                  <source src="http://192.241.175.50/videos/boston.mp4" type="video/mp4"/>
+                </video>
+                <div className="slide-overlay door">
+                  <div className='title'> Slide 2 </div>
+                  <div className="description"> The Second Description </div>
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="slide-content">
+                <video poster="http://192.241.175.50/videos/split.jpg" webkit-playsinline id="bgvid" loop>
+                  <source src="http://192.241.175.50/videos/split.webm" type="video/webm"/>
+                  <source src="http://192.241.175.50/videos/split.mp4" type="video/mp4"/>
+                </video>
+                <div className="slide-overlay door">
+                  <div className='title'>Slide 3</div>
+                  <div className="description"> #AnotherOne #AndAnotherOne</div>
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="slide-content">
+                <video poster="http://192.241.175.50/videos/samo.jpg" webkit-playsinline id="bgvid" loop>
+                  <source src="http://192.241.175.50/videos/samo.webm" type="video/webm"/>
+                  <source src="http://192.241.175.50/videos/samo.mp4" type="video/mp4"/>
+                </video>
+                <div className="slide-overlay door">
+                  <div className='title'>Slide 4</div>
+                  <div className="description"> #PapaBlessUp </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <a className="carousel-control left" href="#carousel" data-slide="prev">
+           <span className="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          
+          <a className="carousel-control right" href="#carousel" data-slide="next">
+           <span className="glyphicon glyphicon-chevron-right"></span>
+          </a>
+          
+        </div>
+
+            
+        //  Begin Sections
+         <div className="jumbotron jumbotron-fluid" >
+                <div className="container">
+                    <h1 className="display-3">Fluid jumbotron</h1>
+                    <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
                 </div>
             </div>
             
-            <div class="jumbotron-fluid">
-                <h1 class="display-3">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <div className="jumbotron-fluid">
+                <h1 className="display-3">Hello, world!</h1>
+                <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr className="my-4" />
+                <p>It uses utility classNamees for typography and spacing to space content out within the larger container.</p>
+                <p className="lead">
+                    <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                 </p>
             </div>
+        </div>
             );
     }
     
