@@ -1,4 +1,8 @@
 import React from 'react';
+var $carousel = $("#carousel");
+
+
+
 
 
 export class Home extends React.Component{
@@ -96,6 +100,7 @@ export class Home extends React.Component{
                     <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                 </p>
             </div>
+      
         </div>
             );
     }
