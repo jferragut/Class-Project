@@ -1,3 +1,24 @@
-.footer{
-    background: slategray;
+.footer .no-list-style{
+    li{
+        background: $light-gray;
+        border-top: $gray-shadow;
+        
+        a{
+            :link{
+            color: $primary-blue;
+            }
+            
+            :visited{
+                color: $primary-blue;
+            }
+            
+            :active{
+                color: $primary-blue;
+            }
+        }
+    }
+    
+    .fa{
+        font-size: 2em;
+    }
 }
