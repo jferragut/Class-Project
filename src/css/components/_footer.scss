@@ -1,24 +1,24 @@
-.footer .no-list-style{
-    li{
-        background: $light-gray;
-        border-top: $gray-shadow;
-        
-        a{
-            :link{
-            color: $primary-blue;
-            }
-            
-            :visited{
+.footer{
+    border-top: 1px solid $gray-shadow;
+    .no-list-style{
+        li{
+            background: $light-gray;
+            a{
+                :link{
                 color: $primary-blue;
-            }
-            
-            :active{
-                color: $primary-blue;
+                }
+                
+                :visited{
+                    color: $primary-blue;
+                }
+                
+                :active{
+                    color: $primary-blue;
+                }
             }
         }
-    }
-    
-    .fa{
-        font-size: 2em;
+        .fa{
+            font-size: 2em;
+        }
     }
 }
