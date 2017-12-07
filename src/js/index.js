@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'bootstrap/scss/bootstrap.scss';
 import 'bootstrap';
 import $ from 'jquery';
 
@@ -11,6 +10,7 @@ import { Layout } from './components/layout.jsx';
 
 // Add CSS files to bundle
 require('../css/styles.scss');
+require("font-awesome-webpack");
 
 
 // Render application to DOM

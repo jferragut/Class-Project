@@ -10,7 +10,12 @@ body {
 .carousel {
   width: auto;
   background-color: #000;
-  height: 600px;
+  height: 500px;
+  
+  @include media-breakpoint-down(sm){
+    display:none;
+  }
+
 }
 .carousel-fade .carousel-inner .item {
   -webkit-transition-property: opacity;
@@ -46,7 +51,8 @@ body {
 .carousel,
 .carousel-inner,
 .carousel-inner .item {
-  height: 600px;
+  height: 500px;
+
 }
 .stopfade {
   opacity: 0.5;
@@ -96,7 +102,7 @@ body {
 .door .description {
   border-top: 1px solid #fff;
   margin-top: 15px;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 

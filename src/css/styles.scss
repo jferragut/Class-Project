@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import 'components/variables';
 @import 'components/header';
 @import 'components/navbar';
 @import 'components/footer';
@@ -8,10 +10,6 @@
 @import 'components/dataarea';
 @import 'components/home';
 
-
-.navbar{
-    border-bottom: 1px solid #e2e2e2;
-}
 
 #app{
     margin-top:56px;   //make app appear just below the navbar
