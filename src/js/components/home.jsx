@@ -20,7 +20,7 @@ export class Home extends React.Component{
           
     render(){
       
-      console.log('Home was rednered');
+      console.log('Home was rendered');
         return(
           
             
@@ -44,15 +44,18 @@ export class Home extends React.Component{
                 <img className="d-block w-100 im" src={ 'public/'+carousel2 } alt="Second slide"/>
               <div className="carousel-caption">
                 <h1 className="h1-responsive">Title 1</h1>
-                  <p>First text</p>
+                  <p>Second text</p>
               </div>
+              </div>
+              
               <div className="carousel-item">
                 <img className="d-block w-100 im" src={ 'public/'+carousel3 } alt="Third slide"/>
               <div className="carousel-caption">
                 <h1 className="h1-responsive">Title 1</h1>
-                <p>First text</p>
+                <p>Third text</p>
               </div>
             </div>
+            
             </div>
             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -64,7 +67,7 @@ export class Home extends React.Component{
             </a>
             </div>
           
-          </div>
+          
         
          <div className="jumbotron jumbotron-fluid" >
                 <div className="container">
