@@ -10,9 +10,36 @@ body {
 .carousel .im {
   width: auto;
   background-color: #000;
-  height: 500px;
+  height: 700px;
   
   @include media-breakpoint-down(sm){
     display:none;
   }
+}
+.carousel-inner{
+  transition: opacity .75s ease-in-out;
+
+		&.active {
+			opacity: 1;
+		}
+	  
+}
+.jumbotron-fluid {
+  text-align: center;
+  background-color: black;
+  margin-bottom: 2px;
+}
+
+.h1-responsive{
+  font-size: 80px;
+}
+.p{
+  font-size: 20px;
+}
+.jt {
+  color: white;
+}
+.jst{
+  color: white;
+  font-weight: 600;
 }
