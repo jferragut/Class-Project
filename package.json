@@ -36,7 +36,11 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "font-awesome": "github:fortawesome/Font-Awesome",
     "font-awesome-webpack": "0.0.5-beta.2",
+<<<<<<< HEAD
     "FortAwesome/Font-Awesome": "*",
+=======
+    "google-fonts": "^1.0.0",
+>>>>>>> a8afab49bed6c73ca9206a0e7a70efb1321fc4d2
     "jquery": "^3.2.1",
     "popper.js": "^1.12.9",
     "react": "^16.0.0",
