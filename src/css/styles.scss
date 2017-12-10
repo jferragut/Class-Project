@@ -1,3 +1,7 @@
+//Include Fonts
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+//Include Partials
 @import '~bootstrap/scss/bootstrap.scss';
 @import 'components/variables';
 @import 'components/header';
@@ -11,17 +15,28 @@
 @import 'components/home';
 
 
+body{
+    font-family: 'Oswald', sans-serif;
+}
+
+
 #app{
-    margin-top:56px;   //make app appear just below the navbar
+    margin-top:65px;   //make app appear just below the navbar
     padding-top:10px;
 }
+
 
 .no-list-style{
     list-style-type: none;
     margin-bottom: 0;
 }
 
-.navbar .no-list-style li, .footer .no-list-style li {
-    display: inline-block;
+.navbar, .footer{
+    @extend .no-list-style;
+    li{
+        display: inline-block;
+    }
+    .nav-link{
+        padding: 10px;
+    }
 }
-

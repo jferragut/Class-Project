@@ -36,11 +36,13 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "font-awesome": "github:fortawesome/Font-Awesome",
     "font-awesome-webpack": "0.0.5-beta.2",
+    "FortAwesome/Font-Awesome": "*",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.9",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
+    "react-sparklines": "^1.7.0",
     "url-loader": "^0.6.2",
     "webpack-dev-server": "^2.9.2"
   }
