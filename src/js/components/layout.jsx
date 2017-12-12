@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Error404 } from './error404.jsx';
 import { Dashboard } from './dashboard.jsx';
 import { Home } from './home.jsx';
+import { Navbar } from './navbar.jsx';
 
 export class Layout extends React.Component{
     
@@ -11,6 +12,7 @@ export class Layout extends React.Component{
         return(
             <BrowserRouter>
                 <div className="container-fluid no-gutters px-0">
+                    <Navbar />
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/dashboard' component={Dashboard} />

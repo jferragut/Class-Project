@@ -4,6 +4,7 @@ import { DataArea } from './dataarea.jsx';
 import { AdSideBar } from './adbar.jsx';
 import { Ticker } from './ticker.jsx';
 import { Alert } from './alert.jsx';
+import { Navbar } from './navbar.jsx';
 
 export class Dashboard extends React.Component{
     

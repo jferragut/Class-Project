@@ -31,12 +31,12 @@
     ]
   },
   "dependencies": {
+    "FortAwesome/Font-Awesome": "*",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-without-jquery": "^1.0.5",
     "extract-text-webpack-plugin": "^3.0.2",
     "font-awesome": "github:fortawesome/Font-Awesome",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "FortAwesome/Font-Awesome": "*",
     "google-fonts": "^1.0.0",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.9",
