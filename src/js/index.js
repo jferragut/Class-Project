@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 
 // Add JS files to bundle
-import { Layout } from './components/layout.jsx';
+import { Layout } from './Components/layout.jsx';
 
 // Add CSS files to bundle
 require('../css/styles.scss');
