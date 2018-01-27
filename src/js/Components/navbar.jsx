@@ -4,6 +4,8 @@ import tc_logo from '../../images/tc_logo.png';
 
 import Login from './login.jsx';
 
+import { NavLink } from 'react-router-dom'
+
 
 export class Navbar extends React.Component{
 
@@ -24,6 +26,8 @@ export class Navbar extends React.Component{
                 
                 ]
         };
+        
+        this.handleClick = this.handleClick.bind(this);
          console.log(this.theMenu);     
             
     }
@@ -47,6 +51,10 @@ export class Navbar extends React.Component{
         };
     }
     
+    handleClick(){
+        this.props.history.push('/login');
+    }
+    
     render(){
         return (
             <nav className="navbar fixed-top navbar-light bg-light py-0">
@@ -54,8 +62,8 @@ export class Navbar extends React.Component{
                     
                     <div className="navbar-nav ml-auto px-3 d-inline-block">
                         <ul className="no-list-style">
-                            <li><a className="nav-item active nav-link" href="#" >Dashboard</a></li>
-                            <li><a className="nav-item active nav-link" href="#" onClick ={()=> this.context.history.push('/login')}  >Login </a></li>
+                            <li><NavLink className="nav-item active nav-link" to="/dashboard" >Dashboard</NavLink></li>
+                            <li><NavLink className="nav-item active nav-link" to="/login">Login </NavLink></li>
                         </ul>
                     </div>
                     <div >

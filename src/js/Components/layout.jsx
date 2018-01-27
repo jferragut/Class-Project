@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 import { Error404 } from './error404.jsx';
 import { Dashboard } from './dashboard';
@@ -26,3 +26,5 @@ export class Layout extends React.Component{
     }
     
 }
+
+export default withRouter(Layout);
