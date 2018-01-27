@@ -11,20 +11,27 @@ export class Dashboard extends React.Component{
         super();   //call the super constructor 
         
         this.state = {
-            // 1=right, 2=left, 3=pop-up
-            layout: 1    
+            createAd: {
+                image: 'https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg', 
+                url: 'http://www.google.com',
+                // right, left, pop-up
+                position: 'right',
+                width: '100%',
+                height: 'auto',
+            },
+             
         };
         
 
     }
     
     render(){
-        var classPresent = document.querySelector("#adBarZone").classList.contains("order-2");
-        if(classPresent==true){
-            const dataAlign = "order-1";
+        var dataAlign = [];
+        if(AdBarZone.usedClasses == 'order-2'){
+            dataAlign.push("order-1");
             console.log(this.dataAlign);
         }else{
-            const dataAlign = "order-2";
+            dataAlign.push("order-2");
             console.log(this.dataAlign);
         }
         
@@ -36,8 +43,8 @@ export class Dashboard extends React.Component{
                 </div>
                 <div className="middleContent">
                     <div className="row">
-                        <DataArea className={this.dataAlign} /> 
-                        <AdBarZone createAd={this.theAd} />   
+                        <DataArea className={dataAlign} /> 
+                        <AdBarZone createAd={this.state.createAd} />   
                     </div>
                 </div>
             </div>

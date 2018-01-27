@@ -12,43 +12,33 @@ export class AdBarZone extends React.Component{
     //Prototype of what an Ad is
     createAd(adImage, adURL, adPosition, imageWidth, imageHeight){
         return {
-          image: adImage, 
-          url: adURL,
-          position: adPosition,
-          width: imageWidth,
-          height: imageHeight
+          image: this.props.createAd.image, 
+          url: this.props.createAd.url,
+          position: this.props.createAd.position,
+          width: this.props.createAd.width,
+          height: this.props.createAd.height
         };
       }
         
     render(){
-        var usedClasses = "adSideBar d-none col-md-2 d-md-inline-block";  //set initial value of usedClasses
+        debugger;
+        var orderClassName = "order-2";
+        var usedClasses = "adSideBar d-none col-md-2 d-md-inline-block" + " " + orderClassName;  //set initial value of usedClasses
+        if(this.createAd.position=="right"){
+            orderClassName = "order-1";
+        }
+        else if(this.createAd.position=="left"){
+            orderClassName = "order-2";
+        }
         var theStyles = {
             width: this.createAd.width,
             height: this.createAd.height,
             background: this.createAd.image
         };  //set initial value of theStyles
         
-        switch(this.props.position) {
-            case "right":
-                this.createAd.position == 'right';
-                theClasses: { usedClasses += " order-2" }
-            case "left":
-                this.createAd.position == 'left';
-                theClasses: { usedClasses += " order-1" }
-            case "pop":
-                this.createAd.position == 'pop';
-                usedClasses == "adSideBar d-none d-md-inline-block";
-                theStyles = {
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%,-50%)'
-                };
-                
-        }
   
         return(
-            <div id="adBarZone" style={theStyles} className={usedClasses}>
+            <div id="adBarZone" style={theStyles} className={usedClasses} onClick={this.createAd.url}>
                 {/*<div className="adSideBarMobile d-inline-block d-md-none">
                     <p>Mobile Adbar!</p>
                     {this.state.content}

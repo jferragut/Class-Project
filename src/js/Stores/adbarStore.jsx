@@ -9,9 +9,7 @@ export class AdSideBar extends React.Component{
         
         //Create an array that contains the Ads
         this.theAd = [
-            // this.createAd('https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg','http://www.google.com','right','100%','auto'),
-            this.createAd('https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg','http://www.google.com','left','100%','auto'),
-            // this.createAd('https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg','http://www.google.com','pop','250px','600px')
+            
         ];
 
     }
