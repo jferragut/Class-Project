@@ -1,11 +1,15 @@
 import React from 'react';
 
 
-import carousel from './carousel.jsx';
+import { Carousel } from './carousel.jsx';
+
 
 export class Home extends React.Component{
     
-    
+    constructor(){
+        
+        super();
+    }
     
     
           

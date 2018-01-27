@@ -5,6 +5,7 @@ import { Error404 } from './error404.jsx';
 import { Dashboard } from './dashboard';
 import { Home } from './home.jsx';
 import { Navbar } from './navbar.jsx';
+import { Login } from './login.jsx';
 
 export class Layout extends React.Component{
     
@@ -16,6 +17,7 @@ export class Layout extends React.Component{
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/dashboard' component={Dashboard} />
+                        <Route exact path='/login' component={Login} />
                         <Route component={Error404} />
                     </Switch>
                 </div>

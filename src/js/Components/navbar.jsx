@@ -1,5 +1,9 @@
 import React from 'react';
+
 import tc_logo from '../../images/tc_logo.png';
+
+import Login from './login.jsx';
+
 
 export class Navbar extends React.Component{
 
@@ -33,14 +37,14 @@ export class Navbar extends React.Component{
             label: itemName,
             url: itemURL,
             links: itemLinks
-        }
+        };
     }
     addLink(linkName, linkURL) {
     
         return {
             label: linkName,
             url: linkURL
-        }
+        };
     }
     
     render(){
@@ -51,7 +55,7 @@ export class Navbar extends React.Component{
                     <div className="navbar-nav ml-auto px-3 d-inline-block">
                         <ul className="no-list-style">
                             <li><a className="nav-item active nav-link" href="#" >Dashboard</a></li>
-                            <li><a className="nav-item active nav-link" href="#" >Login</a></li>
+                            <li><a className="nav-item active nav-link" href="#" onClick ={()=> this.context.history.push('/login')}  >Login </a></li>
                         </ul>
                     </div>
                     <div >
@@ -68,7 +72,7 @@ export class Navbar extends React.Component{
         return this.renderNavItem(item);
     });
     
-    console.log("The Menu Data",items)
+    console.log("The Menu Data",items);
     return items;
     
   }
