@@ -23,6 +23,9 @@ body{
 #app{
     margin-top:65px;   //make app appear just below the navbar
     padding-top:10px;
+    @media only screen and (max-width: 768px){
+        margin-bottom: 25px;
+    }
 }
 
 

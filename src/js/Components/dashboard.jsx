@@ -14,7 +14,7 @@ export class Dashboard extends React.Component{
             createAd: {
                 image: 'https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg', 
                 url: 'http://www.google.com',
-                // right, left, pop-up
+                // position should be right or left
                 position: 'right',
                 width: '100%',
                 height: 'auto',
@@ -27,7 +27,7 @@ export class Dashboard extends React.Component{
     
     render(){
         var dataAlign = [];
-        if(AdBarZone.usedClasses == 'order-2'){
+        if(this.state.createAd.position === 'right'){
             dataAlign.push("order-1");
             console.log(this.dataAlign);
         }else{

@@ -60,9 +60,12 @@ export class Navbar extends React.Component{
                             <li><NavLink className="nav-item active nav-link" to="/login">Login </NavLink></li>
                         </ul>
                     </div>
-                    <div >
+                    <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+                        <span className="navbar-toggler-icon my-toggler"></span>
+                    </button>
+                    
                     {this.renderLikeAHamburger(this.theMenu.vertical)}
-                    </div>
+                    
                 </nav>
     
     
@@ -88,17 +91,12 @@ export class Navbar extends React.Component{
         });
         
         return (
-                <div>    
-                <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-                            <span className="navbar-toggler-icon my-toggler"></span>
-                        </button>
-                    <div className="navbar-collapse collapse dropdown-menu-right text-right" id="collapsingNavbar2">
-                        <ul className="navbar-nav mx-auto">
-                            {links}
-                        </ul>
-                    </div>
-                    </div>
-                    );
+                <div className="navbar-collapse collapse dropdown-menu-right text-right" id="collapsingNavbar2">
+                    <ul className="navbar-nav mx-auto">
+                        {links}
+                    </ul>
+                </div>
+                );
   }
   
   

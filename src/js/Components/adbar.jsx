@@ -23,26 +23,27 @@ export class AdBarZone extends React.Component{
     render(){
         // debugger;
         var orderClassName = "order-2";
-        var usedClasses = "adSideBar d-none col-md-2 d-md-inline-block" + " " + orderClassName;  //set initial value of usedClasses
+        var usedClasses = "adSideBar d-none col-md-2 d-md-inline-block" + " " + orderClassName;  //set initial value of usedClasses for the Ad
+        
+        // Determine if the Ad should be right or left and then set the appropriate class
         if(this.createAd.position=="right"){
             orderClassName = "order-1";
         }
         else if(this.createAd.position=="left"){
             orderClassName = "order-2";
         }
+        
+        //set initial value of theStyles
         var theStyles = {
             width: this.createAd.width,
             height: this.createAd.height,
             background: this.createAd.image
-        };  //set initial value of theStyles
+        };
         
   
         return(
             <div id="adBarZone" style={theStyles} className={usedClasses} onClick={this.createAd.url}>
-                {/*<div className="adSideBarMobile d-inline-block d-md-none">
-                    <p>Mobile Adbar!</p>
-                    {this.state.content}
-                </div>*/}
+            
             </div>  
             );
     }

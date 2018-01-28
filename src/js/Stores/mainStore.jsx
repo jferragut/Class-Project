@@ -9,6 +9,8 @@ class MainStore extends EventEmmiter{
         
         super();
         
+        this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
+        
     }
     
     
