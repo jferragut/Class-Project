@@ -1,9 +1,6 @@
 import React from 'react';
-
 import tc_logo from '../../images/tc_logo.png';
-
 import Login from './login.jsx';
-
 import { NavLink } from 'react-router-dom'
 
 
@@ -27,8 +24,7 @@ export class Navbar extends React.Component{
                 ]
         };
         
-        this.handleClick = this.handleClick.bind(this);
-         console.log(this.theMenu);     
+        //  console.log(this.theMenu);     
             
     }
     
@@ -43,6 +39,7 @@ export class Navbar extends React.Component{
             links: itemLinks
         };
     }
+    
     addLink(linkName, linkURL) {
     
         return {
@@ -50,10 +47,7 @@ export class Navbar extends React.Component{
             url: linkURL
         };
     }
-    
-    handleClick(){
-        this.props.history.push('/login');
-    }
+
     
     render(){
         return (
@@ -80,7 +74,7 @@ export class Navbar extends React.Component{
         return this.renderNavItem(item);
     });
     
-    console.log("The Menu Data",items);
+    // console.log("The Menu Data",items);
     return items;
     
   }

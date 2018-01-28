@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import { Carousel } from './carousel.jsx';
 
 
@@ -15,14 +13,14 @@ export class Home extends React.Component{
           
     render(){
       
-      console.log('Home was rendered');
+    //   console.log('Home was rendered');
         return(
           
             
         <div className="container-fluid">
             <Carousel />
         
-         <div className="jumbotron jumbotron-fluid" >
+         <div className="callout1 jumbotron jumbotron-fluid" >
                 <div className="container">
                     <h1 className="display-3 jt">What is Crypto Currency?</h1>
                     <hr className="my-4" />
@@ -30,7 +28,7 @@ export class Home extends React.Component{
                 </div>
             </div>
             
-            <div className="jumbotron-fluid">
+            <div className="callout2 jumbotron-fluid">
                 <h1 className="display-3 jt">What We Do</h1>
                 <p className="lead jst">nothing yet</p>
                 <hr className="my-4" />
