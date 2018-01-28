@@ -21,7 +21,7 @@ export class AdBarZone extends React.Component{
       }
         
     render(){
-        debugger;
+        // debugger;
         var orderClassName = "order-2";
         var usedClasses = "adSideBar d-none col-md-2 d-md-inline-block" + " " + orderClassName;  //set initial value of usedClasses
         if(this.createAd.position=="right"){
