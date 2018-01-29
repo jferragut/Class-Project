@@ -108,7 +108,7 @@ export function UserValidated(username, password) {
       console.log("The response came back successfully: ", this);
     
       mainDispatcher.dispatch({
-        actionType: 'USER_SIGNIN',
+        actionType: 'VALIDATE_USER',
         data: {
           username: username, 
           password: password, 
