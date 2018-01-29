@@ -14,39 +14,32 @@ class MainStore extends EventEmmiter{
     }
     
     
-    getCurrentPlayer(){
-        return this.model.currentPlayer;
+    getCurrencyList(){
+        return this.model.currencyList;
     }
     
-    getScore(){
-        return this.scoreData;
-    }
     
-    setPlayer(data){
+    setCurrencyList(data){
         this.model=({
-          currentPlayer: data.task,
-          player1Name: data.player1Name,
-          player2Name: data.player2Name
+          currencyList: [{data}]
         });
         this.emit('change');
     }
     
-    saveScores(data){
-        this.scoreData = data;
-        console.log(data);
+    validateUser(data){
+        if(data=="true"){
+            this.isLoggedIn = true;
+        }else{
+            this.isLoggedIn = false;
+        }
         this.emit('change');
     }
-    
-    clearScores(){
-        this.scoreData = [];
-        console.log(this.scoreData);
-        this.emit('change');
-    }
+  
     
     handleActions(action){
         switch(action.actionType)
         {
-            case "SET_PLAYER": this.setPlayer(action.data); break;
+            case "SET_CURRENCY_LIST": this.setCurrencyList(action.data); break;
             case "SAVE_SCORES": this.saveScores(action.actionData); break;
             case "CLEAR_SCORES": this.clearScores(); break;
         }

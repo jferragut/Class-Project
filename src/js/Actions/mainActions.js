@@ -1,14 +1,12 @@
 import mainDispatcher from '../dispatchers/mainDispatcher';
 
 //Basic flux action
-export function SetTurn(task,player1Name,player2Name){
+export function SetCurrencyList(data){
     
       mainDispatcher.dispatch({
-        actionType: 'SET_PLAYER',
+        actionType: 'SET_CURRENCY_LIST',
         data: {
-          task: task,
-          player1Name: player1Name,
-          player2Name: player2Name
+          task: data
         }
       });
     
