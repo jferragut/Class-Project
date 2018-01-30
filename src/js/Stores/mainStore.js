@@ -1,7 +1,11 @@
 import EventEmmiter from 'events';
 
 import * as MainActions from '../Actions/mainActions.js'
+<<<<<<< HEAD
 import mainDispatcher from '../Dispatchers/mainDispatcher.js';
+=======
+import mainDispatcher from '../Dispatchers/mainDispatchers.js';
+>>>>>>> a63f66b7e4cdd2e15ff6c814c05fa41a9283dacf
 
 class MainStore extends EventEmmiter{
     
@@ -9,12 +13,20 @@ class MainStore extends EventEmmiter{
         
         super();
         
+        this.aux = {
+        username: null,
+        password: null,
+        };
+        
         this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: []
         };
     }
     
+    getUserInfo(){
+        return this.aux;
+    }
     
     getCurrencyList(){
         console.log(this.model.currencyList);
@@ -47,7 +59,7 @@ class MainStore extends EventEmmiter{
             // case "SET_CURRENCY_LIST": this.setCurrencyList(action.data); break;
             // case "SAVE_SCORES": this.saveScores(action.actionData); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
-            // case "CLEAR_SCORES": this.clearScores(); break;
+            case "VALIDATE_USER": this.validateUser(action.actionData); break;
         }
     }
 }

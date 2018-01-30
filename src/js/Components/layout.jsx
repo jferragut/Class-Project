@@ -6,6 +6,7 @@ import { Dashboard } from './dashboard';
 import { Home } from './home.jsx';
 import { Navbar } from './navbar.jsx';
 import { Login } from './login.jsx';
+import { Register } from './register.jsx';
 
 export class Layout extends React.Component{
     
@@ -18,6 +19,7 @@ export class Layout extends React.Component{
                         <Route exact path='/' component={Home} />
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/login' component={Login} />
+                        <Route exact path='/register' component={Register} />
                         <Route component={Error404} />
                     </Switch>
                 </div>

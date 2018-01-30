@@ -1,12 +1,15 @@
 import mainDispatcher from '../Dispatchers/mainDispatcher';
 
+
 //Basic flux action
-export function SetCurrencyList(data){
+export function SetTurn(task,player1Name,player2Name){
     
       mainDispatcher.dispatch({
-        actionType: 'SET_CURRENCY_LIST',
+        actionType: 'SET_PLAYER',
         data: {
-          task: data
+          task: task,
+          player1Name: player1Name,
+          player2Name: player2Name
         }
       });
     
@@ -89,4 +92,35 @@ export function ClearScores(){
     });
     xhttp.send();   
     this.GetScoreboard();
+}
+
+
+export function UserValidated(username, password) {
+  
+  var formData = new FormData();
+  formData.append("username", username);
+  formData.append("password", password);
+  console.log('User info sent');
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log("The response came back successfully: ", this);
+    
+      mainDispatcher.dispatch({
+        actionType: 'VALIDATE_USER',
+        data: {
+          username: username, 
+          password: password, 
+        }
+      });
+    }
+  };
+    
+                            //need to add link of crypto api 
+  xhttp.open("POST", "https://assets.breatheco.de/apis/tictactoe/api/game", true);
+  xhttp.addEventListener('error', function(error) {
+    console.log("ERROR on the response!!! ", error);
+  });
+  xhttp.send(formData);
 }
