@@ -22,13 +22,8 @@ class MainStore extends EventEmmiter{
         return this.aux;
     }
     
-<<<<<<< HEAD:src/js/Stores/mainStore.jsx
-    /*getCurrentPlayer(){
-        return this.model.currentPlayer;
-=======
     getCurrencyList(){
         return this.model.currencyList;
->>>>>>> 8aa8abf43862a6c22d31c8990bbf6149d20bcb4e:src/js/Stores/mainStore.js
     }
     
     
@@ -46,14 +41,8 @@ class MainStore extends EventEmmiter{
             this.isLoggedIn = false;
         }
         this.emit('change');
-<<<<<<< HEAD:src/js/Stores/mainStore.jsx
-    } */
-   
-    
-=======
     }
   
->>>>>>> 8aa8abf43862a6c22d31c8990bbf6149d20bcb4e:src/js/Stores/mainStore.js
     
     handleActions(action){
         switch(action.actionType)
@@ -65,7 +54,7 @@ class MainStore extends EventEmmiter{
             
         }
     }
-
+}
 
 var mainStore = new MainStore();
 mainDispatcher.register(mainStore.handleActions.bind(mainStore));

@@ -13,7 +13,7 @@ export function SetTurn(task,player1Name,player2Name){
       });
     
 }
-/*
+
 //API request with form data (POST)
 export function SendResult(winner,player1Name,player2Name){
     
@@ -92,7 +92,7 @@ export function ClearScores(){
     });
     xhttp.send();   
     this.GetScoreboard();
-}*/
+}
 
 
 export function UserValidated(username, password) {

@@ -33,7 +33,7 @@ export class Home extends React.Component{
                 <p className="lead jst">nothing yet</p>
                 <hr className="my-4" />
                 <p className="lead">
-                    <a className="btn btn-success btn-lg" to="/login" role="button">Create Account</a>
+                    <a className="btn btn-success btn-lg" href="/register" role="button">Create Account</a>
                 </p>
             </div>
       
