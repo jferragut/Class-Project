@@ -1,4 +1,4 @@
-import mainDispatcher from '../dispatchers/mainDispatcher';
+import mainDispatcher from '../Dispatchers/mainDispatcher';
 
 //Basic flux action
 export function SetCurrencyList(data){
@@ -43,23 +43,22 @@ export function SendResult(winner,player1Name,player2Name){
 
 
 //Api request with no form data (GET)
-export function GetScoreboard(){
+export function GetCurrencies(){
     
-    console.log("Getting the latest score from the API");
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
-
+        
         if (this.readyState == 4 && this.status == 200) {
             console.log("The response came back successfully: ",this);
-            
+            debugger;
             const dataReadyToSave = JSON.parse(this.response);
-            gameDispatcher.dispatch({
-              actionType: 'SAVE_SCORES',
-              actionData: dataReadyToSave.data
+            mainDispatcher.dispatch({
+              actionType: 'GET_CURRENCIES',
+              actionData: dataReadyToSave
             });
         }
     };
-    xhttp.open("GET", "https://assets.breatheco.de/apis/tictactoe/api/games", true);
+    xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/currencies/", true);
     xhttp.addEventListener('error',function(error){
         console.log("ERROR on the response!!! ",error);
     });

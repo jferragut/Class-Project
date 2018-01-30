@@ -16,11 +16,10 @@ export class DataArea extends React.Component{
     
     
     render(){
-        // debugger;
         // console.log(this.props.className);
         return(
             <div className={"dataArea col-12 col-md-10 " + this.props.className.join(' ')}>
-                <TableData/>
+                <TableData v='1'/>
             </div>
             );
     }

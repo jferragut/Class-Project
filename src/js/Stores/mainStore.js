@@ -1,7 +1,7 @@
 import EventEmmiter from 'events';
 
-import * as MainActions from '../actions/mainActions.js'
-import mainDispatcher from '../dispatchers/mainDispatcher.js';
+import * as MainActions from '../Actions/mainActions.js'
+import mainDispatcher from '../Dispatchers/mainDispatcher.js';
 
 class MainStore extends EventEmmiter{
     
@@ -10,20 +10,25 @@ class MainStore extends EventEmmiter{
         super();
         
         this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
-        
+        this.model = {
+            currencyList: []
+        };
     }
     
     
     getCurrencyList(){
+        console.log(this.model.currencyList);
         return this.model.currencyList;
     }
     
     
     setCurrencyList(data){
-        this.model=({
-          currencyList: [{data}]
-        });
+        console.log(data);
+        this.model = {
+          currencyList: data
+        };
         this.emit('change');
+        console.log(this.model.currencyList);
     }
     
     validateUser(data){
@@ -39,9 +44,10 @@ class MainStore extends EventEmmiter{
     handleActions(action){
         switch(action.actionType)
         {
-            case "SET_CURRENCY_LIST": this.setCurrencyList(action.data); break;
-            case "SAVE_SCORES": this.saveScores(action.actionData); break;
-            case "CLEAR_SCORES": this.clearScores(); break;
+            // case "SET_CURRENCY_LIST": this.setCurrencyList(action.data); break;
+            // case "SAVE_SCORES": this.saveScores(action.actionData); break;
+            case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
+            // case "CLEAR_SCORES": this.clearScores(); break;
         }
     }
 }

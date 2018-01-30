@@ -1,5 +1,6 @@
 import React from 'react';
 import mainStore from '../Stores/mainStore.js';
+import * as mainActions from '../Actions/mainActions.js';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 export class TableData extends React.Component{
@@ -13,19 +14,24 @@ export class TableData extends React.Component{
             sampleData: [11046.70, 11320.20, 11858.70, 11657.20, 12032.00, 14369.10, 17899.70],
             width: window.innerWidth,
             height: window.innerHeight,
-            table: this.updateWindowDimensions
+            table: this.updateWindowDimensions,
+            currencyList: []
         };
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        mainActions.GetCurrencies();
     }
     
     componentDidMount() {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
+      //Set a listener on the change of the store (emit) to set state of the currencyList in the state
+      mainStore.on('change',this.setCurrencyList.bind(this));
     }
     
     componentWillUnmount() {
       window.removeEventListener('resize', this.updateWindowDimensions);
+      mainStore.removeEventListener('change',this.setCurrencyList);
     }
     
     updateWindowDimensions() {
@@ -33,8 +39,16 @@ export class TableData extends React.Component{
       {this.state.width <= 768 ? this.setState({table:false}) : this.setState({table:true})}
     }
     
+    setCurrencyList(){
+        this.setState({
+            currencyList: mainStore.getCurrencyList() 
+        }); 
+    }
+    
     RenderAsTable(){
-        console.log("Rendering as table");
+        // debugger;
+        var actiondata = this.state.currencyList;
+        console.log("Rendering as table",mainStore.model.currencyList);
         return(
             <div>
                 <table className="table table-hover">
@@ -52,53 +66,61 @@ export class TableData extends React.Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {this.RenderRow.map(mainStore.getCurrencyList)}
+                            {actiondata.map((itemData,index) => this.RenderRow(itemData,index))}
                         </tbody>
                     </table>
             </div>
         );
     }
     
-    RenderRow(theData){
+    RenderRow(theData,index){
+        // debugger;
         var position = 0;
+        var actiondata = this.state.currencyList[index];
         return(
         <tr>
-            <td>{position++}</td>
-            <td>{mainStore.currencyName}</td>
-            <td>{mainStore.marketCap}</td>
-            <td>{mainStore.currencyPrice}</td>
-            <td>{mainStore.volume24h}</td>
-            <td>{mainStore.circulatingSupply}</td>
-            <td>{mainStore.change24h}</td>
+            <td>{++position}</td>
+            <td>{actiondata.name}</td>
+            <td>{actiondata.market_cap_usd}</td>
+            <td>{actiondata.price_usd}</td>
+            <td>{actiondata.volume_24h_usd}</td>
+            <td>{actiondata.available_supply}</td>
+            <td>{actiondata.percent_change_24h}</td>
             <td>
-                <Sparklines data={mainStore.data7d}>
+                <Sparklines data={actiondata.ticker_history.split(',')}>
                     <SparklinesLine />
                     <SparklinesReferenceLine type="mean" />
                 </Sparklines>
             </td>
-            <td><i className="fa fa-heart-o" aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist"></i></td>
+            <td><i className="fa fa-bell-o" aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist"></i></td>
         </tr>    
         );
     }
     
     RenderAsCards(){
+        var actiondata = this.state.currencyList;
         console.log("Rendering as a card");
         return(
                 <div>
-                    {this.renderCard.map(mainStore.getCurrencyList)}
+                    {actiondata.map((itemData,index) => this.renderCard(itemData,index))}
                 </div>
             );
     }
     
-    renderCard(theData){
+    renderCard(theData,index){
+        var actiondata = this.state.currencyList[index];
         return(
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">{mainStore.currencyName}</h5>
+                    <h5 className="card-title">{actiondata.name}</h5>
                     <p className="card-text">
-                        <p></p>
-                        <p></p>
+                        <p>Price: {actiondata.price_usd}</p>
+                        <p>Change 24 Hrs: {actiondata.percent_change_24h}</p>
                     </p>
+                    <Sparklines data={actiondata.ticker_history.split(',')}>
+                        <SparklinesLine />
+                        <SparklinesReferenceLine type="mean" />
+                    </Sparklines>
                 </div>
             </div>
         );
