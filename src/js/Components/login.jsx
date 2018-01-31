@@ -28,7 +28,7 @@ export class Login extends React.Component {
         <div>
             
             
-            <div className="container">
+            <div className="container bg">
         <div className="card card-container">
             <img id="profile-img" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" className="profile-name-card"></p>

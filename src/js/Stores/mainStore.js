@@ -1,11 +1,7 @@
 import EventEmmiter from 'events';
 
 import * as MainActions from '../Actions/mainActions.js'
-<<<<<<< HEAD
 import mainDispatcher from '../Dispatchers/mainDispatcher.js';
-=======
-import mainDispatcher from '../Dispatchers/mainDispatchers.js';
->>>>>>> a63f66b7e4cdd2e15ff6c814c05fa41a9283dacf
 
 class MainStore extends EventEmmiter{
     

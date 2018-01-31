@@ -28,7 +28,7 @@ export class Register extends React.Component {
         <div>
            
             
-            <div className="container">
+            <div className="container bg">
         <div className="card card-container">
             
             <form className="form-signin">
