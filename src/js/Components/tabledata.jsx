@@ -10,8 +10,6 @@ export class TableData extends React.Component{
         super();   //call the super constructor 
         
         this.state = {
-            data: this.data,
-            sampleData: [11046.70, 11320.20, 11858.70, 11657.20, 12032.00, 14369.10, 17899.70],
             width: window.innerWidth,
             height: window.innerHeight,
             table: this.updateWindowDimensions,
@@ -48,7 +46,7 @@ export class TableData extends React.Component{
     RenderAsTable(){
         // debugger;
         var actiondata = this.state.currencyList;
-        console.log("Rendering as table",mainStore.model.currencyList);
+        // console.log("Rendering as table",mainStore.model.currencyList);
         return(
             <div>
                 <table className="table table-hover">
@@ -56,6 +54,7 @@ export class TableData extends React.Component{
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Symbol</th>
                                 <th>Market Cap</th>
                                 <th>Price</th>
                                 <th>Volume (24h)</th>
@@ -75,12 +74,12 @@ export class TableData extends React.Component{
     
     RenderRow(theData,index){
         // debugger;
-        var position = 0;
         var actiondata = this.state.currencyList[index];
         return(
-        <tr>
-            <td>{++position}</td>
+        <tr key={actiondata.rank}>
+            <td>{actiondata.rank}</td>
             <td>{actiondata.name}</td>
+            <td>{actiondata.symbol}</td>
             <td>{actiondata.market_cap_usd}</td>
             <td>{actiondata.price_usd}</td>
             <td>{actiondata.volume_24h_usd}</td>
@@ -92,14 +91,14 @@ export class TableData extends React.Component{
                     <SparklinesReferenceLine type="mean" />
                 </Sparklines>
             </td>
-            <td><i className="fa fa-bell-o" aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist"></i></td>
+            <td><i className="fa fa-bell-o" aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={(index)=>this.addToWatchlist(index)}></i></td>
         </tr>    
         );
     }
     
     RenderAsCards(){
         var actiondata = this.state.currencyList;
-        console.log("Rendering as a card");
+        // console.log("Rendering as a card");
         return(
                 <div>
                     {actiondata.map((itemData,index) => this.renderCard(itemData,index))}
@@ -110,9 +109,10 @@ export class TableData extends React.Component{
     renderCard(theData,index){
         var actiondata = this.state.currencyList[index];
         return(
-            <div className="card">
+            <div key={actiondata.rank} className="card currencyCard">
                 <div className="card-body">
-                    <h5 className="card-title">{actiondata.name}</h5>
+                    <i className="fa fa-bell-o" aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={(index)=>this.addToWatchlist(index)}></i>
+                    <h5 className="card-title">{actiondata.rank}  {actiondata.name}  {actiondata.symbol}</h5>
                     <p className="card-text">
                         <p>Price: {actiondata.price_usd}</p>
                         <p>Change 24 Hrs: {actiondata.percent_change_24h}</p>
@@ -124,6 +124,11 @@ export class TableData extends React.Component{
                 </div>
             </div>
         );
+    }
+    
+    addToWatchlist(index){
+        var currencySymbol=this.state.currencyList[index].symbol;
+        mainActions.addToWatchlist(currencySymbol);
     }
     
     render(){

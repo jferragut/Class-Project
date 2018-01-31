@@ -31,10 +31,10 @@ export class Dashboard extends React.Component{
         var dataAlign = [];
         if(this.state.createAd.position === 'right'){
             dataAlign.push("order-1");
-            console.log(this.dataAlign);
+            // console.log(this.dataAlign);
         }else{
             dataAlign.push("order-2");
-            console.log(this.dataAlign);
+            // console.log(this.dataAlign);
         }
         
         return(

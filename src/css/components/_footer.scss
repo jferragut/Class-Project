@@ -24,3 +24,14 @@
         }
     }
 }
+
+@include media-breakpoint-up(md){
+    footer.bg-light.fixed-bottom {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+        margin-bottom: 65px;
+    }
+}

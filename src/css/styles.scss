@@ -1,5 +1,6 @@
 //Include Fonts
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Michroma');
 
 //Include Partials
 @import '~bootstrap/scss/bootstrap.scss';
@@ -12,6 +13,8 @@
 @import 'components/alert';
 @import 'components/ticker';
 @import 'components/dataarea';
+@import 'components/tabledata';
+@import 'components/dashboard';
 @import 'components/home';
 @import 'components/login';
 
@@ -24,7 +27,7 @@ body{
 #app{
     margin-top:65px;   //make app appear just below the navbar
     padding-top:10px;
-    @media only screen and (max-width: 768px){
+    @include media-breakpoint-up(md){
         margin-bottom: 25px;
     }
 }
