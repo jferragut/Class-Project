@@ -1,0 +1,48 @@
+img{
+  max-width:100%
+}
+.row{
+  margin-top: 40px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  padding: 10px 0;
+  background: #f5f5f5;
+  border-top: 3px solid #3AAA64;
+}
+.button-email{
+  margin:10px 0
+}
+h5, .fa-circle{
+  color:#3AAA64
+}
+
+.list-group {
+    list-style: disc inside;
+
+}
+
+.list-group-item {
+    display: list-item;
+}
+
+ .find-more{
+   text-align: right;
+ }
+
+
+.label-theme{
+  background: #3AAA64;
+  font-size: 14px;
+  padding: .3em .7em .3em;
+  color: #fff;
+  border-radius: .25em;
+}
+
+.label a{
+  color: inherit;
+}
