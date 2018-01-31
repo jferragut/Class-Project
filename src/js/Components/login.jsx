@@ -30,8 +30,7 @@ export class Login extends React.Component {
             
             <div className="container bg">
         <div className="card card-container">
-            <img id="profile-img" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" className="profile-name-card"></p>
+            <h1 className="signin"> SIGN IN </h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
                 <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>

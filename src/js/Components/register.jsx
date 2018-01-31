@@ -30,13 +30,14 @@ export class Register extends React.Component {
             
             <div className="container bg">
         <div className="card card-container">
-            
+            <h1 className="register"> REGISTER THINKCRYPTO ACCOUNT</h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
                 <input type="firstname" id="inputEmail" className="form-control" placeholder="First Name" required autoFocus/>
                 <input type="lastname" id="inputEmail" className="form-control" placeholder="Last Name" required/>
                 <input type="email" id="inputEmail" className="form-control" placeholder="Email" required/>
                 <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
+                <input type="password" id="inputPassword" className="form-control" placeholder="Re-enter Password" required/>
             <form className="form-inline">
                     <label className="mr-sm-2" for="inlineFormCustomSelect">Email Contact</label>
                         <select className="custom-select mb-2 mr-sm-2 " id="inlineFormCustomSelect">
