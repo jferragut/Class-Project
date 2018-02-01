@@ -1,7 +1,25 @@
 .navbar{
     border-bottom: 1px solid #e2e2e2;
+    
     .logo{
         height: 3em;
         margin-right: 15px;
+    }
+    
+    @include media-breakpoint-up(md){
+        div#collapsingNavbar2 {
+            border-top: 1px solid;
+        } 
+    }
+}
+
+.navbar-nav{
+    @include media-breakpoint-up(md){
+        flex-direction: row;
+        float: right;
+       
+        li.nav-item {
+            margin-left: 20px;
+        }
     }
 }

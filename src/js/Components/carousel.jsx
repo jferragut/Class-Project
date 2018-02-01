@@ -14,7 +14,7 @@ export class Carousel extends React.Component {
 
 
     componentDidMount() {
-        console.log('My component is about to mount');
+        // console.log('My component is about to mount');
         this.carouselSetup();
 
 
@@ -23,7 +23,7 @@ export class Carousel extends React.Component {
     
     render() {
 
-        console.log('Home was rendered');
+        // console.log('Home was rendered');
         return (
 
 

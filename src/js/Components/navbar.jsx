@@ -9,7 +9,7 @@ export class Navbar extends React.Component{
     constructor() {
     
         super();
-    
+        
         this.theMenu = {
             horizontal: [
                 this.addItem('Dashboard', '/'),
@@ -20,8 +20,7 @@ export class Navbar extends React.Component{
                 this.addItem('Contact Us', '/'),
                 this.addItem('About Us', '/'),
                 this.addItem('Blog', '/')
-                
-                ]
+            ]
         };
         
         //  console.log(this.theMenu);     
@@ -61,14 +60,11 @@ export class Navbar extends React.Component{
                         </ul>
                     </div>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-                        <span className="navbar-toggler-icon my-toggler"></span>
+                            <span className="navbar-toggler-icon my-toggler"></span>
                     </button>
                     
                     {this.renderLikeAHamburger(this.theMenu.vertical)}
-                    
-                </nav>
-    
-    
+            </nav>
         );
     }
     

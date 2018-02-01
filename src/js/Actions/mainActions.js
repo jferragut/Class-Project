@@ -16,7 +16,7 @@ export function SetTurn(task,player1Name,player2Name){
 }
 
 //API request with form data (POST)
-export function SendResult(winner,player1Name,player2Name){
+export function SendResult(index){
     
     var formData = new FormData();
     formData.append("player1", player1Name);
@@ -28,7 +28,7 @@ export function SendResult(winner,player1Name,player2Name){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log("The response came back successfully: ",this);
+            // console.log("The response came back successfully: ",this);
               
             gameDispatcher.dispatch({
               actionType: 'SAVE_SCORES',
@@ -52,8 +52,8 @@ export function GetCurrencies(){
     xhttp.onreadystatechange = function(response) {
         
         if (this.readyState == 4 && this.status == 200) {
-            console.log("The response came back successfully: ",this);
-            debugger;
+            // console.log("The response came back successfully: ",this);
+            // debugger;
             const dataReadyToSave = JSON.parse(this.response);
             mainDispatcher.dispatch({
               actionType: 'GET_CURRENCIES',
@@ -77,7 +77,7 @@ export function ClearScores(){
     xhttp.onreadystatechange = function(response) {
 
         if (this.readyState == 4 && this.status == 200) {
-            console.log("The response came back successfully: ",this);
+            // console.log("The response came back successfully: ",this);
             
             // const dataReadyToSave = JSON.parse(this.response);
             gameDispatcher.dispatch({
@@ -100,12 +100,12 @@ export function UserValidated(username, password) {
   var formData = new FormData();
   formData.append("username", username);
   formData.append("password", password);
-  console.log('User info sent');
+//   console.log('User info sent');
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log("The response came back successfully: ", this);
+    //   console.log("The response came back successfully: ", this);
     
       mainDispatcher.dispatch({
         actionType: 'VALIDATE_USER',
