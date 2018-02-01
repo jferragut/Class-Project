@@ -33,17 +33,17 @@ export class Register extends React.Component {
             <h1 className="register"> REGISTER THINKCRYPTO ACCOUNT</h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
-                <input type="firstname" id="inputEmail" className="form-control" placeholder="First Name" required autoFocus/>
-                <input type="lastname" id="inputEmail" className="form-control" placeholder="Last Name" required/>
-                <input type="email" id="inputEmail" className="form-control" placeholder="Email" required/>
+                <input className="place" type="firstname" id="inputEmail" className="form-control" placeholder="First Name" required autoFocus/>
+                <input className="place" type="lastname" id="inputEmail" className="form-control" placeholder="Last Name" required/>
+                <input className="place" type="email" id="inputEmail" className="form-control" placeholder="Email" required/>
                 <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
                 <input type="password" id="inputPassword" className="form-control" placeholder="Re-enter Password" required/>
-            <form className="form-inline">
-                    <label className="mr-sm-2" for="inlineFormCustomSelect">Email Contact</label>
+            
+                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Email Contact ?</label>
                         <select className="custom-select mb-2 mr-sm-2 " id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">Yes</option>
-                            <option value="2">No</option>
+                            <option defaultValue={MainActions.EmailContact()}  >Select</option>
+                            <option defaultValue="true">Yes</option>
+                            <option defaultValue="false">No</option>
                         </select>
 
                     <label className="custom-control custom-checkbox mb-2 mr-sm-2 ">
@@ -53,9 +53,9 @@ export class Register extends React.Component {
                     </label>
 
   
-            </form>
+           
                 
-                <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign Up</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin"/*onClick = {()=> MainActions.RegisterConfirm() || this.props.history.push('/profile')} */ type="submit">SIGN UP</button>
             </form>
             
         </div>

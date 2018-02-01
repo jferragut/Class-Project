@@ -124,3 +124,40 @@ export function UserValidated(username, password) {
   });
   xhttp.send(formData);
 }
+
+export function LoginConfirm(){
+    
+      mainDispatcher.dispatch({
+        actionType: 'LOGIN_CONFIRM',
+        data: {}
+      });
+    
+}
+export function EmailContact(){
+    
+      mainDispatcher.dispatch({
+        actionType: 'EMAIL_CONTACT',
+        data: {}
+      });
+    
+}
+/*export function RegisterConfirm(){
+    
+      mainDispatcher.dispatch({
+        actionType: 'REGISTER_CONFIRM',
+        data: {
+          firstname:
+          lastname:
+          firstname:
+          firstname:
+          firstname:
+        }
+      });
+      
+      xhttp.open("POST", "https://assets.breatheco.de/apis/tictactoe/api/game", true);
+  xhttp.addEventListener('error', function(error) {
+    console.log("ERROR on the response!!! ", error);
+  });
+  xhttp.send(formData);
+    
+}*/
