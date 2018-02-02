@@ -55,7 +55,7 @@ export class Register extends React.Component {
   
            
                 
-                <button className="btn btn-lg btn-primary btn-block btn-signin"/*onClick = {()=> MainActions.RegisterConfirm() || this.props.history.push('/profile')} */ type="submit">SIGN UP</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> MainActions.RegisterConfirm() || this.props.history.push('/profile')} type="submit">SIGN UP</button>
             </form>
             
         </div>

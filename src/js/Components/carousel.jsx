@@ -36,24 +36,24 @@ export class Carousel extends React.Component {
                 </ol>
         <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
-              <img className="d-block img-fluid" src={ 'public/'+carousel1 } alt="First slide"/>
+              <img className="d-block img-fluid mainimg" src={ 'public/'+carousel1 } alt="First slide"/>
               <div className="carousel-caption">
-                    <h3>PHYSICAL CURRENCY IS OLD NEWS</h3>
-                    <p>THE TIME TO INVEST IS NOW</p>
+                    <h3 className="cap" >PHYSICAL CURRENCY IS OLD NEWS</h3>
+                    <p className="pcap" >THE TIME TO INVEST IS NOW</p>
                 </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block img-fluid" src={ 'public/'+carousel2 } alt="Second slide"/>
+              <img className="d-block img-fluid mainimg" src={ 'public/'+carousel2 } alt="Second slide"/>
               <div className="carousel-caption">
-                    <h3>PROFESSIONAL SERVICE</h3>
-                    <p>OUR MARKET SPECIALISTS HAVE CREATED A PREDICTION SYSTEM TO HELP YOU INVEST</p>
+                    <h3 className="cap" >PROFESSIONAL SERVICE</h3>
+                    <p className="pcap" >OUR MARKET SPECIALISTS HAVE CREATED A PREDICTION SYSTEM TO HELP YOU INVEST</p>
                 </div>
             </div>
             <div className="carousel-item">
-              <img className="d-block img-fluid" src={ 'public/'+carousel3 } alt="Third slide"/>
+              <img className="d-block img-fluid mainimg" src={ 'public/'+carousel3 } alt="Third slide"/>
               <div className="carousel-caption">
-                    <h3>PERSONALIZED NOTIFICATIONS</h3>
-                    <p>DIRECTLY TO YOUR SMARTPHONE</p>
+                    <h3 className="cap" >PERSONALIZED NOTIFICATIONS</h3>
+                    <p className="pcap" >DIRECTLY TO YOUR SMARTPHONE</p>
                 </div>
             </div>
           </div>
