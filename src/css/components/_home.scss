@@ -1,6 +1,4 @@
-body {
-  height: 100px;
-}
+
 
 .container-fluid {
   padding-right: 0px;
@@ -20,7 +18,7 @@ body {
   transition: opacity .75s ease-in-out;
 
 		&.active {
-			opacity: 1;
+			opacity: 2;
 		}
 	  
 }
@@ -61,4 +59,70 @@ body {
   background-position: 50% 50%;
   width: 100%;
   height: 100%;
+}
+.mainimg{
+  width: 100%;
+  height: 700px;
+}
+.cap{
+  font-size: 3rem;
+  -webkit-text-stroke: 1px black;
+}
+
+.pcap{
+  font-size: 1.3rem;
+  -webkit-text-stroke: 1px black;
+}
+
+.sect{
+  overflow: hidden;
+  background-image: linear-gradient(rgb(248,249,250), rgb(255, 204, 0));
+}
+
+#services div:first-child {
+    margin-bottom: 50px;
+}
+    
+#services div:last-child h2 {
+    text-align: right;
+}
+
+.lead {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+@media only screen and (max-width: 768px) {
+    .headline h1,.headline h2, h2{font-size: 3em;}
+    section img.pull-left,section img.pull-right{width:15em;}
+}
+
+.img-circle {
+    border-radius: 100%;
+}
+
+.pull-left {
+    float: left!important;
+}
+
+section img.pull-left {
+    margin-right: 40px;
+}
+section img.pull-right {
+    margin-left: 40px;
+}
+
+.pull-right{
+  float: right !important;
+}
+
+.im {
+    vertical-align: middle;
+    border: 0;
+}
+.h {
+  font-size: 2em;
+  display: inline-flex;
 }

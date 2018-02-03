@@ -17,6 +17,8 @@
 @import 'components/dashboard';
 @import 'components/home';
 @import 'components/login';
+@import 'components/register';
+@import 'components/profile';
 
 
 body{
@@ -48,9 +50,10 @@ body{
     }
 }
 
-.carousel-item {
-  background-size: cover;
-  background-position: 50% 50%;
-  width: 100%;
-  height: 100%;
+
+
+.errorFrame{
+    text-align: center;
 }
+
+

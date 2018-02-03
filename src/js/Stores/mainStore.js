@@ -19,6 +19,7 @@ class MainStore extends EventEmmiter{
             currencyList: [],
             watchlist: ''
         };
+        this.emailContact = false;
     }
     
     getLoginStatus(){
@@ -32,6 +33,19 @@ class MainStore extends EventEmmiter{
     getCurrencyList(){
         // console.log(this.model.currencyList);
         return this.model.currencyList;
+    }
+    
+    logUserIn(){
+        this.isLoggedIn = true;
+        this.emit('change');
+    }
+    
+    changeEmailContactPref(){
+        this.emailContact = true;
+    }
+    
+    registerConfirm(){
+        return true;
     }
     
     
@@ -58,6 +72,9 @@ class MainStore extends EventEmmiter{
         {
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
+            case "LOGIN_CONFIRM": this.logUserIn(action); break;
+            case "EMAIL_CONTACT": this.changeEmailContactPref(action); break;
+            //case "REGISTER_CONFIRM": this.changeEmailContactPref(action); break;
         }
     }
 }
