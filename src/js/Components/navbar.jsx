@@ -1,7 +1,6 @@
 import React from 'react';
 import tc_logo from '../../images/tc_logo.png';
-import Login from './login.jsx';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 
 export class Navbar extends React.Component{
@@ -51,12 +50,12 @@ export class Navbar extends React.Component{
     render(){
         return (
             <nav className="navbar fixed-top navbar-light bg-light py-0">
-                   <a className="navbar-brand" href="#" ><img className="logo" src= { 'public/'+tc_logo } />Think Crypto</a>
+                   <a className="navbar-brand" ><img className="logo" src= { 'public/'+tc_logo }  />Think Crypto</a>
                     
                     <div className="navbar-nav ml-auto px-3 d-inline-block">
                         <ul className="no-list-style">
                             <li><NavLink className="nav-item active nav-link" to="/dashboard" >Dashboard</NavLink></li>
-                            <li><NavLink className="nav-item active nav-link" to="/login">Login </NavLink></li>
+                            <li><NavLink className="nav-item active nav-link" to="/login" >Login </NavLink></li>
                         </ul>
                     </div>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
@@ -83,7 +82,7 @@ export class Navbar extends React.Component{
     renderLikeAHamburger(listOfNavitems){
         
         var links = listOfNavitems.map(function(currentElement){
-         return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement}>{currentElement.label}</a></li>
+         return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement}>{currentElement.label}</a></li>;
         });
         
         return (
