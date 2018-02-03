@@ -1,4 +1,8 @@
 .card.currencyCard{
     padding: 0;
     margin: 25px 25px;
+    
+    @include media-breakpoint-down(md){
+        background: #4d4d4d;
+    }
 }

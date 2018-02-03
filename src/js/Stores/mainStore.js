@@ -16,8 +16,13 @@ class MainStore extends EventEmmiter{
         
         this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
         this.model = {
-            currencyList: []
+            currencyList: [],
+            watchlist: ''
         };
+    }
+    
+    getLoginStatus(){
+        return this.isLoggedIn;
     }
     
     getUserInfo(){
@@ -48,12 +53,9 @@ class MainStore extends EventEmmiter{
         this.emit('change');
     }
   
-    
     handleActions(action){
         switch(action.actionType)
         {
-            // case "SET_CURRENCY_LIST": this.setCurrencyList(action.data); break;
-            // case "SAVE_SCORES": this.saveScores(action.actionData); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
         }

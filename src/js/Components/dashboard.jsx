@@ -45,7 +45,7 @@ export class Dashboard extends React.Component{
                 </div>
                 <div className="middleContent">
                     <div className="row">
-                        <DataArea className={dataAlign} /> 
+                        <DataArea className={dataAlign} history={this.props.history} /> 
                         <AdBarZone createAd={this.state.createAd} />   
                     </div>
                 </div>

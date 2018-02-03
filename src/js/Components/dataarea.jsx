@@ -19,7 +19,7 @@ export class DataArea extends React.Component{
         // console.log(this.props.className);
         return(
             <div className={"dataArea col-12 col-md-10 " + this.props.className.join(' ')}>
-                <TableData v='1'/>
+                <TableData v='1' history={this.props.history}/>
             </div>
             );
     }

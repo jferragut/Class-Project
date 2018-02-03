@@ -25,7 +25,7 @@
     }
 }
 
-@include media-breakpoint-up(md){
+@include media-breakpoint-down(md){
     footer.bg-light.fixed-bottom {
         position: relative;
         right: 0;
