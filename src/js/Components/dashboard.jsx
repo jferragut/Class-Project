@@ -19,12 +19,8 @@ export class Dashboard extends React.Component{
                 width: '100%',
                 height: 'auto',
             },
-             
+            viewTable: true
         };
-        
-        
-        
-
     }
     
     render(){
@@ -45,7 +41,7 @@ export class Dashboard extends React.Component{
                 </div>
                 <div className="middleContent">
                     <div className="row">
-                        <DataArea className={dataAlign} history={this.props.history} /> 
+                        <DataArea className={dataAlign} history={this.props.history} viewTable={this.state.viewTable} /> 
                         <AdBarZone createAd={this.state.createAd} />   
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {TableData} from './tabledata.jsx';
+import {DetailView} from './detailview.jsx';
 
 
 export class DataArea extends React.Component{
@@ -14,14 +15,20 @@ export class DataArea extends React.Component{
 
     }
     
+    checkReturnType(){
+        if(this.props.viewTable===true){
+            return <TableData v='1' history={this.props.history} />;
+        }else{
+            return <DetailView />;
+        }
+    }
     
     render(){
-        // console.log(this.props.className);
         return(
             <div className={"dataArea col-12 col-md-10 " + this.props.className.join(' ')}>
-                <TableData v='1' history={this.props.history}/>
+                {this.checkReturnType()}
             </div>
-            );
+        );
     }
     
 }

@@ -25,13 +25,8 @@
     }
 }
 
-@include media-breakpoint-down(md){
+@include media-breakpoint-down(sm){
     footer.bg-light.fixed-bottom {
-        position: relative;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1030;
-        margin-bottom: 65px;
+        margin-bottom: 5vh;
     }
 }

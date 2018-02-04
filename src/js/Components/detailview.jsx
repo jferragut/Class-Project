@@ -4,7 +4,7 @@ import * as mainActions from '../Actions/mainActions.js';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 import {watchlistUtils} from '../Utils/watchlist';
 
-export class TableData extends React.Component{
+export class DetailView extends React.Component{
     
     constructor(){
         
