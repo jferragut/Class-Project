@@ -10,32 +10,39 @@ class WatchlistStore extends EventEmmiter{
         super();
         
         this.model = {
+            watchlistAddStatus: '',
+            watchlistRemoveStatus: '',
             watchlist: ''
         };
     }
     
-  
-    removeWatchlistItem(data, symbol){
-        if(data=='success'){
+    
+    
+    removeWatchlistItem(status, action, data){
+        if(status==200){
             this.model = {
-                watchlist: 'Item '+symbol+' was successfully removed from your watchlist.'
+                watchlistRemoveStatus: 'Item '+data+' was successfully removed from your watchlist.',
+                watchlist: data
             };
         }else{
             this.model = {
-                watchlist: 'Item '+symbol+' could not be removed.'
+                watchlistRemoveStatus: 'Item '+data+' could not be removed.',
+                watchlist: data
             };
         }
         this.emit('change');
     }
     
-    addWatchlistItem(data, symbol){
-        if(data=='success'){
+    addWatchlistItem(status, action, data){
+        if(status==200){
             this.model = {
-                watchlist: 'Item '+symbol+' was successfully added to your watchlist.'
+                watchlistAddStatus: 'Item '+data+' was successfully added to your watchlist.',
+                watchlist: data
             };
         }else{
             this.model = {
-                watchlist: 'Item '+symbol+' could not be removed.'
+                watchlistAddStatus: 'Item '+data+' could not be removed.',
+                watchlist: data
             };
         }
         this.emit('change');
@@ -44,8 +51,10 @@ class WatchlistStore extends EventEmmiter{
     handleActions(action){
         switch(action.actionType)
         {
-            case "REMOVE_WATCHLIST_ITEM": this.removeWatchlistItem(action.actionData, action.data); break;
-            case "ADD_WATCHLIST_ITEM": this.addWatchlistItem(action.actionData, action.data); break;
+            case "REMOVE_WATCHLIST_ITEM_FAILED": this.removeWatchlistItem(action.status, action.actionData, action.data); break;
+            case "REMOVE_WATCHLIST_ITEM": this.removeWatchlistItem(action.status, action.actionData, action.data); break;
+            case "ADD_WATCHLIST_ITEM_FAILED": this.addWatchlistItem(action.status, action.actionData, action.data); break;
+            case "ADD_WATCHLIST_ITEM": this.addWatchlistItem(action.status, action.actionData, action.data); break;
         }
     }
 }
