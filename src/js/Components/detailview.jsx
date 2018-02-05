@@ -1,5 +1,6 @@
 import React from 'react';
 import mainStore from '../Stores/mainStore.js';
+import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 import {watchlistUtils} from '../Utils/watchlist';
@@ -8,7 +9,7 @@ export class DetailView extends React.Component{
     
     constructor(){
         
-        super();   //call the super constructor 
+        super(); 
         
         this.state = {
             table: this.isItMobile(),
@@ -32,6 +33,7 @@ export class DetailView extends React.Component{
         window.addEventListener('resize', this.updateWindowDimensions);
         //Set a listener on the change of the store (emit) to set state of the currencyList in the state
         mainStore.on('change',this.handleStoreChange.bind(this));
+        watchlistStore.on('change',this.handleStoreChange.bind(this));
     }
     
     componentWillUnmount() {

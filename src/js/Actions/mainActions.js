@@ -29,7 +29,7 @@ export function UserValidated(username, password) {
   };
     
                             //need to add link of crypto api 
-  xhttp.open("POST", "https://class-project-backend-jonnywrites.c9users.io/api/user/, true);
+  xhttp.open("POST", "https://class-project-backend-jonnywrites.c9users.io/api/user/", true);
   xhttp.addEventListener('error', function(error) {
     console.log("ERROR on the response!!! ", error);
   });
@@ -159,7 +159,7 @@ export function RemoveFromWatchlist(symbol, user_id){
         mainDispatcher.dispatch({
           actionType: 'REMOVE_WATCHLIST_ITEM_FAILED',
           status: this.status,
-          actionData: error
+          actionData: error,
           data: symbol
         });
     });

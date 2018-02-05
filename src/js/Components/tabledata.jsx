@@ -1,8 +1,9 @@
 import React from 'react';
 import mainStore from '../Stores/mainStore.js';
+import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
-import {watchlistUtils} from '../Utils/watchlist';
+import {watchlistUtils} from '../Utils/watchlist.js';
 
 export class TableData extends React.Component{
     
@@ -14,10 +15,14 @@ export class TableData extends React.Component{
             table: this.isItMobile(),
             currencyList: [],
             isLoggedIn: mainStore.getLoginStatus(),
-            username: mainStore.getUserInfo().username
+            username: mainStore.getUserInfo().username,
+            watchlistAddStatus: '',
+            watchlistRemoveStatus: '',
+            watchlist: ''
         };
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
         mainActions.GetCurrencies();
     }
     
@@ -30,14 +35,17 @@ export class TableData extends React.Component{
     componentDidMount() {
         //window resize listener
         window.addEventListener('resize', this.updateWindowDimensions);
-        //Set a listener on the change of the store (emit) to set state of the currencyList in the state
-        mainStore.on('change',this.handleStoreChange.bind(this));
+        //Set a listener on change of the mainStore (emit) to update the state
+        mainStore.on('change',this.handleStoreChange);
+        //Set a listener on change of the watchlistStore (emit) to update the state
+        watchlistStore.on('change',this.handleStoreChange);
     }
     
     componentWillUnmount() {
         //unload listeners
         window.removeEventListener('resize', this.updateWindowDimensions);
-        mainStore.removeEventListener('change',this.handleStoreChange.bind(this));
+        mainStore.removeEventListener('change',this.handleStoreChange);
+        watchlistStore.removeEventListener('change',this.handleStoreChange);
     }
     
     updateWindowDimensions() {
@@ -50,7 +58,10 @@ export class TableData extends React.Component{
     
     handleStoreChange(){
         this.setState({
-            currencyList: mainStore.getCurrencyList() 
+            currencyList: mainStore.getCurrencyList(),
+            watchlistAddStatus: watchlistStore.getWatchlistAddStatus(),
+            watchlistRemoveStatus: watchlistStore.getWatchlistRemoveStatus(),
+            watchlist: watchlistStore.getWatchlist()
         }); 
     }
     

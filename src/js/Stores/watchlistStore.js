@@ -17,7 +17,21 @@ class WatchlistStore extends EventEmmiter{
     }
     
     
+    // Return methods
+    getWatchlistAddStatus(){
+        return this.model.watchlistAddStatus;
+    }
     
+    getWatchlistRemoveStatus(){
+        return this.model.watchlistRemoveStatus;
+    }
+    
+    getWatchlist(){
+        return this.model.watchlist;
+    }
+    
+    
+    // Functions that process action data
     removeWatchlistItem(status, action, data){
         if(status==200){
             this.model = {
