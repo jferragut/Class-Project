@@ -21,6 +21,24 @@ export class Dashboard extends React.Component{
             },
             viewTable: true
         };
+        
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    componentWillMount(){
+        
+    }
+    
+    componentDidMount(){
+        
+    }
+    
+    componentWillUnmount(){
+        
+    }
+    
+    handleChange(){
+        
     }
     
     render(){

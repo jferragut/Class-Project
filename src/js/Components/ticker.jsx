@@ -15,11 +15,6 @@ export class Ticker extends React.Component{
     
     
     render(){
-        //Begin logic for api pull that will grab the ticker data here.
-        //Make sure to scroll this data to the left.
-        
-        
-        
         //Display of the div and data begins here
         return(    
             <div className="tickerData container-fluid d-block my-auto">
