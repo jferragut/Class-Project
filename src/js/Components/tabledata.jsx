@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import mainStore from '../Stores/mainStore.js';
 import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
@@ -111,7 +112,7 @@ export class TableData extends React.Component{
         return(
         <tr key={actiondata.rank}>
             <td>{actiondata.rank}</td>
-            <td>{actiondata.name}</td>
+            <td><Link to={{pathname:'/coin',search:'?name='+actiondata.name}}>{actiondata.name}</Link></td>
             <td>{actiondata.symbol}</td>
             <td>{actiondata.market_cap_usd}</td>
             <td>{actiondata.price_usd}</td>
@@ -145,7 +146,7 @@ export class TableData extends React.Component{
             <div key={actiondata.rank} className="card currencyCard">
                 <div className="card-body">
                     <i className={"fa "+watchlistUtils.watchlistStatusCheck(actiondata.watchlistStatus)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol,this.state.path)}></i>
-                    <h5 className="card-title">{actiondata.rank}  {actiondata.name}  {actiondata.symbol}</h5>
+                    <h5 className="card-title">{actiondata.rank}  <Link to={{pathname:'/coin',search:'?name='+actiondata.name}}>{actiondata.name}  {actiondata.symbol}</Link></h5>
                     <p className="card-text">Price: {actiondata.price_usd}</p>
                     <p className="card-text">Change 24 Hrs: {actiondata.percent_change_24h}</p>
                     <Sparklines data={actiondata.ticker_history.split(',')}>
