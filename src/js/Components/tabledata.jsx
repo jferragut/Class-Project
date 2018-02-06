@@ -18,12 +18,14 @@ export class TableData extends React.Component{
             username: mainStore.getUserInfo().username,
             watchlistAddStatus: '',
             watchlistRemoveStatus: '',
-            watchlist: ''
+            watchlist: '',
+            path: window.location.pathname.substr(1)
         };
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
         mainActions.GetCurrencies();
+        mainStore.getLoginStatus();
     }
     
     
@@ -57,13 +59,22 @@ export class TableData extends React.Component{
     }
     
     handleStoreChange(){
-        this.setState({
+        if(this.state.isLoggedIn==true){
+            this.setState({
             currencyList: mainStore.getCurrencyList(),
             watchlistAddStatus: watchlistStore.getWatchlistAddStatus(),
             watchlistRemoveStatus: watchlistStore.getWatchlistRemoveStatus(),
             watchlist: watchlistStore.getWatchlist()
-        }); 
-    }
+         }); 
+        }else{
+            this.setState({
+                currencyList: mainStore.getCurrencyList(),
+                watchlistAddStatus: watchlistStore.getWatchlistAddStatus(),
+                watchlistRemoveStatus: watchlistStore.getWatchlistRemoveStatus(),
+                watchlist: watchlistStore.getWatchlist()
+            }); 
+        }
+    }   
     
     RenderAsTable(){
         // debugger;
@@ -113,7 +124,7 @@ export class TableData extends React.Component{
                     <SparklinesReferenceLine type="mean" />
                 </Sparklines>
             </td>
-            <td><i className={"fa "+watchlistUtils.watchlistStatusCheck(index,actiondata.symbol)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol)}></i></td>
+            <td><i className={"fa "+watchlistUtils.watchlistStatusCheck(index,actiondata.symbol)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol,this.state.path)}></i></td>
         </tr>    
         );
     }
@@ -133,7 +144,7 @@ export class TableData extends React.Component{
         return(
             <div key={actiondata.rank} className="card currencyCard">
                 <div className="card-body">
-                    <i className={"fa "+watchlistUtils.watchlistStatusCheck(actiondata.watchlistStatus)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol)}></i>
+                    <i className={"fa "+watchlistUtils.watchlistStatusCheck(actiondata.watchlistStatus)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol,this.state.path)}></i>
                     <h5 className="card-title">{actiondata.rank}  {actiondata.name}  {actiondata.symbol}</h5>
                     <p className="card-text">Price: {actiondata.price_usd}</p>
                     <p className="card-text">Change 24 Hrs: {actiondata.percent_change_24h}</p>
