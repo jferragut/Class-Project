@@ -8,6 +8,7 @@ import { Navbar } from './navbar.jsx';
 import { Login } from './login.jsx';
 import { Register } from './register.jsx';
 import { Profile } from './profile.jsx';
+import { editProfile } from './editprofile.jsx';
 
 export class Layout extends React.Component{
     
@@ -23,6 +24,7 @@ export class Layout extends React.Component{
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/editprofile' component={editProfile} />
                         <Route component={Error404} />
                     </Switch>
                 </div>

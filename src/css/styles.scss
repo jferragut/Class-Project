@@ -19,6 +19,7 @@
 @import 'components/login';
 @import 'components/register';
 @import 'components/profile';
+@import 'components/editprofile';
 
 
 body{
@@ -32,6 +33,7 @@ body{
     @include media-breakpoint-down(md){
         margin-bottom: 25px;
     }
+    background-image: linear-gradient(rgb(248,249,250), rgb(255, 204, 0));
 }
 
 

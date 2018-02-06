@@ -10,14 +10,23 @@ export class Login extends React.Component {
             username: '',
             password: ''
         };
-        //this.user = MainStore.getUserInfo();
+        
     }
     
-    /*signIn(event){
-  	if(   ) mainActions.signIn(this.username, this.password);
-  	else mainActions.SendResult(this.username, this.password);
-  	console.log("user sign in is working") ;
+    loginConfirm(task){
+        MainActions.LoginConfirm(task);
+        console.log('attempting to login');
+    }
+    
+    /*login(e) {
+    e.preventDefault();
+    // Here, we call an external AuthService. We’ll create it in the next step
+    Auth.login(this.state.username, this.state.password)
+      .catch(function(err) {
+        console.log( “Error”);
+      });
   }*/
+
   
   
   
@@ -40,7 +49,7 @@ export class Login extends React.Component {
                         <input type="checkbox" value="remember-me"/> Remember me
                     </label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> MainActions.LoginConfirm() || this.props.history.push('/profile')} type="submit"  >SIGN IN</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.loginConfirm() || this.props.history.push('/profile')} type="submit"  >SIGN IN</button>
             </form>
             <a href="/rsp" className="forgot-password">
                 Forgot password?
