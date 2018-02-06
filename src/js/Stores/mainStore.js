@@ -73,7 +73,7 @@ class MainStore extends EventEmmiter{
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "LOGIN_CONFIRM": this.logUserIn(action); break;
             case "EMAIL_CONTACT": this.changeEmailContactPref(action); break;
-            //case "REGISTER_CONFIRM": this.changeEmailContactPref(action); break;
+            //case "REGISTER_CONFIRM": this.registerConfirm(action); break;
         }
     }
 }

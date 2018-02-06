@@ -6,11 +6,13 @@ import * as MainActions from '../Actions/mainActions.js';
 export class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            username: '',
-            password: ''
-        };
-        //this.user = MainStore.getUserInfo();
+       this.firstname= null;
+       this.lastname= null;
+       this.email=null;
+       this.password=null;
+       this.email_contact=null;
+       this.subscription_status=null;
+       
     }
     
     /*signIn(event){
@@ -18,7 +20,10 @@ export class Register extends React.Component {
   	else mainActions.SendResult(this.username, this.password);
   	console.log("user sign in is working") ;
   }*/
-  
+  registerConfirm(task){
+  	MainActions.RegisterConfirm(task, this.firstname, this.lastname, this.email, this.password, this.email_contact, this.subscription_status);
+  	console.log("register confirm  is working " + this.firstname, this.lastname, this.email, this.password, this.email_contact, this.subscription_status) ;
+  }
   
   
   
@@ -33,15 +38,15 @@ export class Register extends React.Component {
             <h1 className="register"> REGISTER THINKCRYPTO ACCOUNT</h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
-                <input className="place" type="firstname" id="inputEmail" className="form-control" placeholder="First Name" required autoFocus/>
-                <input className="place" type="lastname" id="inputEmail" className="form-control" placeholder="Last Name" required/>
-                <input className="place" type="email" id="inputEmail" className="form-control" placeholder="Email" required/>
-                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
-                <input type="password" id="inputPassword" className="form-control" placeholder="Re-enter Password" required/>
+                <input className="place" type="firstname" id="firstname" className="form-control" placeholder="First Name" onChange={(evt)=> this.firstname = evt.target.value} required autoFocus/>
+                <input className="place" type="lastname" id="lastname" className="form-control" placeholder="Last Name" onChange={(evt)=> this.lastname = evt.target.value} required/>
+                <input className="place" type="email" id="email" className="form-control" placeholder="Email" onChange={(evt)=> this.email = evt.target.value}required/>
+                <input type="password" id="pass" className="form-control" placeholder="Password" onChange={(evt)=> this.password = evt.target.value}required/>
+                <input type="password" id="pass" className="form-control" placeholder="Re-enter Password"  required/>
             
                     <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Email Contact ?</label>
                         <select className="custom-select mb-2 mr-sm-2 " id="inlineFormCustomSelect">
-                            <option defaultValue={MainActions.EmailContact()}  >Select</option>
+                            <option >Select</option>
                             <option defaultValue="true">Yes</option>
                             <option defaultValue="false">No</option>
                         </select>
@@ -55,7 +60,7 @@ export class Register extends React.Component {
   
            
                 
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> MainActions.RegisterConfirm() || this.props.history.push('/profile')} type="submit">SIGN UP</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.registerConfirm() || this.props.history.push('/profile')} type="submit">SIGN UP</button>
             </form>
             
         </div>

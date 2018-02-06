@@ -37,7 +37,7 @@ export function UserValidated(username, password) {
 }
 
 // Action to Confirm Login
-export function LoginConfirm(){
+export function LoginConfirm(task){
     
       mainDispatcher.dispatch({
         actionType: 'LOGIN_CONFIRM',
@@ -46,36 +46,43 @@ export function LoginConfirm(){
     
 }
 
-// Action to Confirm Email Contact
-export function EmailContact(){
-    
-      mainDispatcher.dispatch({
-        actionType: 'EMAIL_CONTACT',
-        data: {}
-      });
-    
-}
 
-/*export function RegisterConfirm(){
-    
-      mainDispatcher.dispatch({
-        actionType: 'REGISTER_CONFIRM',
-        data: {
-          firstname:
-          lastname:
-          firstname:
-          firstname:
-          firstname:
-        }
-      });
-      
-      xhttp.open("POST", "https://assets.breatheco.de/apis/tictactoe/api/game", true);
-  xhttp.addEventListener('error', function(error) {
-    console.log("ERROR on the response!!! ", error);
-  });
-  xhttp.send(formData);
-    
-}*/
+
+export function RegisterConfirm(firstname, lastname, email, password, email_contact, subscription_status) {
+  
+  var requestBody = {
+  "firstname": firstname,
+  "lastname": lastname,
+  "email": email,
+  "password": password,
+  "email_contact": email_contact,
+  "subscription_status": subscription_status
+  };
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    mainDispatcher.dispatch({
+      actionType: 'REGISTER_CONFIRM',
+      data: {
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password: password,
+        email_contact: email_contact,
+        subscription_status: subscription_status
+      }
+    });
+
+    xhttp.open("PUT", "https://assets.breatheco.de/apis/tictactoe/api/game", true);
+    xhttp.addEventListener('error', function(error) {
+      console.log("ERROR on the response!!! ", error);
+    });
+    xhttp.send(JSON.stringify(requestBody));
+
+  }
+  };
+}
 
 
 //***********************************
