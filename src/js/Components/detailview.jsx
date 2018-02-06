@@ -39,7 +39,8 @@ export class DetailView extends React.Component{
     componentWillUnmount() {
         //unload listeners
         window.removeEventListener('resize', this.updateWindowDimensions);
-        mainStore.removeEventListener('change',this.handleStoreChange.bind(this));
+        mainStore.remove();
+        watchlistStore.remove();
     }
     
     updateWindowDimensions() {

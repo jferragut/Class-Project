@@ -17,7 +17,7 @@ export class DataArea extends React.Component{
     
     checkReturnType(){
         if(this.props.viewTable===true){
-            return <TableData v='1' history={this.props.history} />;
+            return <TableData history={this.props.history} />;
         }else{
             return <DetailView />;
         }
