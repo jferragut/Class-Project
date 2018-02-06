@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { DataArea } from './dataarea.jsx';
 import { AdBarZone } from './adbar.jsx';
@@ -17,16 +18,17 @@ export class Dashboard extends React.Component{
                 // position should be right or left
                 position: 'right',
                 width: '100%',
-                height: 'auto',
+                height: 'auto'
             },
-            viewTable: true
+            viewTable: true,
+            dataAlign: []
         };
         
         this.handleChange = this.handleChange.bind(this);
     }
     
     componentWillMount(){
-        
+        this.createAd();
     }
     
     componentDidMount(){
@@ -41,16 +43,21 @@ export class Dashboard extends React.Component{
         
     }
     
-    render(){
-        var dataAlign = [];
-        if(this.state.createAd.position === 'right'){
-            dataAlign.push("order-1");
+    createAd(){
+        if(this.state.createAd.position == 'right'){
+            this.setState({
+                dataAlign: this.state.dataAlign.concat(["order-1"])
             // console.log(this.dataAlign);
+            });
         }else{
-            dataAlign.push("order-2");
+            this.setState({
+                dataAlign: this.state.dataAlign.concat(["order-2"])
+            });
             // console.log(this.dataAlign);
         }
-        
+    }
+    
+    render(){
         return(
             <div className="dashboard">
                 <div className="topBarRegion">
@@ -59,8 +66,17 @@ export class Dashboard extends React.Component{
                 </div>
                 <div className="middleContent">
                     <div className="row">
-                        <DataArea className={dataAlign} history={this.props.history} viewTable={this.state.viewTable} /> 
-                        <AdBarZone createAd={this.state.createAd} />   
+                        <BrowserRouter>
+                                <Switch>
+                                    <Route exact path='/dashboard'>
+                                        <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={true} /> 
+                                    </Route>
+                                    <Route exact path='/coin'>
+                                        <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={false} /> 
+                                    </Route>
+                                </Switch>
+                        </BrowserRouter>
+                        <AdBarZone createAd={this.createAd} />   
                     </div>
                 </div>
             </div>

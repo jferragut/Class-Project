@@ -44,8 +44,8 @@ export class TableData extends React.Component{
     componentWillUnmount() {
         //unload listeners
         window.removeEventListener('resize', this.updateWindowDimensions);
-        mainStore.removeEventListener('change',this.handleStoreChange);
-        watchlistStore.removeEventListener('change',this.handleStoreChange);
+        mainStore.removeListener('change',this.handleStoreChange);
+        watchlistStore.removeListener('change',this.handleStoreChange);
     }
     
     updateWindowDimensions() {
