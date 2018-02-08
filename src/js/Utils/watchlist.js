@@ -8,12 +8,13 @@ export var watchlistUtils = {
     },
     
     watchlistToggle(status,symbol,path){
+        console.log(path);
         // User logged in and Currency is on watchlist, so user requests removal.
-        if(this.state.isLoggedIn===true && status===true) mainActions.RemoveFromWatchlist(symbol,this.state.username); 
+        if(this.state.isLoggedIn===true & status===true) mainActions.RemoveFromWatchlist(symbol,this.state.username); 
         // User Logged in and Currency is not on watchlist, so user wants to add it.
-        else if(this.state.isLoggedIn===true && status===false) mainActions.AddToWatchlist(symbol,this.state.username);
+        else if(this.state.isLoggedIn===true & status===false) mainActions.AddToWatchlist(symbol,this.state.username);
         // User is not Logged in, so redirect to login page
-        else this.props.history.push('/login?src='+{path}); 
+        else this.props.history.push('/login?src='+path); 
     }
     
 };
