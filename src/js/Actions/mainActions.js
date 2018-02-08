@@ -48,11 +48,11 @@ export function LoginConfirm(task){
 
 
 
-export function RegisterConfirm(firstname, lastname, email, password, email_contact, subscription_status) {
+export function RegisterConfirm(history, firstname, lastname, email, password, passwordRetry, email_contact, subscription_status) {
   
   var requestBody = {
-  "firstname": firstname,
-  "lastname": lastname,
+  "first_name": firstname,
+  "last_name": lastname,
   "email": email,
   "password": password,
   "email_contact": email_contact,
@@ -61,27 +61,31 @@ export function RegisterConfirm(firstname, lastname, email, password, email_cont
   
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    mainDispatcher.dispatch({
-      actionType: 'REGISTER_CONFIRM',
-      data: {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password,
-        email_contact: email_contact,
-        subscription_status: subscription_status
-      }
-    });
+    if (this.readyState == 4 && this.status == 200 ) {
+      
+      ///success!!!!
+      
+      
+      mainDispatcher.dispatch({
+          actionType: 'REGISTER_CONFIRM',
+          data: {
+            first_name: firstname,
+            last_name: lastname,
+            email: email,
+            password: password,
+            email_contact: email_contact,
+            subscription_status: subscription_status
+          }
+        });
+          this.props.history.push('/profile');
 
-    xhttp.open("PUT", "https://assets.breatheco.de/apis/tictactoe/api/game", true);
+      }
+    };
+    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api", true);
     xhttp.addEventListener('error', function(error) {
       console.log("ERROR on the response!!! ", error);
     });
     xhttp.send(JSON.stringify(requestBody));
-
-  }
-  };
 }
 
 
