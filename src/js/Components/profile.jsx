@@ -7,10 +7,11 @@ export class Profile extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: '',
-            password: ''
+          data : MainStore.getUserProfile
+          
         };
         this.isLoggedIn = MainStore.isLoggedIn;
+        
         
     }
     
@@ -30,7 +31,7 @@ export class Profile extends React.Component {
     <div className="teacher-name">
       <div className="row">
         <div className="col-sm-9">
-          <h2><strong>Rick Sanchez</strong></h2>
+          <h2><strong>Hello {this.state.first_name}</strong></h2>
         </div>
         <div className="col-sm-3">
           <div className="button pull-right">

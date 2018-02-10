@@ -9,18 +9,28 @@ class MainStore extends EventEmmiter{
         
         super();
         
-        this.aux = {
-        username: 'test',
-        password: 'test',
+        this.profile = {
+        username: null,
+        first_name: null,
+        last_name: null,
+        email: null,
+        password: null,
+        passwordRetry: null,
+        email_contact: null,
+        subscription_status: null,
         };
         
-        this.isLoggedIn = true;  //default status of user login should be set to false until they have logged in.
+        this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
             watchlist: ''
         };
         
-        this.emailContact = false;
+        
+    }
+    
+    getUserProfile(){
+        return this.profile;
     }
     
     // Return methods
@@ -33,22 +43,31 @@ class MainStore extends EventEmmiter{
     }
     
     getUserInfo(){
-        return this.aux;
+        return this.profile;
     }
 
-    registerConfirm(){
+    registerConfirm(data){
+        this.profile.username= data.username,
+        this.profile.first_name= data.first_name,
+        this.profile.last_name= data.last_name,
+        this.profile.email= data.email,
+        this.profile.password= data.password,
+        this.profile.passwordRetry= data.passwordRetry,
+        this.profile.email_contact= data.email_contact,
+        this.profile.subscription_status= data.subscription_status,
+        this.emit('change');
         return true;
     }
     
     // Functions that process action data
     logUserIn(){
+        if(mainStore.registerConfirm == true){
         this.isLoggedIn = true;
         this.emit('change');
+        }
+        else return false;
     }
     
-    changeEmailContactPref(){
-        this.emailContact = true;
-    }
     
     setCurrencyList(data){
         this.model = {
@@ -66,9 +85,6 @@ class MainStore extends EventEmmiter{
         this.emit('change');
     }
     
-    registerConfirm(){
-        
-    }
   
     handleActions(action){
         switch(action.actionType)
@@ -76,7 +92,6 @@ class MainStore extends EventEmmiter{
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "LOGIN_CONFIRM": this.logUserIn(action); break;
-            case "EMAIL_CONTACT": this.changeEmailContactPref(action); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action); break;
         }
     }

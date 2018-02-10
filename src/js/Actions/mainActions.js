@@ -37,22 +37,25 @@ export function UserValidated(username, password) {
 }
 
 // Action to Confirm Login
-export function LoginConfirm(task){
+export function LogInConfirm(task){
     
       mainDispatcher.dispatch({
         actionType: 'LOGIN_CONFIRM',
         data: {}
       });
+      this.props.history.push('/profile');
+      
     
 }
 
 
 
-export function RegisterConfirm(history, firstname, lastname, email, password, passwordRetry, email_contact, subscription_status) {
+export function RegisterConfirm(history, username, first_name, last_name, email, password, passwordRetry, email_contact, subscription_status) {
   
   var requestBody = {
-  "first_name": firstname,
-  "last_name": lastname,
+  "username": username,
+  "first_name": first_name,
+  "last_name": last_name,
   "email": email,
   "password": password,
   "email_contact": email_contact,
@@ -69,8 +72,9 @@ export function RegisterConfirm(history, firstname, lastname, email, password, p
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
           data: {
-            first_name: firstname,
-            last_name: lastname,
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
             email: email,
             password: password,
             email_contact: email_contact,
@@ -81,7 +85,8 @@ export function RegisterConfirm(history, firstname, lastname, email, password, p
 
       }
     };
-    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api", true);
+    debugger;
+    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
     xhttp.addEventListener('error', function(error) {
       console.log("ERROR on the response!!! ", error);
     });
