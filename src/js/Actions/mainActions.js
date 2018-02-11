@@ -1,5 +1,4 @@
 import mainDispatcher from '../Dispatchers/mainDispatcher';
-
 //***********************************
 // Begin User Actions
 //***********************************
@@ -121,7 +120,7 @@ export function GetCurrencies(username){
 
 // API request with no form data (GET) - Gets the user watchlist
 export function GetUserWatchlist(username){
-    
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
         
@@ -131,13 +130,19 @@ export function GetUserWatchlist(username){
             const dataReadyToSave = JSON.parse(this.response);
             mainDispatcher.dispatch({
               actionType: 'GET_USER_WATCHLIST',
-              actionData: dataReadyToSave
+              actionData: dataReadyToSave,
+              status: 200  
             });
         }
     };
     xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist", true);
     xhttp.addEventListener('error',function(error){
         console.log("ERROR on the response!!! ",error);
+        mainDispatcher.dispatch({
+              actionType: 'GET_USER_WATCHLIST',
+              actionData: error,
+              status: ''
+            });
     });
     xhttp.send();
 }
@@ -202,5 +207,3 @@ export function AddToWatchlist(symbol, user_id){
     });
     xhttp.send();
 }
-
-

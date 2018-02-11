@@ -10,9 +10,29 @@ import { Register } from './register.jsx';
 import { Profile } from './profile.jsx';
 import { editProfile } from './editprofile.jsx';
 
+import mainStore from '../Stores/mainStore.js';
+
 export class Layout extends React.Component{
     
+    constructor(){
+        
+        super();
+        
+        this.state = {
+            isLoggedIn: false,
+            path: window.location.pathname.substr(1)
+        };   
+    }
+    
+    componentWillMount(){
+        //Set a listener on change of the mainStore (emit) to update the state
+        mainStore.on('change',()=>this.setState({
+            isLoggedIn: mainStore.getLoginStatus(),
+        }));
+    }
+    
     render(){
+        
         return(
             <BrowserRouter>
                 <div className="container-fluid no-gutters px-0">

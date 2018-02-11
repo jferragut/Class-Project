@@ -12,6 +12,7 @@ export class Dashboard extends React.Component{
         super();   //call the super constructor 
         
         this.state = {
+            table: this.isItMobile(),
             createAd: {
                 image: 'https://gsws002.files.wordpress.com/2012/10/popchips-nothing-fake-about-em-600-93670.jpg', 
                 url: 'http://www.google.com',
@@ -24,23 +25,28 @@ export class Dashboard extends React.Component{
             dataAlign: []
         };
         
-        this.handleChange = this.handleChange.bind(this);
     }
     
     componentWillMount(){
         this.createAd();
     }
     
-    componentDidMount(){
-        
+    componentDidMount() {
+        //window resize listener
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
     
-    componentWillUnmount(){
-        
+    componentWillUnmount() {
+        //unload listeners
+        window.removeEventListener('resize', this.updateWindowDimensions);
     }
     
-    handleChange(){
-        
+    updateWindowDimensions() {
+        this.setState({table:this.isItMobile()});
+    }
+    
+    isItMobile(){
+        if(window.innerWidth <= 768) return false; else return true;
     }
     
     createAd(){

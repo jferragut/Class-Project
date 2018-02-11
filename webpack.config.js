@@ -21,11 +21,12 @@ module.exports = {
             }]
         }, //css only files
         { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }, //for images
-        { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['url-loader'] } //for fonts
+        { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['url-loader'] }, //for fonts
+        { test: /\.json$/, loader: 'json-loader' }
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.webpack.js', '.web.js', '.js', '.jsx']
   },
   devtool: "source-map",
   devServer: {
@@ -45,4 +46,5 @@ module.exports = {
       Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
     })
   ]
+  
 };

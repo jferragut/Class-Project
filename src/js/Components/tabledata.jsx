@@ -4,35 +4,36 @@ import mainStore from '../Stores/mainStore.js';
 import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
-import {watchlistUtils} from '../Utils/watchlist.js';
+import { watchlistUtils } from '../Utils/watchlist.js';
+import { RenderRow } from './row.jsx';
+import { RenderCard } from './card.jsx';
 
 export class TableData extends React.Component{
     
     constructor(){
         
         super();   //call the super constructor 
+        var userInfo = mainStore.getUserInfo();
+        mainActions.GetCurrencies();
+        var theCurrencies = mainStore.getCurrencyList();
         
         this.state = {
             table: this.isItMobile(),
-            currencyList: [],
-            isLoggedIn: mainStore.getLoginStatus(),
-            username: mainStore.getUserInfo().username,
-            watchlistAddStatus: '',
-            watchlistRemoveStatus: '',
-            watchlist: '',
+            currencyList: theCurrencies,
+            username: userInfo.username,
+            watchlist: [],
             path: window.location.pathname.substr(1)
         };
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
-        mainActions.GetCurrencies();
-        mainStore.getLoginStatus();
+        
+        mainActions.GetUserWatchlist(userInfo.username);
     }
     
     
     componentWillMount(){
-        watchlistUtils.watchlistToggle = watchlistUtils.watchlistToggle.bind(this);
-        watchlistUtils.watchlistStatusCheck = watchlistUtils.watchlistStatusCheck.bind(this);
+        
     }
     
     componentDidMount() {
@@ -60,29 +61,21 @@ export class TableData extends React.Component{
     }
     
     handleStoreChange(){
-        if(this.state.isLoggedIn==true){
-            this.setState({
+        this.setState({
             currencyList: mainStore.getCurrencyList(),
-            watchlistAddStatus: watchlistStore.getWatchlistAddStatus(),
-            watchlistRemoveStatus: watchlistStore.getWatchlistRemoveStatus(),
             watchlist: watchlistStore.getWatchlist()
-         }); 
-        }else{
-            this.setState({
-                currencyList: mainStore.getCurrencyList(),
-                watchlistAddStatus: watchlistStore.getWatchlistAddStatus(),
-                watchlistRemoveStatus: watchlistStore.getWatchlistRemoveStatus(),
-                watchlist: watchlistStore.getWatchlist()
-            }); 
-        }
+        }); 
     }   
     
     RenderAsTable(){
-        // debugger;
-        var actiondata = this.state.currencyList;
+        
+        var theData = this.state.currencyList.map((itemData,index) => 
+                      <RenderRow data={itemData} arrayPosition={index} key={index}
+                      isWatching={this.state.watchlist.includes(itemData.symbol)}
+                      path={this.state.path} username={this.state.username} />);
         return(
             <div>
-                <table className="table table-hover">
+                <table className="table table-inverse table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -93,71 +86,31 @@ export class TableData extends React.Component{
                                 <th>Volume (24h)</th>
                                 <th>Circulating Supply</th>
                                 <th>Change (24h)</th>
-                                <th>Price Graph (7d)</th>
+                                <th>Price Graph (5d)</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {actiondata.map((itemData,index) => this.RenderRow(itemData,index))}
+                            {theData}
                         </tbody>
                     </table>
             </div>
         );
     }
     
-    RenderRow(theData,index){
-        // debugger;
-        var actiondata = this.state.currencyList[index];
-     
-        return(
-        <tr key={actiondata.rank}>
-            <td>{actiondata.rank}</td>
-            <td><Link to={{pathname:'/coin',search:'?name='+actiondata.name}}>{actiondata.name}</Link></td>
-            <td>{actiondata.symbol}</td>
-            <td>{actiondata.market_cap_usd}</td>
-            <td>{actiondata.price_usd}</td>
-            <td>{actiondata.volume_24h_usd}</td>
-            <td>{actiondata.available_supply}</td>
-            <td>{actiondata.percent_change_24h}</td>
-            <td>
-                <Sparklines data={actiondata.ticker_history.split(',')}>
-                    <SparklinesLine color="#354152" />
-                    <SparklinesReferenceLine type="mean" />
-                </Sparklines>
-            </td>
-            <td><i className={"fa "+watchlistUtils.watchlistStatusCheck(index,actiondata.symbol)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol,this.state.path)}></i></td>
-        </tr>    
-        );
-    }
     
     RenderAsCards(){
-        var actiondata = this.state.currencyList;
-        // console.log("Rendering as a card");
+        var theData = this.state.currencyList.map((itemData,index) => 
+                      <RenderRow data={itemData} arrayPosition={index} key={index}
+                      isWatching={this.state.watchlist.includes(itemData.symbol)}
+                      path={this.state.path} username={this.state.username} />);
+                      
         return(
                 <div>
-                    {actiondata.map((itemData,index) => this.renderCard(itemData,index))}
+                    {theData}
                 </div>
             );
     }
-    
-    renderCard(theData,index){
-        var actiondata = this.state.currencyList[index];
-        return(
-            <div key={actiondata.rank} className="card currencyCard">
-                <div className="card-body">
-                    <i className={"fa "+watchlistUtils.watchlistStatusCheck(actiondata.watchlistStatus)} aria-hidden="true" data-toggle="tooltip" title="Add to Watchlist" onClick={()=>watchlistUtils.watchlistToggle(actiondata.watchlistStatus,actiondata.symbol,this.state.path)}></i>
-                    <h5 className="card-title">{actiondata.rank}  <Link to={{pathname:'/coin',search:'?name='+actiondata.name}}>{actiondata.name}  {actiondata.symbol}</Link></h5>
-                    <p className="card-text">Price: {actiondata.price_usd}</p>
-                    <p className="card-text">Change 24 Hrs: {actiondata.percent_change_24h}</p>
-                    <Sparklines data={actiondata.ticker_history.split(',')}>
-                        <SparklinesLine color="#354152" />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines>
-                </div>
-            </div>
-        );
-    }
-    
     
     render(){
         // debugger;
