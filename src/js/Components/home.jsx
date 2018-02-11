@@ -21,25 +21,24 @@ export class Home extends React.Component{
             
         <div className="container-fluid">
             <Carousel />
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">What is Cryptocurrency?</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <div className="jumbotron jumbotron-fluid">
+            <div className="container">
+                <h1 className="display-4 para">What is Cryptocurrency?</h1>
+                <p className="lead">Cryptocurrencies, sometimes called virtual currencies, digital money/cash, or tokens, are not really like U.S. dollars or British pounds. They live online and are not backed by a government. They’re backed by their respective networks. Technically speaking, cryptocurrencies are restricted entries in a database. Specific conditions must be met to change these entries. Created with cryptography, the entries are secured with math, not people.</p>
             </div>
         </div>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">What We Do</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <div className="jumbotron jumbotron-fluid">
+            <div className="container">
+                <h1 className="display-4 para">What We Do</h1>
+                <p className="lead ">Our experts have perfected a system to predict future increases and decreases of cryptocurrencies. We make it easier for you to make money with cryptocurrency!</p>
             </div>
         </div>
         <div className="jumbotron">
-            <h1 className="display-4 text-center ">Hello, world!</h1>
-            <p className="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <h1 className="display-4 text-center par ">So what are you waiting for? Join Today!</h1>
+            <p className="lead text-center">Choose between a free or paid account.</p>
             <hr className="my-4"/>
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <p className="lead">
-                <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <p className="lead joinbtn">
+                <a className="btn btn-primary btn-lg" href="/register" role="button">REGISTER</a>
             </p>
         </div>
         

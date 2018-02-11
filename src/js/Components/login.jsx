@@ -49,7 +49,7 @@ export class Login extends React.Component {
                         <input type="checkbox" value="remember-me"/> Remember me
                     </label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.loginConfirm() || this.props.history.push('/profile')} type="submit"  >SIGN IN</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.loginConfirm() } type="submit"  >SIGN IN</button>
             </form>
             <a href="/rsp" className="forgot-password">
                 Forgot password?
