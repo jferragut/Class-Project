@@ -92,8 +92,50 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
 
       }
     };
-    debugger;
+    
     xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
+    xhttp.addEventListener('error', function(error) {
+      console.log("ERROR on the response!!! ", error);
+    });
+    xhttp.send(JSON.stringify(requestBody));
+}
+export function EditProfileConfirm(history, username, first_name, last_name, email, password, passwordRetry, email_contact, subscription_status) {
+  
+  var requestBody = {
+  "username": username,
+  "first_name": first_name,
+  "last_name": last_name,
+  "email": email,
+  "password": password,
+  "email_contact": email_contact,
+  "subscription_status": subscription_status
+  };
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200 ) {
+      
+      ///success!!!!
+      
+      
+      mainDispatcher.dispatch({
+          actionType: 'EDITPROFILE_CONFIRM',
+          data: {
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            password: password,
+            email_contact: email_contact,
+            subscription_status: subscription_status
+          }
+        });
+          this.props.history.push('/profile');
+
+      }
+    };
+    
+    xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
     xhttp.addEventListener('error', function(error) {
       console.log("ERROR on the response!!! ", error);
     });
@@ -136,7 +178,7 @@ export function GetCurrencies(){
 
 // API request with no form data (GET) - Gets the user watchlist
 export function GetUserWatchlist(username){
-
+    
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
         
@@ -146,19 +188,13 @@ export function GetUserWatchlist(username){
             const dataReadyToSave = JSON.parse(this.response);
             mainDispatcher.dispatch({
               actionType: 'GET_USER_WATCHLIST',
-              actionData: dataReadyToSave,
-              status: 200  
+              actionData: dataReadyToSave
             });
         }
     };
     xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist", true);
     xhttp.addEventListener('error',function(error){
         console.log("ERROR on the response!!! ",error);
-        mainDispatcher.dispatch({
-              actionType: 'GET_USER_WATCHLIST',
-              actionData: error,
-              status: ''
-            });
     });
     xhttp.send();
 }
@@ -223,3 +259,5 @@ export function AddToWatchlist(symbol, user_id){
     });
     xhttp.send();
 }
+
+

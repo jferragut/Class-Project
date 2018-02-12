@@ -58,16 +58,34 @@ class MainStore extends EventEmmiter{
     }
     
     registerConfirm(data){
-        this.profile.username= data.username,
-        this.profile.first_name= data.first_name,
-        this.profile.last_name= data.last_name,
-        this.profile.email= data.email,
-        this.profile.password= data.password,
-        this.profile.passwordRetry= data.passwordRetry,
-        this.profile.email_contact= data.email_contact,
-        this.profile.subscription_status= data.subscription_status,
+        this.profile= {
+        
+        username:data.username,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        password: data.password,
+        passwordRetry:data.passwordRetry,
+        email_contact: data.email_contact,
+        subscription_status: data.subscription_status
+        };
         this.emit('change');
-        return true;
+        
+    }
+    editProfileConfirm(data){
+        this.profile= {
+        
+        username:data.username,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        password: data.password,
+        passwordRetry:data.passwordRetry,
+        email_contact: data.email_contact,
+        subscription_status: data.subscription_status
+        };
+        this.emit('change');
+        
     }
     
     logUserIn(){
@@ -96,6 +114,8 @@ class MainStore extends EventEmmiter{
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "LOGIN_CONFIRM": this.logUserIn(action); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action); break;
+            case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action); break;
+            
         }
     }
 }

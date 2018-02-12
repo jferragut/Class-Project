@@ -10,12 +10,18 @@
     width: 50% 50%;
 }
 
-.edit-title {
-    float: left;
-}
+
 
 .btnsave{
     background-color: rgb(255, 204, 0);
     color: black;
     border-color: gray;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(255, 204, 0);
+    color: black;
+    transition: all 1.218s;
 }
