@@ -31,24 +31,14 @@ export class Profile extends React.Component {
     <div className="teacher-name">
       <div className="row">
         <div className="col-sm-9">
-          <h2><strong>Hello {this.state.first_name}</strong></h2>
+          <h2><strong>Hello {this.state.data.first_name}</strong></h2>
         </div>
         <div className="col-sm-3">
           <div className="button pull-right">
-            <a href="/editprofile" className="btn btn-outline-success btn-sm">Edit Profile <i className="fa fa-pencil"></i></a>
+            <a href="/editprofile" className="btn btn-primary btn-block btn-signin btn-sm" >Edit Profile <i className="fa fa-pencil"></i></a>
           </div>
         </div>
       </div>
-    </div>
-
-    <div className="row" >
-      <div className="col-sm-3">
-        <a href="#"> <img className="rounded-circle" src="//images.weserv.nl/?url=i.imgur.com/Md9jS0Ib.jpg" alt="Rick" /></a>
-      </div>
-
-      
-
-      
     </div>
   </div>
 
