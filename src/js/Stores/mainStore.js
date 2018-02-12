@@ -10,7 +10,7 @@ class MainStore extends EventEmmiter{
         super();
         
         this.profile = {
-        username: null,
+        username: 'test',
         first_name: null,
         last_name: null,
         email: null,
@@ -23,17 +23,21 @@ class MainStore extends EventEmmiter{
         this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
-            watchlist: ''
+            position: ''
         };
         
         
+    }
+    
+    // Return methods
+    getPosition(){
+        return this.model.position;
     }
     
     getUserProfile(){
         return this.profile;
     }
     
-    // Return methods
     getCurrencyList(){
         return this.model.currencyList;
     }
@@ -42,10 +46,17 @@ class MainStore extends EventEmmiter{
         return this.isLoggedIn;
     }
     
-    getUserInfo(){
-        return this.profile;
+    // Functions that process action data
+    setStorePosition(data){
+        this.model = { position: data };
+        this.emit('change');
     }
 
+    setCurrencyList(data){
+        this.model = { currencyList: data };
+        this.emit('change');
+    }
+    
     registerConfirm(data){
         this.profile.username= data.username,
         this.profile.first_name= data.first_name,
@@ -59,21 +70,12 @@ class MainStore extends EventEmmiter{
         return true;
     }
     
-    // Functions that process action data
     logUserIn(){
         if(mainStore.registerConfirm == true){
         this.isLoggedIn = true;
         this.emit('change');
         }
         else return false;
-    }
-    
-    
-    setCurrencyList(data){
-        this.model = {
-          currencyList: data
-        };
-        this.emit('change');
     }
     
     validateUser(data){
@@ -89,6 +91,7 @@ class MainStore extends EventEmmiter{
     handleActions(action){
         switch(action.actionType)
         {
+            case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "LOGIN_CONFIRM": this.logUserIn(action); break;

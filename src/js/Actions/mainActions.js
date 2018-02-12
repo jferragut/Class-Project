@@ -1,4 +1,12 @@
-import mainDispatcher from '../Dispatchers/mainDispatcher';
+import mainDispatcher from '../Dispatchers/mainDispatcher.js';
+
+export function setStorePosition(position){
+      mainDispatcher.dispatch({
+        actionType: 'SET_STORE_POSITION',
+        position: position
+      });
+}
+
 //***********************************
 // Begin User Actions
 //***********************************
@@ -99,14 +107,13 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
 
 
 // API request with no form data (GET) - Gets the list of all Currencies in the database
-export function GetCurrencies(username){
+export function GetCurrencies(){
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
         
         if (this.readyState == 4 && this.status == 200) {
-            // console.log("The response came back successfully: ",this);
-            // debugger;
+            console.log("The response came back successfully: ",this);
             const dataReadyToSave = JSON.parse(this.response);
             mainDispatcher.dispatch({
               actionType: 'GET_CURRENCIES',

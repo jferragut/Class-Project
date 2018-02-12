@@ -8,6 +8,10 @@ import {watchlistUtils} from '../Utils/watchlist.js';
 
 export class RenderRow extends React.Component{
     
+    storePosition(props){
+        mainActions.setStorePosition(props);
+    }
+    
     render(){
         var actiondata = this.props.data;  
         var theProps = this.props;
@@ -15,7 +19,8 @@ export class RenderRow extends React.Component{
         return(
         <tr>
             <td>{actiondata.rank}</td>
-            <td><Link to={{pathname:'/coin',search:'?name='+actiondata.name}}>{actiondata.name}</Link></td>
+            <td><Link to={{pathname:'/coin',search:'?name='+actiondata.name}} 
+                onClick={()=> this.storePosition(theProps.arrayPosition)}>{actiondata.name}</Link></td>
             <td>{actiondata.symbol}</td>
             <td>{actiondata.market_cap_usd}</td>
             <td>{actiondata.price_usd}</td>
@@ -30,7 +35,7 @@ export class RenderRow extends React.Component{
             </td>
             <td><i 
                     className={'fa ' + ( (theProps.isWatching) ? "fa-bell":"fa-bell-o")} 
-                    onClick={()=>watchlistUtils.watchlistToggle(theProps.isWatching,actiondata.symbol,theProps.path,theProps.username)}
+                    onClick={()=>watchlistUtils.watchlistToggle(theProps.isWatching,actiondata.symbol,theProps.path,theProps.username,theProps.arrayPosition)}
                     aria-hidden="true" data-toggle="tooltip" 
                     title={((theProps.isWatching) ? "Remove from Watchlist":"Add to Watchlist")}>
                 </i></td>

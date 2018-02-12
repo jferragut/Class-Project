@@ -13,7 +13,7 @@ export class TableData extends React.Component{
     constructor(){
         
         super();   //call the super constructor 
-        var userInfo = mainStore.getUserInfo();
+        var userInfo = mainStore.getUserProfile();
         mainActions.GetCurrencies();
         var theCurrencies = mainStore.getCurrencyList();
         
