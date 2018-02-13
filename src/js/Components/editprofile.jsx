@@ -11,6 +11,8 @@ export class editProfile extends React.Component {
            first_name:MainStore.profile.first_name,
            last_name:MainStore.profile.last_name,
            email:MainStore.profile.email,
+           is_active: MainStore.is_active,
+           last_login: MainStore.last_login,
            password:MainStore.profile.password,
            passwordRetry:MainStore.profile.passwordRetry,
            email_contact:MainStore.profile.email_contact,
@@ -21,9 +23,9 @@ export class editProfile extends React.Component {
     }
     
     editProfileConfirm(){
-      if(this.state.password != this.state.passwordRetry) alert('they dont match');
+      if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
       else MainActions.RegisterConfirm(this.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub());
-  	console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.state.isTrueEmail(), this.isTrueSub()) ;
+  	console.log("edit profile confirm  is sending " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.state.isTrueEmail(), this.isTrueSub()) ;
   }
   
   isTrueEmail(){

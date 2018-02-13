@@ -22,8 +22,12 @@
 @import 'components/editprofile';
 
 
-body{
+body, html {
     font-family: 'Oswald', sans-serif;
+    height: 100%;
+    background-repeat: no-repeat;
+    background: linear-gradient(rgb(248,249,250), rgb(255, 204, 0));
+
 }
 
 
