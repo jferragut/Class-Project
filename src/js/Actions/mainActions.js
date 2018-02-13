@@ -70,7 +70,7 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
     if (this.readyState == 4 && this.status == 200 ) {
       
       ///success!!!!
-      
+      console.log('Register confirm');
       
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
@@ -87,8 +87,8 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
             subscription_status: subscription_status
           }
         });
-        this.props.history.push('/profile');
           
+        history.push('/profile');
 
       }
     };
@@ -117,7 +117,6 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
       
       ///success!!!!
       
-      
       mainDispatcher.dispatch({
           actionType: 'EDITPROFILE_CONFIRM',
           data: {
@@ -130,7 +129,7 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
             subscription_status: subscription_status
           }
         });
-          this.props.history.push('/profile');
+          history.push('/profile');
 
       }
     };
