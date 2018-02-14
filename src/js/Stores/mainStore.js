@@ -10,12 +10,15 @@ class MainStore extends EventEmmiter{
         super();
         
         this.profile = {
-        username: 'test',
+        username: null,
         first_name: null,
         last_name: null,
         email: null,
         password: null,
         passwordRetry: null,
+        is_active: null,
+        last_login: null,
+        date_joined:null,
         email_contact: null,
         subscription_status: null,
         };
@@ -65,6 +68,9 @@ class MainStore extends EventEmmiter{
         first_name: data.first_name,
         last_name: data.last_name,
         email: data.email,
+        is_active: data.is_active,
+        last_login: data.last_login,
+        date_joined: data.date_joined,
         password: data.password,
         passwordRetry:data.passwordRetry,
         email_contact: data.email_contact,
@@ -113,7 +119,6 @@ class MainStore extends EventEmmiter{
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
-            case "LOGIN_CONFIRM": this.logUserIn(action); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action); break;
             case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action); break;
             

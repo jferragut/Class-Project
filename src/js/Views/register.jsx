@@ -1,7 +1,8 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
-import {dateUtils} from '../Utils/date.js';
+import {dateUtil} from '../Utils/dateUtil.js';
+
 
 export class Register extends React.Component {
     constructor(props) {
@@ -13,6 +14,9 @@ export class Register extends React.Component {
            email:null,
            password:null,
            passwordRetry:null,
+           is_active: true,
+           last_login: "2018-02-07",
+           date_joined: "2018-02-07",
            email_contact:null,
            subscription_status:null
        };
@@ -20,10 +24,12 @@ export class Register extends React.Component {
     
     
   
-  registerConfirm(){
-      if(this.state.password != this.state.passwordRetry) alert('they dont match');
-      else MainActions.RegisterConfirm(this.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub());
-  	console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.state.isTrueEmail(), this.isTrueSub()) ;
+  registerConfirm(evt){
+  	  evt.preventDefault();
+      if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
+      else MainActions.RegisterConfirm(this.props.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.is_active,this.state.last_login, this.state.date_joined, this.isTrueEmail(), this.isTrueSub());
+  	  console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password,this.state.is_active ,this.state.last_login, this.state.date_joined, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub()) ;
+  	  return false;
   }
   
   isTrueEmail(){
@@ -37,6 +43,11 @@ export class Register extends React.Component {
       
   }
   
+  getDateInfo(){
+      this.dateUtil.retrieveDate();
+  }
+  
+  
   
   
   
@@ -49,7 +60,7 @@ export class Register extends React.Component {
             <div className="container bg">
         <div className="card card-container">
             <h1 className="register"> REGISTER THINKCRYPTO ACCOUNT</h1>
-            <form className="form-signin">
+            <form className="form-signin" onSubmit={(evt) => this.registerConfirm(evt)}>
                 <span id="reauth-email" className="reauth-email"></span>
                 <input className="place" type="username" id="username" className="form-control" min="4" max="15" placeholder="User Name" onChange={(evt)=> this.setState({username: evt.target.value})} required autoFocus/>
                 <input className="place" type="firstname" id="firstname" className="form-control" min="4" max="15" placeholder="First Name" onChange={(evt)=> this.setState({first_name: evt.target.value})} required autoFocus/>
@@ -68,13 +79,8 @@ export class Register extends React.Component {
                             <option value="false" >Free</option>
                             <option value="true"  >Paid</option>
                         </select>
-
-                    
-
-  
-           
                 
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.registerConfirm() } type="submit">SIGN UP</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit">SIGN UP</button>
             </form>
             
         </div>

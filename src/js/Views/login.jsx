@@ -7,14 +7,14 @@ export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: ''
+            username: null,
+            password: null
         };
         
     }
     
-    loginConfirm(task){
-        MainActions.LoginConfirm(task);
+    userValidate(){
+        MainActions.UserValidate(this.history, this.state.username, this.state.password);
         console.log('attempting to login');
     }
     
@@ -42,14 +42,10 @@ export class Login extends React.Component {
             <h1 className="signin"> SIGN IN </h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
-                <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
-                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                <div id="remember" className="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
-                    </label>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.loginConfirm() } type="submit"  >SIGN IN</button>
+                <input type="text" id="inputEmail" min= "4" max="15" className="form-control" placeholder="Username" onChange={(evt)=> this.setState({username: evt.target.value})} required autoFocus/>
+                <input type="password" id="inputPassword" min= "8" max="15"  className="form-control" placeholder="Password" onChange={(evt)=> this.setState({password: evt.target.value})} required />
+                
+                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.userValidate() } type="submit"  >SIGN IN</button>
             </form>
             <a href="/rsp" className="forgot-password">
                 Forgot password?

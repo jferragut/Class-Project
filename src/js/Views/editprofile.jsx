@@ -11,6 +11,8 @@ export class editProfile extends React.Component {
            first_name:MainStore.profile.first_name,
            last_name:MainStore.profile.last_name,
            email:MainStore.profile.email,
+           is_active: MainStore.is_active,
+           last_login: MainStore.last_login,
            password:MainStore.profile.password,
            passwordRetry:MainStore.profile.passwordRetry,
            email_contact:MainStore.profile.email_contact,
@@ -20,10 +22,11 @@ export class editProfile extends React.Component {
         
     }
     
-    editProfileConfirm(){
-      if(this.state.password != this.state.passwordRetry) alert('they dont match');
+    editProfileConfirm(evt){
+      evt.preventDefault();
+      if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
       else MainActions.RegisterConfirm(this.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub());
-  	console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.state.isTrueEmail(), this.isTrueSub()) ;
+  	  console.log("edit profile confirm  is sending " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.passwordRetry, this.state.isTrueEmail(), this.isTrueSub()) ;
   }
   
   isTrueEmail(){
@@ -52,7 +55,7 @@ export class editProfile extends React.Component {
         </div>
         
         <div className="col-lg-8 push-lg-4 personal-info">
-             <form role="form" className="formcenter">
+             <form role="form" className="formcenter" onSubmit={(evt) => this.editProfileConfirm(evt)}>
                 <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Username</label>
                     <div className="col-lg-9">
@@ -103,8 +106,9 @@ export class editProfile extends React.Component {
                 <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label"></label>
                     <div className="col-lg-9">
-                        <input type="reset" className="btn btn-secondary" value="Cancel" />
-                        <input type="button" className="btn btnsave" onClick = {()=> this.editProfileConfirm() } value="Save Changes" />
+                        <button className="btn btn-lg btn-secondary btn-block"  href="/profile" >CANCEL</button>
+                        <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit" >SAVE CHANGES</button>
+                        
                     </div>
                 </div>
             </form>

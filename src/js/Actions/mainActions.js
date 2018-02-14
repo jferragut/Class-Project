@@ -13,7 +13,8 @@ export function setStorePosition(position){
 
 
 // Function to validate the User Login
-export function UserValidated(username, password) {
+
+export function UserValidate(history, username, password) {
   
   var formData = new FormData();
   formData.append("username", username);
@@ -23,7 +24,7 @@ export function UserValidated(username, password) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    //   console.log("The response came back successfully: ", this);
+       console.log("The response came back successfully: ", this);
     
       mainDispatcher.dispatch({
         actionType: 'VALIDATE_USER',
@@ -32,11 +33,12 @@ export function UserValidated(username, password) {
           password: password, 
         }
       });
+      this.props.history.push('/profile');
     }
   };
     
                             //need to add link of crypto api 
-  xhttp.open("POST", "https://class-project-backend-jonnywrites.c9users.io/api/user/", true);
+  xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/user/", true);
   xhttp.addEventListener('error', function(error) {
     console.log("ERROR on the response!!! ", error);
   });
@@ -44,20 +46,11 @@ export function UserValidated(username, password) {
 }
 
 // Action to Confirm Login
-export function LogInConfirm(task){
-    
-      mainDispatcher.dispatch({
-        actionType: 'LOGIN_CONFIRM',
-        data: {}
-      });
-      this.props.history.push('/profile');
-      
-    
-}
 
 
 
-export function RegisterConfirm(history, username, first_name, last_name, email, password, passwordRetry, email_contact, subscription_status) {
+
+export function RegisterConfirm(history, username, first_name, last_name, email, password, is_active, last_login, date_joined, email_contact, subscription_status) {
   
   var requestBody = {
   "username": username,
@@ -65,6 +58,9 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
   "last_name": last_name,
   "email": email,
   "password": password,
+  "is_active": is_active,
+  "last_login": last_login,
+  "date_joined": date_joined,
   "email_contact": email_contact,
   "subscription_status": subscription_status
   };
@@ -74,7 +70,7 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
     if (this.readyState == 4 && this.status == 200 ) {
       
       ///success!!!!
-      
+      console.log('Register confirm');
       
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
@@ -84,16 +80,20 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
             last_name: last_name,
             email: email,
             password: password,
+            is_active: is_active,
+            last_login: last_login,
+            date_joined: date_joined,
             email_contact: email_contact,
             subscription_status: subscription_status
           }
         });
-          this.props.history.push('/profile');
+          
+        history.push('/profile');
 
       }
     };
     
-    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
+    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/", true);
     xhttp.addEventListener('error', function(error) {
       console.log("ERROR on the response!!! ", error);
     });
@@ -117,7 +117,6 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
       
       ///success!!!!
       
-      
       mainDispatcher.dispatch({
           actionType: 'EDITPROFILE_CONFIRM',
           data: {
@@ -130,7 +129,7 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
             subscription_status: subscription_status
           }
         });
-          this.props.history.push('/profile');
+          history.push('/profile');
 
       }
     };
