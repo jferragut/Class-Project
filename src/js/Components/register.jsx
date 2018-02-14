@@ -1,7 +1,7 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
-import {DateUtil} from '../Utils/dateUtil.js';
+import {dateUtil} from '../Utils/dateUtil.js';
 
 
 export class Register extends React.Component {
@@ -43,9 +43,10 @@ export class Register extends React.Component {
       
   }
   
-  getDate(){
-      DateUtil.date();
+  getDateInfo(){
+      this.dateUtil.retrieveDate();
   }
+  
   
   
   
