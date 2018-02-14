@@ -25,8 +25,11 @@ class MainStore extends EventEmmiter{
             currencyList: [],
             position: ''
         };
-        
-        
+    }
+
+    setModel(newModel){
+        this.model = Object.assign(this.model, newModel);
+        this.emit('change');
     }
     
     // Return methods
@@ -48,13 +51,11 @@ class MainStore extends EventEmmiter{
     
     // Functions that process action data
     setStorePosition(data){
-        this.model = { position: data };
-        this.emit('change');
+        this.setModel({ position: data });
     }
 
     setCurrencyList(data){
-        this.model = { currencyList: data };
-        this.emit('change');
+        this.setModel({ currencyList: data });
     }
     
     registerConfirm(data){

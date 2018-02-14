@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+
 import mainStore from '../Stores/mainStore.js';
 import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 import { watchlistUtils } from '../Utils/watchlist.js';
+
 import { RenderRow } from './row.jsx';
 import { RenderCard } from './card.jsx';
 
@@ -13,36 +15,32 @@ export class TableData extends React.Component{
     constructor(){
         
         super();   //call the super constructor 
+
         var userInfo = mainStore.getUserProfile();
-        mainActions.GetCurrencies();
+        if(watchlistStore.getWatchlist().length==0) mainActions.GetUserWatchlist(userInfo.username);
         var theCurrencies = mainStore.getCurrencyList();
+        var theWatchlist = watchlistStore.getWatchlist();
         
         this.state = {
             table: this.isItMobile(),
             currencyList: theCurrencies,
             username: userInfo.username,
-            watchlist: [],
+            watchlist: theWatchlist,
             path: window.location.pathname.substr(1)
         };
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
-        
-        mainActions.GetUserWatchlist(userInfo.username);
     }
     
-    
-    componentWillMount(){
-        
-    }
     
     componentDidMount() {
         //window resize listener
-        window.addEventListener('resize', this.updateWindowDimensions);
+        window.addEventListener('resize', this.updateWindowDimensions.bind(this));
         //Set a listener on change of the mainStore (emit) to update the state
-        mainStore.on('change',this.handleStoreChange);
+        mainStore.on('change',this.handleStoreChange.bind(this));
         //Set a listener on change of the watchlistStore (emit) to update the state
-        watchlistStore.on('change',this.handleStoreChange);
+        watchlistStore.on('change',this.handleStoreChange.bind(this));
     }
     
     componentWillUnmount() {
@@ -68,14 +66,13 @@ export class TableData extends React.Component{
     }   
     
     RenderAsTable(){
-        
         var theData = this.state.currencyList.map((itemData,index) => 
                       <RenderRow data={itemData} arrayPosition={index} key={index}
-                      isWatching={this.state.watchlist.includes(itemData.symbol)}
+                      isWatching={this.state.watchlist.symbol.includes(itemData.symbol)}
                       path={this.state.path} username={this.state.username} />);
         return(
             <div>
-                <table className="table table-inverse table-hover">
+                <table className="table table-dark table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -113,7 +110,6 @@ export class TableData extends React.Component{
     }
     
     render(){
-        // debugger;
         return(
             <div>
                 {this.state.table === true ? this.RenderAsTable() : this.RenderAsCards() }

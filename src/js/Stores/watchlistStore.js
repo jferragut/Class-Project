@@ -12,6 +12,11 @@ class WatchlistStore extends EventEmmiter{
         };
     }
     
+    setModel(newModel){
+        this.model = Object.assign(this.model, newModel);
+        this.emit('change');
+    }
+    
     // Return methods
     getWatchlist(){
         return this.model.watchlist;
@@ -19,37 +24,17 @@ class WatchlistStore extends EventEmmiter{
     
     
     // Functions that process action data
-    getWatchlistObject(data){
-        this.model = {watchlist: data};
-        this.emit('change');
+    updateWatchlist(data){
+        this.setModel({ watchlist: data });
     }
     
-    removeWatchlistItem(data){
-        this.model = {watchlist: data};
-        this.emit('change');
-    }
-    
-    addWatchlistItem(status, action, data){
-        if(status==200){
-            this.model = {
-                watchlist: data
-            };
-        }else{
-            this.model = {
-                watchlist: data
-            };
-        }
-        this.emit('change');
-    }
     
     handleActions(action){
         switch(action.actionType)
         {
-            case "GET_USER_WATCHLIST": this.getWatchlistObject(action.actionData,action.status); break;
-            case "REMOVE_WATCHLIST_ITEM_FAILED": this.removeWatchlistItem(action.status, action.actionData, action.data); break;
-            case "REMOVE_WATCHLIST_ITEM": this.removeWatchlistItem(action.status, action.actionData, action.data); break;
-            case "ADD_WATCHLIST_ITEM_FAILED": this.addWatchlistItem(action.status, action.actionData, action.data); break;
-            case "ADD_WATCHLIST_ITEM": this.addWatchlistItem(action.status, action.actionData, action.data); break;
+            case "GET_USER_WATCHLIST": this.updateWatchlist(action.actionData); break;
+            case "REMOVE_WATCHLIST_ITEM": this.updateWatchlist(action.actionData); break;
+            case "ADD_WATCHLIST_ITEM": this.updateWatchlist(action.actionData); break;
         }
     }
 }

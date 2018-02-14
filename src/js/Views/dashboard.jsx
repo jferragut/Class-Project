@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { DataArea } from './dataarea.jsx';
-import { AdBarZone } from './adbar.jsx';
-import { Ticker } from './ticker.jsx';
-import { Alert } from './alert.jsx';
+import { DataArea } from '../Components/dataarea.jsx';
+import { AdBarZone } from '../Components/adbar.jsx';
+import { Ticker } from '../Components/ticker.jsx';
+import { Alert } from '../Components/alert.jsx';
 
 export class Dashboard extends React.Component{
     constructor(){

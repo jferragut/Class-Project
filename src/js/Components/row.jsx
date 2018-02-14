@@ -34,7 +34,7 @@ export class RenderRow extends React.Component{
                 </Sparklines>
             </td>
             <td><i 
-                    className={'fa ' + ( (theProps.isWatching) ? "fa-bell":"fa-bell-o")} 
+                    className={'fa ' + ( (theProps.isWatching===true) ? "fa-bell":"fa-bell-o")} 
                     onClick={()=>watchlistUtils.watchlistToggle(theProps.isWatching,actiondata.symbol,theProps.path,theProps.username,theProps.arrayPosition)}
                     aria-hidden="true" data-toggle="tooltip" 
                     title={((theProps.isWatching) ? "Remove from Watchlist":"Add to Watchlist")}>

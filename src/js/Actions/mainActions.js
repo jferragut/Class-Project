@@ -200,7 +200,7 @@ export function GetUserWatchlist(username){
 }
 
 // API request with no form data (DELETE) - Removes Currency from Watchlist
-export function RemoveFromWatchlist(symbol, user_id){
+export function RemoveFromWatchlist(symbol, username){
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
@@ -217,7 +217,7 @@ export function RemoveFromWatchlist(symbol, user_id){
             });
         }
     };
-    xhttp.open("DELETE", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+user_id+"/watchlist/"+symbol, true);
+    xhttp.open("DELETE", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist/"+symbol, true);
     xhttp.addEventListener('error',function(error){
         console.log("ERROR on the response!!! ",error);
         mainDispatcher.dispatch({
@@ -231,7 +231,7 @@ export function RemoveFromWatchlist(symbol, user_id){
 }
 
 // API request with no form data (PUT) - Adds Currency to Watchlist
-export function AddToWatchlist(symbol, user_id){
+export function AddToWatchlist(symbol, username){
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
@@ -248,7 +248,7 @@ export function AddToWatchlist(symbol, user_id){
             });
         }
     };
-    xhttp.open("PUT", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+user_id+"/watchlist/"+symbol, true);
+    xhttp.open("PUT", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist/"+symbol, true);
     xhttp.addEventListener('error',function(error){
         console.log("ERROR on the response!!! ",error);
         mainDispatcher.dispatch({
