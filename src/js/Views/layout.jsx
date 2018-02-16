@@ -30,21 +30,36 @@ export class Layout extends React.Component{
     constructor(){
         
         super();
-        var userInfo = mainStore.getUserProfile();
-        if(mainStore.getCurrencyList().length===0) mainActions.GetCurrencies();
-        if(watchlistStore.getWatchlist().length==0) mainActions.GetUserWatchlist(userInfo.username);
+        
+        this.userInfo = mainStore.getUserProfile();
+        if(this.userInfo.length===0){ 
+            return( 
+            <div className="loadingOverlay">
+                <i className="fa fa-spinner fa-spin"></i>
+            </div>);
+        }else{
+            mainActions.initalizeData();
+        }
+        
         this.state = {
-            username: userInfo.username,
+            username: this.userInfo.username,
             isLoggedIn: false,
             path: window.location.pathname.substr(1)
         };   
+        
+        this.handleChange = this.handleChange.bind(this);
     }
     
     componentWillMount(){
         //Set a listener on change of the mainStore (emit) to update the state
-        mainStore.on('change',()=>this.setState({
+        mainStore.on('change',this.handleChange.bind(this));
+    }
+    
+    handleChange(){
+        this.setState({
+            username: this.userInfo.username,
             isLoggedIn: mainStore.getLoginStatus(),
-        }));
+        });
     }
     
     render(){

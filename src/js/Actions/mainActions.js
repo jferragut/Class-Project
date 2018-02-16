@@ -7,6 +7,14 @@ export function setStorePosition(position){
       });
 }
 
+export function initalizeData(username){
+      GetCurrencies();
+      GetUserWatchlist(username);
+      mainDispatcher.dispatch({
+        actionType: 'INITIALIZED'
+      });
+}
+
 //***********************************
 // Begin User Actions
 //***********************************
@@ -25,7 +33,9 @@ export function UserValidate(history, username, password) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        console.log("The response came back successfully: ", this);
-    
+      
+      GetUserWatchlist(username);
+      
       mainDispatcher.dispatch({
         actionType: 'VALIDATE_USER',
         data: {
