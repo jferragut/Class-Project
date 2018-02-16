@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 
 // Add JS files to bundle
-import { Layout } from './Components/layout.jsx';
+import { Layout } from './Views/layout.jsx';
 var Highcharts = require('highcharts/highstock');
 
 // Add CSS files to bundle

@@ -40,9 +40,6 @@ class MainStore extends EventEmmiter{
         return this.model.position;
     }
     
-    getUserProfile(){
-        return this.profile;
-    }
     
     getCurrencyList(){
         return this.model.currencyList;
@@ -78,6 +75,9 @@ class MainStore extends EventEmmiter{
         };
         this.emit('change');
         
+    }
+    getUserProfile(){
+        return this.profile;
     }
     editProfileConfirm(data){
         this.profile= {
