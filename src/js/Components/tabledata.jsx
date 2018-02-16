@@ -17,7 +17,6 @@ export class TableData extends React.Component{
         super();   //call the super constructor 
 
         var userInfo = mainStore.getUserProfile();
-        if(watchlistStore.getWatchlist().length==0) mainActions.GetUserWatchlist(userInfo.username);
         var theCurrencies = mainStore.getCurrencyList();
         var theWatchlist = watchlistStore.getWatchlist();
         
@@ -28,6 +27,9 @@ export class TableData extends React.Component{
             watchlist: theWatchlist,
             path: window.location.pathname.substr(1)
         };
+        
+        this.theList = this.state.currencyList;
+        this.listSelector = this.theList[this.state.position];
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
@@ -66,10 +68,18 @@ export class TableData extends React.Component{
     }   
     
     RenderAsTable(){
-        var theData = this.state.currencyList.map((itemData,index) => 
-                      <RenderRow data={itemData} arrayPosition={index} key={index}
-                      isWatching={this.state.watchlist.symbol.includes(itemData.symbol)}
-                      path={this.state.path} username={this.state.username} />);
+        if(this.theList.length!=0 && this.theList!=null){
+            var theData = this.state.currencyList.map((itemData,index) => 
+                          <RenderRow data={itemData} arrayPosition={index} key={index}
+                          isWatching={this.listSelector.symbol.includes(itemData.symbol)}
+                          path={this.state.path} username={this.state.username} />);
+        }if(this.theList.length===0 || this.theList==null){ 
+            return( 
+            <div className="loadingOverlay">
+                <i className="fa fa-spinner fa-spin"></i>
+            </div>);
+        }
+        
         return(
             <div>
                 <table className="table table-dark table-hover">
@@ -97,10 +107,17 @@ export class TableData extends React.Component{
     
     
     RenderAsCards(){
-        var theData = this.state.currencyList.map((itemData,index) => 
-                      <RenderRow data={itemData} arrayPosition={index} key={index}
-                      isWatching={this.state.watchlist.includes(itemData.symbol)}
-                      path={this.state.path} username={this.state.username} />);
+        if(this.theList.length!=0 && this.theList!=null){
+            var theData = this.state.currencyList.map((itemData,index) => 
+                          <RenderCard data={itemData} arrayPosition={index} key={index}
+                          isWatching={this.listSelector.includes(itemData.symbol)}
+                          path={this.state.path} username={this.state.username} />);
+        }if(this.theList.length===0 || this.theList==null){ 
+            return( 
+            <div className="loadingOverlay">
+                <i className="fa fa-spinner fa-spin"></i>
+            </div>);
+        }
                       
         return(
                 <div>

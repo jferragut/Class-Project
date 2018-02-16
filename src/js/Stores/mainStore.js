@@ -10,7 +10,7 @@ class MainStore extends EventEmmiter{
         super();
         
         this.profile = {
-        username: null,
+        username: "test",
         first_name: null,
         last_name: null,
         email: null,
@@ -117,6 +117,7 @@ class MainStore extends EventEmmiter{
         switch(action.actionType)
         {
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
+            case "INITIALIZED": this.setStorePosition(action); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action); break;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from './carousel.jsx';
+import { Carousel } from '../Components/carousel.jsx';
 import cryp from '../../images/cryp.jpg';
 import matrix from '../../images/matrix.jpg';
 

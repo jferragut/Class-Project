@@ -17,7 +17,7 @@ export class DetailView extends React.Component{
         var userInfo = mainStore.getUserProfile();
         var theCurrencies = mainStore.getCurrencyList();
         var theWatchlist = watchlistStore.getWatchlist();
-        if(watchlistStore.getWatchlist().length==0) mainActions.GetUserWatchlist(userInfo.username);
+
         this.state = {
             currencyList: theCurrencies,
             isLoggedIn: mainStore.getLoginStatus(),
