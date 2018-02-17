@@ -9,24 +9,24 @@ class MainStore extends EventEmmiter{
         
         super();
         
-        this.profile = {
-        username: "test",
-        first_name: null,
-        last_name: null,
-        email: null,
-        password: null,
-        passwordRetry: null,
-        is_active: null,
-        last_login: null,
-        date_joined:null,
-        email_contact: null,
-        subscription_status: null,
-        };
         
         this.isLoggedIn = true;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
-            position: ''
+            position: '',
+            profile: {
+                username: "test",
+                first_name: null,
+                last_name: null,
+                email: null,
+                password: null,
+                passwordRetry: null,
+                is_active: null,
+                last_login: null,
+                date_joined:null,
+                email_contact: null,
+                subscription_status: null
+            }
         };
     }
 
@@ -40,9 +40,6 @@ class MainStore extends EventEmmiter{
         return this.model.position;
     }
     
-    getUserProfile(){
-        return this.profile;
-    }
     
     getCurrencyList(){
         return this.model.currencyList;
@@ -62,37 +59,27 @@ class MainStore extends EventEmmiter{
     }
     
     registerConfirm(data){
-        this.profile= {
-        
-        username:data.username,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        is_active: data.is_active,
-        last_login: data.last_login,
-        date_joined: data.date_joined,
-        password: data.password,
-        passwordRetry:data.passwordRetry,
-        email_contact: data.email_contact,
-        subscription_status: data.subscription_status
-        };
-        this.emit('change');
-        
+        this.setModel({ 
+            profile: {
+                username: data.username,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                is_active: data.is_active,
+                last_login: data.last_login,
+                date_joined: data.date_joined,
+                email_contact: data.email_contact,
+                subscription_status: data.subscription_status 
+            }
+        });
     }
+    
+    getUserProfile(){
+        return this.model.profile;
+    }
+    
     editProfileConfirm(data){
-        this.profile= {
-        
-        username:data.username,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        password: data.password,
-        passwordRetry:data.passwordRetry,
-        email_contact: data.email_contact,
-        subscription_status: data.subscription_status
-        };
-        this.emit('change');
-        
+        this.setModel({ profile: data });
     }
     
     logUserIn(){

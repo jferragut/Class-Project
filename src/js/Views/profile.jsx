@@ -6,18 +6,24 @@ import * as MainActions from '../Actions/mainActions.js';
 export class Profile extends React.Component {
     constructor() {
         super();
-        this.state = {
-          data : MainStore.getUserProfile
-          
-        };
-        this.isLoggedIn = MainStore.isLoggedIn;
+        
+    this.state = {
+      data: null
+    };
+    this.isLoggedIn = null;
+  }
         
         
-    }
+    
     
     
   
-  
+  componentDidMount(){
+    this.setState ({
+      data: MainStore.getUserProfile()
+    });
+    this.isLoggedIn = MainStore.isLoggedIn;
+  }
   
   
 
@@ -31,7 +37,7 @@ export class Profile extends React.Component {
     <div className="teacher-name">
       <div className="row">
         <div className="col-sm-9">
-          <h2><strong>Hello {this.state.data.first_name}</strong></h2>
+          <h2><strong>Hello {(this.state.data == null) ? "nobody" : this.state.data.first_name}</strong></h2>
         </div>
         <div className="col-sm-3">
           <div className="button pull-right">
@@ -47,7 +53,7 @@ export class Profile extends React.Component {
   <div className="row">
     <div className="col-sm-12">
       <div className="card card-block text-xs-left">
-        <h5><i className="fa fa-user fa-fw"></i>Overview</h5>
+        <h5 className="profileheaders"><i className="fa fa-user fa-fw"></i>Overview</h5>
 
         <p>Rick Sanchez C-137 is the father of Beth Smith, and the grandfather of Morty and Summer Smith. Aged 60 years old, he is said to have been away from the family for around fourteen years prior to the events of the show's first episode, "Pilot".
           He frequently travels on adventures through space and other planets and dimensions with his grandson Morty.</p>
@@ -57,7 +63,7 @@ export class Profile extends React.Component {
   <div className="row">
     <div className="col-sm-12">
       <div className="card card-block">
-        <h5><i className="fa fa-rocket fa-fw"></i>Watchlist</h5>
+        <h5 className="profileheaders" ><i className="fa fa-rocket fa-fw"></i>Watchlist</h5>
         <div id="accordion" role="tablist" aria-multiselectable="true">
   <div className="card">
     <div className="card-header" role="tab" id="headingOne">

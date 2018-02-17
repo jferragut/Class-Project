@@ -1,7 +1,6 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
-import {dateUtil} from '../Utils/dateUtil.js';
 
 
 export class Register extends React.Component {
@@ -15,8 +14,6 @@ export class Register extends React.Component {
            password:null,
            passwordRetry:null,
            is_active: true,
-           last_login: "2018-02-07",
-           date_joined: "2018-02-07",
            email_contact:null,
            subscription_status:null
        };
@@ -27,8 +24,8 @@ export class Register extends React.Component {
   registerConfirm(evt){
   	  evt.preventDefault();
       if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
-      else MainActions.RegisterConfirm(this.props.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.is_active,this.state.last_login, this.state.date_joined, this.isTrueEmail(), this.isTrueSub());
-  	  console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password,this.state.is_active ,this.state.last_login, this.state.date_joined, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub()) ;
+      else MainActions.RegisterConfirm(this.props.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password, this.state.is_active, this.isTrueEmail(), this.isTrueSub()) || MainActions.logUserIn;
+  	  console.log("register confirm  is working " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.password,this.state.is_active, this.state.passwordRetry, this.isTrueEmail(), this.isTrueSub()) ;
   	  return false;
   }
   
@@ -43,9 +40,7 @@ export class Register extends React.Component {
       
   }
   
-  getDateInfo(){
-      this.dateUtil.retrieveDate();
-  }
+
   
   
   

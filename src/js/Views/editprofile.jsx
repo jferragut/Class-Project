@@ -6,21 +6,15 @@ import * as MainActions from '../Actions/mainActions.js';
 export class editProfile extends React.Component {
     constructor() {
         super();
-        this.state = {
-           username:MainStore.profile.username,
-           first_name:MainStore.profile.first_name,
-           last_name:MainStore.profile.last_name,
-           email:MainStore.profile.email,
-           is_active: MainStore.is_active,
-           last_login: MainStore.last_login,
-           password:MainStore.profile.password,
-           passwordRetry:MainStore.profile.passwordRetry,
-           email_contact:MainStore.profile.email_contact,
-           subscription_status:MainStore.profile.subscription_status
        
-        };
+        }
         
-    }
+    componentDidMount(){
+    this.state = {
+      data: MainStore.getUserProfile()
+    };
+    this.isLoggedIn = MainStore.isLoggedIn;
+  }
     
     editProfileConfirm(evt){
       evt.preventDefault();

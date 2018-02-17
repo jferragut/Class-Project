@@ -45,7 +45,7 @@ export function UserValidate(history, username, password) {
           password: password, 
         }
       });
-      this.props.history.push('/profile');
+      history.push('/profile');
     }
   };
     
@@ -62,7 +62,7 @@ export function UserValidate(history, username, password) {
 
 
 
-export function RegisterConfirm(history, username, first_name, last_name, email, password, is_active, last_login, date_joined, email_contact, subscription_status) {
+export function RegisterConfirm(history, username, first_name, last_name, email, password, is_active, email_contact, subscription_status) {
   
   var requestBody = {
   "username": username,
@@ -71,8 +71,6 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
   "email": email,
   "password": password,
   "is_active": is_active,
-  "last_login": last_login,
-  "date_joined": date_joined,
   "email_contact": email_contact,
   "subscription_status": subscription_status
   };
@@ -93,8 +91,6 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
             email: email,
             password: password,
             is_active: is_active,
-            last_login: last_login,
-            date_joined: date_joined,
             email_contact: email_contact,
             subscription_status: subscription_status
           }
