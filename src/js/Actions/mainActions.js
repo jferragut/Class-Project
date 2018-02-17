@@ -212,8 +212,9 @@ export function GetCurrencies(){
 //***********************************
 
 
-// API request with no form data (GET) - Gets the user watchlist
+// (GET) - Gets the user watchlist
 export function GetUserWatchlist(username){
+
     
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(response) {
@@ -222,78 +223,34 @@ export function GetUserWatchlist(username){
             // console.log("The response came back successfully: ",this);
             
             const dataReadyToSave = JSON.parse(this.response);
+
+    thinkCrypto.getWatchlist(username).then(function(dataReadyToSave){
+
             mainDispatcher.dispatch({
               actionType: 'GET_USER_WATCHLIST',
               actionData: dataReadyToSave
             });
-        }
-    };
-    xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist", true);
-    xhttp.addEventListener('error',function(error){
-        console.log("ERROR on the response!!! ",error);
     });
-    xhttp.send();
 }
 
-// API request with no form data (DELETE) - Removes Currency from Watchlist
+// (DELETE) - Removes Currency from Watchlist
 export function RemoveFromWatchlist(symbol, username){
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(response) {
-        
-        if (this.readyState == 4 && this.status == 200) {
-            // console.log("The response came back successfully: ",this);
-            // debugger;
-            const dataReadyToSave = JSON.parse(this.response);
+    thinkCrypto.removeFromWatchlist(symbol, username).then(function(dataReadyToSave){
             mainDispatcher.dispatch({
               actionType: 'REMOVE_WATCHLIST_ITEM',
-              status: this.status,
-              actionData: dataReadyToSave,
-              data: symbol
+              actionData: dataReadyToSave
             });
-        }
-    };
-    xhttp.open("DELETE", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist/"+symbol, true);
-    xhttp.addEventListener('error',function(error){
-        console.log("ERROR on the response!!! ",error);
-        mainDispatcher.dispatch({
-          actionType: 'REMOVE_WATCHLIST_ITEM_FAILED',
-          status: this.status,
-          actionData: error,
-          data: symbol
-        });
     });
-    xhttp.send();
 }
 
-// API request with no form data (PUT) - Adds Currency to Watchlist
+// (PUT) - Adds Currency to Watchlist
 export function AddToWatchlist(symbol, username){
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(response) {
-        
-        if (this.readyState == 4 && this.status == 200) {
-            // console.log("The response came back successfully: ",this);
-            // debugger;
-            const dataReadyToSave = JSON.parse(this.response);
+    thinkCrypto.addToWatchlist(symbol, username).then(function(dataReadyToSave){
             mainDispatcher.dispatch({
               actionType: 'ADD_WATCHLIST_ITEM',
-              status: this.status,
-              actionData: dataReadyToSave,
-              data: symbol
+              actionData: dataReadyToSave
             });
-        }
-    };
-    xhttp.open("PUT", "https://class-project-backend-jonnywrites.c9users.io/api/user/"+username+"/watchlist/"+symbol, true);
-    xhttp.addEventListener('error',function(error){
-        console.log("ERROR on the response!!! ",error);
-        mainDispatcher.dispatch({
-          actionType: 'ADD_WATCHLIST_ITEM_FAILED',
-          status: this.status,
-          actionData: error,
-        });
     });
-    xhttp.send();
 }
 
 

@@ -79,7 +79,10 @@ class MainStore extends EventEmmiter{
         });
     }
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 62af2b2f95bb8ee31188ec387ed24f3d4491bd39
     editProfileConfirm(data){
         this.setModel({ 
             profile: {
@@ -127,7 +130,7 @@ class MainStore extends EventEmmiter{
         switch(action.actionType)
         {
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
-            case "INITIALIZED": this.setStorePosition(action.actionData); break;
+            case "INITIALIZED": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action.actionData); break;

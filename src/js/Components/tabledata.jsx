@@ -18,10 +18,7 @@ export class TableData extends React.Component{
         
         super();   //call the super constructor 
 
-        this.userInfo = mainStore.getUserProfile();
-        this.theCurrencies = mainStore.getCurrencyList();
-        this.theWatchlist = watchlistStore.getWatchlist();
-        this.thePosition = mainStore.getPosition();
+
         
         this.state = {
             table: this.isItMobile(),
@@ -31,9 +28,6 @@ export class TableData extends React.Component{
             position: '',
             path: window.location.pathname.substr(1)
         };
-        
-        this.theList = this.state.currencyList;
-        this.listSelector = this.theList[this.state.position];
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
@@ -66,21 +60,33 @@ export class TableData extends React.Component{
     }
     
     handleStoreChange(){
+        var userInfo = mainStore.getUserProfile();
+        var theCurrencies = mainStore.getCurrencyList();
+        var theWatchlist = watchlistStore.getWatchlist();
+        var thePosition = mainStore.getPosition();
+        
         this.setState({
-            username: this.userInfo.username,
-            currencyList: this.theCurrencies,
-            watchlist: this.theWatchlist,
-            position: this.thePosition
+            username: userInfo.username,
+            currencyList: theCurrencies,
+            watchlist: theWatchlist,
+            position: thePosition
         }); 
     }   
     
+    isInTheWatchlist(symbol){
+        var includedCoins = this.state.watchlist.filter(function(item){
+            return (item.symbol===symbol);
+        });
+        return (includedCoins.length===1);
+    }
+    
     RenderAsTable(){
-        if(this.theList.length!=0 && this.theList!=null){
+        if(this.state.currencyList.length!=0 && this.state.currencyList!=null){
             var theData = this.state.currencyList.map((itemData,index) => 
                           <RenderRow data={itemData} arrayPosition={index} key={index}
-                          isWatching={this.listSelector.symbol.includes(itemData.symbol)}
+                          isWatching={this.isInTheWatchlist(itemData.symbol)}
                           path={this.state.path} username={this.state.username} />);
-        }if(this.theList.length===0 || this.theList==null){ 
+        }if(this.state.currencyList.length===0 || this.state.currencyList==null){ 
             return <Loading />;
         }
         
@@ -111,12 +117,12 @@ export class TableData extends React.Component{
     
     
     RenderAsCards(){
-        if(this.theList.length!=0 && this.theList!=null){
+        if(this.state.currencyList.length!=0 && this.state.currencyList!=null){
             var theData = this.state.currencyList.map((itemData,index) => 
                           <RenderCard data={itemData} arrayPosition={index} key={index}
-                          isWatching={this.listSelector.includes(itemData.symbol)}
+                          isWatching={this.isInTheWatchlist(itemData.symbol)}
                           path={this.state.path} username={this.state.username} />);
-        }if(this.theList.length===0 || this.theList==null){ 
+        }if(this.state.currencyList.length===0 || this.state.currencyList==null){ 
             return <Loading />;
         }
                       

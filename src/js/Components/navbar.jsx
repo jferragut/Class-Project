@@ -26,8 +26,6 @@ export class Navbar extends React.Component{
             
     }
     
-    
-    
     addItem(itemName, itemURL, itemLinks = null) {
     
         return {
