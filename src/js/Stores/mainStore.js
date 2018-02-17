@@ -9,24 +9,11 @@ class MainStore extends EventEmmiter{
         
         super();
         
-        this.profile = {
-        username: "test",
-        first_name: null,
-        last_name: null,
-        email: null,
-        password: null,
-        passwordRetry: null,
-        is_active: null,
-        last_login: null,
-        date_joined:null,
-        email_contact: null,
-        subscription_status: null,
-        };
-        
         this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
-            position: ''
+            position: '',
+            profile: ''
         };
     }
 
@@ -59,39 +46,14 @@ class MainStore extends EventEmmiter{
     }
     
     registerConfirm(data){
-        this.profile= {
-        
-        username:data.username,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        is_active: data.is_active,
-        last_login: data.last_login,
-        date_joined: data.date_joined,
-        password: data.password,
-        passwordRetry:data.passwordRetry,
-        email_contact: data.email_contact,
-        subscription_status: data.subscription_status
-        };
-        this.emit('change');
+        this.setModel({ profile: data });
         
     }
     getUserProfile(){
-        return this.profile;
+        return this.model.profile;
     }
     editProfileConfirm(data){
-        this.profile= {
-        
-        username:data.username,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        password: data.password,
-        passwordRetry:data.passwordRetry,
-        email_contact: data.email_contact,
-        subscription_status: data.subscription_status
-        };
-        this.emit('change');
+        this.setModel({ profile: data });
         
     }
     

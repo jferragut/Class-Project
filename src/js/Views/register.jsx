@@ -1,7 +1,6 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
-import {dateUtil} from '../Utils/dateUtil.js';
 
 
 export class Register extends React.Component {

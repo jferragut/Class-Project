@@ -32,14 +32,14 @@ export class Layout extends React.Component{
         super();
         
         this.userInfo = mainStore.getUserProfile();
-        if(this.userInfo.length===0){ 
-            return( 
-            <div className="loadingOverlay">
-                <i className="fa fa-spinner fa-spin"></i>
-            </div>);
-        }else{
-            mainActions.initalizeData();
-        }
+        // if(this.userInfo.length===0){ 
+        //     return( 
+        //     <div className="loadingOverlay">
+        //         <i className="fa fa-spinner fa-spin"></i>
+        //     </div>);
+        // }else{
+        //     mainActions.initalizeData();
+        // }
         
         this.state = {
             username: this.userInfo.username,
