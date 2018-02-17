@@ -35,11 +35,15 @@ class MainStore extends EventEmmiter{
         this.emit('change');
     }
     
-    // Return methods
+    // Return methods \\
+    
     getPosition(){
         return this.model.position;
     }
     
+    getUserProfile(){
+        return this.model.profile;
+    }
     
     getCurrencyList(){
         return this.model.currencyList;
@@ -49,7 +53,8 @@ class MainStore extends EventEmmiter{
         return this.isLoggedIn;
     }
     
-    // Functions that process action data
+    // Functions that process action data \\
+    
     setStorePosition(data){
         this.setModel({ position: data });
     }
@@ -65,27 +70,45 @@ class MainStore extends EventEmmiter{
                 first_name: data.first_name,
                 last_name: data.last_name,
                 email: data.email,
+                password: data.password,
+                passwordRetry: data.passwordRetry,
                 is_active: data.is_active,
-                last_login: data.last_login,
-                date_joined: data.date_joined,
                 email_contact: data.email_contact,
                 subscription_status: data.subscription_status 
             }
         });
     }
     
-    getUserProfile(){
-        return this.model.profile;
-    }
     
     editProfileConfirm(data){
-        this.setModel({ profile: data });
+        this.setModel({ 
+            profile: {
+                username: data.username,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+                is_active: data.is_active,
+                email_contact: data.email_contact,
+                subscription_status: data.subscription_status         
+            }
+            
+        });
+    }
+    
+    passwordResetConfirm(data){
+        this.setModel({ 
+            profile: {
+                password: data.password,
+                passwordRetry: data.passwordRetry,
+            }
+        });
     }
     
     logUserIn(){
         if(mainStore.registerConfirm == true){
         this.isLoggedIn = true;
-        this.emit('change');
+        
         }
         else return false;
     }
@@ -96,7 +119,7 @@ class MainStore extends EventEmmiter{
         }else{
             this.isLoggedIn = false;
         }
-        this.emit('change');
+        
     }
     
   
@@ -104,11 +127,12 @@ class MainStore extends EventEmmiter{
         switch(action.actionType)
         {
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
-            case "INITIALIZED": this.setStorePosition(action); break;
+            case "INITIALIZED": this.setStorePosition(action.actionData); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
-            case "REGISTER_CONFIRM": this.registerConfirm(action); break;
-            case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action); break;
+            case "REGISTER_CONFIRM": this.registerConfirm(action.actionData); break;
+            case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action.actionData); break;
+            case "PASSWORD_RESET_CONFIRM": this.passwordResetConfirm(action.actionData); break;
             
         }
     }

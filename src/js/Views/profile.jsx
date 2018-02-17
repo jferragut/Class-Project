@@ -1,6 +1,7 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
+import { Link } from 'react-router-dom';
 
 
 export class Profile extends React.Component {
@@ -8,22 +9,47 @@ export class Profile extends React.Component {
         super();
         
     this.state = {
-      data: null
+        username: null,
+        first_name: null,
+        last_name: null,
+        email: null,
+        is_active: null,
+        last_login: null,
+        date_joined: null,
+        email_contact: null,
+        subscription_status: null 
+        
     };
     this.isLoggedIn = null;
+    this.handleChange = this.handleChange.bind(this);
   }
         
         
     
-    
+    componentWillMount(){
+      this.handleChange();
+    }
     
   
   componentDidMount(){
-    this.setState ({
-      data: MainStore.getUserProfile()
-    });
-    this.isLoggedIn = MainStore.isLoggedIn;
+    MainStore.on('change',this.handleChange.bind(this));
+    
   }
+  
+  handleChange(){
+        var userInfo = MainStore.getUserProfile();
+        
+        this.setState({
+            username: userInfo.username,
+            first_name: userInfo.first_name,
+            last_name: userInfo.last_name,
+            email: userInfo.email,
+            is_active: userInfo.is_active,
+            email_contact: userInfo.email_contact,
+            subscription_status: userInfo.subscription_status,
+            isLoggedIn: userInfo.loginStatus,
+        });
+    }
   
   
 
@@ -37,11 +63,11 @@ export class Profile extends React.Component {
     <div className="teacher-name">
       <div className="row">
         <div className="col-sm-9">
-          <h2><strong>Hello {(this.state.data == null) ? "nobody" : this.state.data.first_name}</strong></h2>
+          <h2><strong>Hello {(this.state.first_name == null) ? "nobody" : this.state.first_name}</strong></h2>
         </div>
         <div className="col-sm-3">
           <div className="button pull-right">
-            <a href="/editprofile" className="btn btn-primary btn-block btn-signin btn-sm" >Edit Profile <i className="fa fa-pencil"></i></a>
+            <Link to="/editprofile" className="btn btn-primary btn-block btn-signin btn-sm" >Edit Profile <i className="fa fa-pencil"></i> </Link>
           </div>
         </div>
       </div>
