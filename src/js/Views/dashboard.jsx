@@ -24,7 +24,7 @@ export class Dashboard extends React.Component{
             viewTable: true,
             dataAlign: []
         };
-        
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
     
     componentWillMount(){
@@ -33,7 +33,7 @@ export class Dashboard extends React.Component{
     
     componentDidMount() {
         //window resize listener
-        window.addEventListener('resize', this.updateWindowDimensions);
+        window.addEventListener('resize', this.updateWindowDimensions.bind(this));
     }
     
     componentWillUnmount() {
@@ -74,10 +74,10 @@ export class Dashboard extends React.Component{
                     <div className="row">
                         <BrowserRouter>
                                 <Switch>
-                                    <Route exact path='/dashboard'>
+                                    <Route exact path='/dashboard' props={this.props}>
                                         <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={true} /> 
                                     </Route>
-                                    <Route exact path='/coin'>
+                                    <Route exact path='/coin' props={this.props}>
                                         <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={false} /> 
                                     </Route>
                                 </Switch>

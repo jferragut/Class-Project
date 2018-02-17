@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
@@ -9,6 +9,8 @@ import { watchlistUtils } from '../Utils/watchlist.js';
 
 import { RenderRow } from './row.jsx';
 import { RenderCard } from './card.jsx';
+import { Loading } from './loading.jsx';
+import { Error } from './error.jsx';
 
 export class TableData extends React.Component{
     
@@ -16,15 +18,17 @@ export class TableData extends React.Component{
         
         super();   //call the super constructor 
 
-        var userInfo = mainStore.getUserProfile();
-        var theCurrencies = mainStore.getCurrencyList();
-        var theWatchlist = watchlistStore.getWatchlist();
+        this.userInfo = mainStore.getUserProfile();
+        this.theCurrencies = mainStore.getCurrencyList();
+        this.theWatchlist = watchlistStore.getWatchlist();
+        this.thePosition = mainStore.getPosition();
         
         this.state = {
             table: this.isItMobile(),
-            currencyList: theCurrencies,
-            username: userInfo.username,
-            watchlist: theWatchlist,
+            currencyList: [],
+            username: '',
+            watchlist: [],
+            position: '',
             path: window.location.pathname.substr(1)
         };
         
@@ -33,6 +37,7 @@ export class TableData extends React.Component{
         
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.isItMobile = this.isItMobile.bind(this);
     }
     
     
@@ -62,8 +67,10 @@ export class TableData extends React.Component{
     
     handleStoreChange(){
         this.setState({
-            currencyList: mainStore.getCurrencyList(),
-            watchlist: watchlistStore.getWatchlist()
+            username: this.userInfo.username,
+            currencyList: this.theCurrencies,
+            watchlist: this.theWatchlist,
+            position: this.thePosition
         }); 
     }   
     
@@ -74,10 +81,7 @@ export class TableData extends React.Component{
                           isWatching={this.listSelector.symbol.includes(itemData.symbol)}
                           path={this.state.path} username={this.state.username} />);
         }if(this.theList.length===0 || this.theList==null){ 
-            return( 
-            <div className="loadingOverlay">
-                <i className="fa fa-spinner fa-spin"></i>
-            </div>);
+            return <Loading />;
         }
         
         return(
@@ -113,10 +117,7 @@ export class TableData extends React.Component{
                           isWatching={this.listSelector.includes(itemData.symbol)}
                           path={this.state.path} username={this.state.username} />);
         }if(this.theList.length===0 || this.theList==null){ 
-            return( 
-            <div className="loadingOverlay">
-                <i className="fa fa-spinner fa-spin"></i>
-            </div>);
+            return <Loading />;
         }
                       
         return(
@@ -127,16 +128,31 @@ export class TableData extends React.Component{
     }
     
     render(){
-        return(
-            <div>
-                {this.state.table === true ? this.RenderAsTable() : this.RenderAsCards() }
-            </div>
-        );
-    }
+        // const aux = {
+        //     userFetch: this.props.userFetch,
+        //     initalizeData: this.props.initalizeData
+        // };
+
+        // if (aux.userFetch.pending) {
+        // return <Loading/>;
+        // } else if (aux.userFetch.rejected) {
+        // return <Error error={aux.userFetch.reason}/>;
+        // } else if (aux.userFetch.fulfilled) {
+        //     {this.handleStoreChange()}
+        // }
+        
+        // if (aux.initializeData.pending) {
+        // return <Loading/>;
+        // } else if (aux.initializeData.rejected) {
+        // return <Error error={aux.initializeData.reason}/>;
+        // } else if (aux.initializeData.fulfilled) {
+        //     {this.handleStoreChange()}
+            return(
+                <div>
+                    {this.state.table === true ? this.RenderAsTable() : this.RenderAsCards() }
+                </div>
+            );
+        // }
     
-}
-
-
-
-
+}}
 

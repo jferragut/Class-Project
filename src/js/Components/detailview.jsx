@@ -59,15 +59,6 @@ export class DetailView extends React.Component{
         }); 
     }
     
-    getCol(matrix, col){
-       var column = [];
-       for(var i=0; i<matrix.length; i++){
-          column.push(matrix[i][col]);
-       }
-       return column;
-    }
-    
-    
     render(){
         var theList = this.state.currencyList;
         var listSelector = theList[this.state.position];
@@ -76,21 +67,16 @@ export class DetailView extends React.Component{
         // debugger;
         return(
             <div className="row container-fluid">
-                <div className="col-12 col-sm-4">
-                    {listSelector.name}
-                    <ul>
-                        <li>Sample Link 1</li>
-                        <li>Sample Link 2</li>
-                        <li>Sample Link 3</li>
-                        <li>Sample Link 4</li>
-                    </ul>
-                </div>
                 <div className="col-12 col-sm-8">
                     <div className="row">
                         <div className="col-12">
-                            {listSelector.name} 
-                            {listSelector.price_usd}USD
-                            per 1 {listSelector.symbol}
+                            <h2>{listSelector.name}</h2><i className={'fa ' + ((listSelector.includes(listSelector.symbol)===true) ? "fa-bell" : "fa-bell-o")} 
+                                                            onClick={()=>watchlistUtils.watchlistToggle(theProps.isWatching,actiondata.symbol,theProps.path,theProps.username,theProps.arrayPosition)}
+                                                            aria-hidden="true" data-toggle="tooltip" 
+                                                            title={((theProps.isWatching) ? "Remove from Watchlist":"Add to Watchlist")}>
+                                                        </i>
+                            <h3>{listSelector.price_usd}USD
+                            per 1 {listSelector.symbol}</h3>
                         </div>
                     </div>
                     <div className="row">
@@ -113,6 +99,15 @@ export class DetailView extends React.Component{
                             {listSelector.total_supply / listSelector.price_usd}{listSelector.symbol}
                         </div>
                     </div>
+                </div>
+                <div className="col-12 col-sm-4">
+                    <h3>{listSelector.name} Quicklinks:</h3>
+                    <ul>
+                        <li>Sample Link 1</li>
+                        <li>Sample Link 2</li>
+                        <li>Sample Link 3</li>
+                        <li>Sample Link 4</li>
+                    </ul>
                 </div>
                 
                 <div className="container-fluid">

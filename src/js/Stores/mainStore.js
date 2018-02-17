@@ -23,7 +23,7 @@ class MainStore extends EventEmmiter{
         subscription_status: null,
         };
         
-        this.isLoggedIn = false;  //default status of user login should be set to false until they have logged in.
+        this.isLoggedIn = true;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
             position: ''

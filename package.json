@@ -47,6 +47,7 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-highcharts": "^16.0.2",
+    "react-refetch": "^1.0.4",
     "react-router-dom": "^4.2.2",
     "react-sparklines": "^1.7.0",
     "react-tap-event-plugin": "^3.0.2",

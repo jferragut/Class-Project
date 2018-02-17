@@ -1,4 +1,6 @@
-import mainDispatcher from '../Dispatchers/mainDispatcher.js';
+import mainDispatcher from '../Dispatchers/mainDispatcher';
+import thinkCrypto from '../Utils/ThinkCryptoAPI.js';
+
 
 export function setStorePosition(position){
       mainDispatcher.dispatch({
@@ -157,26 +159,17 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
 //***********************************
 
 
-// API request with no form data (GET) - Gets the list of all Currencies in the database
+// (GET) Gets the list of all Currencies in the database
 export function GetCurrencies(){
     
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(response) {
-        
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("The response came back successfully: ",this);
-            const dataReadyToSave = JSON.parse(this.response);
-            mainDispatcher.dispatch({
-              actionType: 'GET_CURRENCIES',
-              actionData: dataReadyToSave
-            });
-        }
-    };
-    xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/currencies/", true);
-    xhttp.addEventListener('error',function(error){
-        console.log("ERROR on the response!!! ",error);
+    thinkCrypto.getCurrencies().then(function(dataReadyToSave){
+      
+      mainDispatcher.dispatch({
+        actionType: 'GET_CURRENCIES',
+        actionData: dataReadyToSave
+      });
+      
     });
-    xhttp.send();
 }
 
 

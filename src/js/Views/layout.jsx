@@ -3,10 +3,11 @@
 // *********************** 
  
 import React from 'react';
+import { connect, PromiseState } from 'react-refetch';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 // components
-import { Error404 } from '../Components/error404.jsx';
+import { Error } from '../Components/error.jsx';
 import { Navbar } from '../Components/navbar.jsx';
 
 // views
@@ -32,19 +33,22 @@ export class Layout extends React.Component{
         super();
         
         this.userInfo = mainStore.getUserProfile();
-        if(this.userInfo.length===0){ 
-            return( 
-            <div className="loadingOverlay">
-                <i className="fa fa-spinner fa-spin"></i>
-            </div>);
+        if(this.userInfo.username===null||this.userInfo.username===undefined){ 
+            this.props.history.push('/login');
         }else{
-            mainActions.initalizeData();
+            mainActions.initalizeData(this.userInfo.username);
         }
         
+        this.loginStatus = (function(){
+        if(mainStore.getLoginStatus()===true){
+            return true;
+        } else {
+            return false;
+        }})();
+        
         this.state = {
-            username: this.userInfo.username,
+            username: '',
             isLoggedIn: false,
-            path: window.location.pathname.substr(1)
         };   
         
         this.handleChange = this.handleChange.bind(this);
@@ -58,7 +62,7 @@ export class Layout extends React.Component{
     handleChange(){
         this.setState({
             username: this.userInfo.username,
-            isLoggedIn: mainStore.getLoginStatus(),
+            isLoggedIn: this.loginStatus,
         });
     }
     
@@ -70,13 +74,13 @@ export class Layout extends React.Component{
                     <Navbar />
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Route exact path='/dashboard' component={Dashboard} />
-                        <Route exact path='/coin' component={Dashboard} />
+                        <Route exact path='/dashboard' component={Dashboard} props={this.state,this.state.username} />
+                        <Route exact path='/coin' component={Dashboard} props={this.state} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/register' component={Register} />
-                        <Route exact path='/profile' component={Profile} />
-                        <Route exact path='/editprofile' component={editProfile} />
-                        <Route component={Error404} />
+                        <Route exact path='/register' component={Register} props={this.state}/>
+                        <Route exact path='/profile' component={Profile} props={this.state}/>
+                        <Route exact path='/editprofile' component={editProfile} props={this.state}/>
+                        <Route component={Error} error={"404"}/>
                     </Switch>
                 </div>
             </BrowserRouter>
