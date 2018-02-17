@@ -18,7 +18,7 @@ var ThinkCryptoAPI = {
         },
       
         //Returns a promise with the request that was made
-        callMethod: function(methodType, url, data = '') {
+        callMethod: function(methodType, url, requestBodyData = '') {
             
             var callPromise = new Promise((resolve, reject)=>{
             
@@ -37,7 +37,7 @@ var ThinkCryptoAPI = {
                     console.log("ERROR on the response!!! ",error);
                     reject('ERROR on the response!!! ',error);
                 });
-                xhttp.send(JSON.stringify(data));
+                xhttp.send(JSON.stringify(requestBodyData));
             });
             this.addPendingPromise(callPromise);
             return callPromise;
@@ -47,10 +47,31 @@ var ThinkCryptoAPI = {
         getCurrencies: function() {
             
             return this.callMethod(
-            'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/'
+                'GET',
+                'https://class-project-backend-jonnywrites.c9users.io/api/currencies/'
             );
         
+        },
+        
+        getWatchlist: function(username) {
+            return this.callMethod(
+                'GET',
+                'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist'
+            );
+        },
+        
+        addToWatchlist: function(symbol, username) {
+            return this.callMethod(
+                'PUT',
+                'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            );
+        },
+        
+        removeFromWatchlist: function(symbol, username) {
+            return this.callMethod(
+            'DELETE',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            );
         }
 };
 
