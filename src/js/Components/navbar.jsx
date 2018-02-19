@@ -1,6 +1,6 @@
 import React from 'react';
 import tc_logo from '../../images/tc_logo.png';
-import { NavLink } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 
 
 export class Navbar extends React.Component{
@@ -11,8 +11,8 @@ export class Navbar extends React.Component{
         
         this.theMenu = {
             horizontal: [
-                this.addItem('Dashboard', '/'),
-                this.addItem('Login', '/')
+                this.addItem('Dashboard', '/dashboard'),
+                this.addItem('Login', '/login')
             ],
             vertical:[
                 this.addItem('Home', '/'),

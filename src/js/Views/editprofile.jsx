@@ -42,7 +42,7 @@ export class editProfile extends React.Component {
         return (
         <div>
         <div className="container editp">
-    <div className="row m-y-2">
+    <div className="row m-y-2 ">
         
         <div className="col-lg-4 text-lg-center">
             <h2 className="edit-title" > Edit Profile</h2>

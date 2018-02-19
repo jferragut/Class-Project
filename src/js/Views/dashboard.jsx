@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import mainStore from '../Stores/mainStore.js';
 
 import { DataArea } from '../Components/dataarea.jsx';
 import { AdBarZone } from '../Components/adbar.jsx';
@@ -22,23 +23,29 @@ export class Dashboard extends React.Component{
                 height: 'auto'
             },
             viewTable: true,
-            dataAlign: []
+            dataAlign: [],
+            isLoggedIn: false,
+            username: '',
+            currencyList: [],
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
     
     componentWillMount(){
+        this.handleStoreChange();
         this.createAd();
     }
     
     componentDidMount() {
         //window resize listener
         window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+        mainStore.addListener('change', this.handleStoreChange.bind(this));
     }
     
     componentWillUnmount() {
         //unload listeners
         window.removeEventListener('resize', this.updateWindowDimensions);
+        mainStore.removeListener('change', this.handleStoreChange);
     }
     
     updateWindowDimensions() {
@@ -47,6 +54,18 @@ export class Dashboard extends React.Component{
     
     isItMobile(){
         if(window.innerWidth <= 768) return false; else return true;
+    }
+    
+    handleStoreChange(){
+        var userInfo = mainStore.getUserProfile();
+        var loginStatus = mainStore.getLoginStatus();
+        var theCurrencies = mainStore.getCurrencyList();
+        
+        this.setState({
+            isLoggedIn: loginStatus,
+            username: userInfo.username,
+            currencyList: theCurrencies,
+        }); 
     }
     
     createAd(){
@@ -75,10 +94,18 @@ export class Dashboard extends React.Component{
                         <BrowserRouter>
                                 <Switch>
                                     <Route exact path='/dashboard' props={this.props}>
-                                        <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={true} /> 
+                                        <DataArea   className={this.state.dataAlign} 
+                                                    history={this.props.history} 
+                                                    viewTable={true} 
+                                                    currencyList={this.state.currencyList}
+                                                    username={this.state.username}/> 
                                     </Route>
                                     <Route exact path='/coin' props={this.props}>
-                                        <DataArea className={this.state.dataAlign} history={this.props.history} viewTable={false} /> 
+                                        <DataArea   className={this.state.dataAlign} 
+                                                    history={this.props.history} 
+                                                    viewTable={false} 
+                                                    currencyList={this.state.currencyList}
+                                                    username={this.state.username}/> 
                                     </Route>
                                 </Switch>
                         </BrowserRouter>

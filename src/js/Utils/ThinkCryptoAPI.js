@@ -47,23 +47,23 @@ var ThinkCryptoAPI = {
         getCurrencies: function() {
             
             return this.callMethod(
-                'GET',
-                'https://class-project-backend-jonnywrites.c9users.io/api/currencies/'
+            'GET',
+            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/'
             );
         
         },
         
         getWatchlist: function(username) {
             return this.callMethod(
-                'GET',
-                'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist'
+            'GET',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist'
             );
         },
         
         addToWatchlist: function(symbol, username) {
             return this.callMethod(
-                'PUT',
-                'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            'PUT',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
             );
         },
         

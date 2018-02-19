@@ -2,6 +2,7 @@ import EventEmmiter from 'events';
 
 import * as MainActions from '../Actions/mainActions.js';
 import mainDispatcher from '../Dispatchers/mainDispatcher.js';
+import watchlistStore from '../Stores/watchlistStore.js';
 
 class MainStore extends EventEmmiter{
     
@@ -13,7 +14,6 @@ class MainStore extends EventEmmiter{
         this.isLoggedIn = true;  //default status of user login should be set to false until they have logged in.
         this.model = {
             currencyList: [],
-            position: '',
             profile: {
                 username: "test",
                 first_name: null,
@@ -28,6 +28,8 @@ class MainStore extends EventEmmiter{
                 subscription_status: null
             }
         };
+        
+        watchlistStore.on("change",this.handleWatchlistChange.bind(this));
     }
 
     setModel(newModel){
@@ -36,9 +38,7 @@ class MainStore extends EventEmmiter{
     }
     
     // Return methods
-    getPosition(){
-        return this.model.position;
-    }
+    
     
     getUserProfile(){
         return this.model.profile;
@@ -53,13 +53,25 @@ class MainStore extends EventEmmiter{
     }
     
     // Functions that process action data
-    setStorePosition(data){
-        this.setModel({ position: data });
-    }
-
     setCurrencyList(data){
         this.setModel({ currencyList: data });
     }
+    
+    handleWatchlistChange(){
+        var theWatchlist = watchlistStore.getWatchlist();
+        //reset beingWatched property for each coin
+        this.model.currencyList.forEach(function(theCoin){
+                theCoin.beingWatched=false;
+        });
+        //check to see which coins are beingWatched in the recently updated watchlist
+        this.model.currencyList.forEach(function(theCoin){
+            theWatchlist.forEach((watchlistCoin)=>{
+                if(theCoin.symbol===watchlistCoin.symbol) theCoin.beingWatched=true;
+            });
+            console.log(theCoin,theCoin.beingWatched);
+        });
+        this.emit('change');
+    }   
     
     registerConfirm(data){
         this.setModel({ 
@@ -83,10 +95,13 @@ class MainStore extends EventEmmiter{
     
     logUserIn(){
         if(mainStore.registerConfirm == true){
-        this.isLoggedIn = true;
-        this.emit('change');
+            this.isLoggedIn = true;
+            this.emit('change');
         }
-        else return false;
+        else{
+            this.isLoggedIn =false; 
+            this.emit('change');
+        } 
     }
     
     validateUser(data){
@@ -97,18 +112,15 @@ class MainStore extends EventEmmiter{
         }
         this.emit('change');
     }
-    
   
     handleActions(action){
         switch(action.actionType)
         {
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
-            case "INITIALIZED": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action); break;
             case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action); break;
-            
         }
     }
 }

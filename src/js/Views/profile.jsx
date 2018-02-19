@@ -35,7 +35,7 @@ export class Profile extends React.Component {
             
   <div className="container">
     <div className="teacher-name">
-      <div className="row">
+      <div className="row profileRow">
         <div className="col-sm-9">
           <h2><strong>Hello {(this.state.data == null) ? "nobody" : this.state.data.first_name}</strong></h2>
         </div>
@@ -50,7 +50,7 @@ export class Profile extends React.Component {
 
 <div className="container">
 
-  <div className="row">
+  <div className="row profileRow">
     <div className="col-sm-12">
       <div className="card card-block text-xs-left">
         <h5 className="profileheaders"><i className="fa fa-user fa-fw"></i>Overview</h5>
@@ -60,7 +60,7 @@ export class Profile extends React.Component {
       </div>
     </div>
   </div>
-  <div className="row">
+  <div className="row profileRow">
     <div className="col-sm-12">
       <div className="card card-block">
         <h5 className="profileheaders" ><i className="fa fa-rocket fa-fw"></i>Watchlist</h5>

@@ -6,7 +6,7 @@ stockConfig.run = function(){
         var m = (xValues[0] - xValues[1]) / (yValues[0] - yValues[1]);
         var b = yValues[0] - m * xValues[0];
         const index = this.state.position;
-        var list = (typeof(this.state.currencyList[index])=="undefined" ? {name: "loading..."} : this.state.currencyList[index]);
+        var list = (typeof(this.state.coin)=="undefined" ? {name: "loading..."} : this.state.coin);
         console.log(list);
         var config = {
           credits: {

@@ -11,97 +11,84 @@ var ReactHighstock = require('react-highcharts/ReactHighstock.src');
 
 export class DetailView extends React.Component{
     
-    constructor(){
+    constructor(props){
         
-        super(); 
-        var userInfo = mainStore.getUserProfile();
-        var theCurrencies = mainStore.getCurrencyList();
-        var theWatchlist = watchlistStore.getWatchlist();
+        super(props); 
 
         this.state = {
-            currencyList: theCurrencies,
-            isLoggedIn: mainStore.getLoginStatus(),
-            username: userInfo.username,
+            username: this.props.username,
             queryParameter: window.location.search.split("=")[1],
-            watchlist: theWatchlist,
-            data: [],
-            position: mainStore.getPosition()
+            path: window.location.pathname.substr(1)
         };
         
-        this.handleStoreChange = this.handleStoreChange.bind(this);
         stockConfig.run = stockConfig.run.bind(this);
     }
     
     
     componentWillMount(){
-        // this.setState({currencyList: mainStore.getCurrencyList()});
+        this.extractCoinData();
         watchlistUtils.watchlistToggle = watchlistUtils.watchlistToggle.bind(this);
     }
     
-    componentDidMount() {
-        //Set a listener on the change of the store (emit) to set state of the currencyList in the state
-        mainStore.on('change',this.handleStoreChange.bind(this));
-        watchlistStore.on('change',this.handleStoreChange.bind(this));
+    extractCoinData(){
+        var theCoin = this.props.currencyList.filter(coin => (coin.symbol === this.state.queryParameter));
+        if(theCoin.length!=0) this.setState({coin: theCoin[0]}); else alert("Coin not found.");
     }
     
-    componentWillUnmount() {
-        //unload listeners
-        mainStore.removeListener('change',this.handleStoreChange);
-        watchlistStore.removeListener('change',this.handleStoreChange);
-    }
-    
-    
-    handleStoreChange(){
-        this.setState({
-            currencyList: mainStore.getCurrencyList(),
-            watchlist: watchlistStore.getWatchlist(),
-            position: mainStore.getPosition()
-        }); 
-    }
+    getCol(matrix, col){
+        var column = [];
+        for(var i=0; i<matrix.length; i++){
+           column.push(matrix[i][col]);
+        }
+        return column;
+      }
     
     render(){
-        var theList = this.state.currencyList;
-        var listSelector = theList[this.state.position];
-        if(theList.length===0) return <div className="loadingOverlay"><i className="fa fa-spinner fa-spin"></i></div>;
-        
-        // debugger;
+        var marketCap = Number(this.state.coin.market_cap_usd) / Number(this.state.coin.price_usd) ;
+        var volume = Number(this.state.coin.volume_24h_usd) / Number(this.state.coin.price_usd) ; 
+        var circulatingSupply = Number(this.state.coin.available_supply) / Number(this.state.coin.price_usd) ;
+        var maxSupply = Number(this.state.coin.total_supply) / Number(this.state.coin.price_usd) ;
         return(
-            <div className="row container-fluid">
+            <div className="row">
                 <div className="col-12 col-sm-8">
                     <div className="row">
                         <div className="col-12">
-                            <h2>{listSelector.name}</h2><i className={'fa ' + ((listSelector.includes(listSelector.symbol)===true) ? "fa-bell" : "fa-bell-o")} 
-                                                            onClick={()=>watchlistUtils.watchlistToggle(theProps.isWatching,actiondata.symbol,theProps.path,theProps.username,theProps.arrayPosition)}
-                                                            aria-hidden="true" data-toggle="tooltip" 
-                                                            title={((theProps.isWatching) ? "Remove from Watchlist":"Add to Watchlist")}>
-                                                        </i>
-                            <h3>{listSelector.price_usd}USD
-                            per 1 {listSelector.symbol}</h3>
+                            <h2>{this.state.coin.name}</h2>
+                            <i className={'fa ' + ((this.state.coin.beingWatched===true) ? "fa-bell" : "fa-bell-o")} 
+                                onClick={() =>  watchlistUtils.watchlistToggle( this.state.coin.beingWatched,
+                                                                                this.state.coin.symbol,
+                                                                                this.state.path,
+                                                                                this.props.username)}
+                                aria-hidden="true" data-toggle="tooltip" 
+                                title={((this.state.coin.isWatching) ? "Remove from Watchlist":"Add to Watchlist")}>
+                            </i>
+                            <h3>{this.state.coin.price_usd}USD
+                            per 1 {this.state.coin.symbol}</h3>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3">
                             <h3>Market Cap</h3>
-                            {listSelector.market_cap_usd}USD
-                            {listSelector.market_cap_usd / listSelector.price_usd}{listSelector.symbol}
+                            {this.state.coin.market_cap_usd}USD
+                            {marketCap}{this.state.coin.symbol}
                         </div>
                         <div className="col-12 col-md-3">
                             <h3>Volume (24h)</h3>
-                            {listSelector.volume_24h_usd}USD
-                            {listSelector.volume_24h_usd / listSelector.price_usd}{listSelector.symbol}
+                            {this.state.coin.volume_24h_usd}USD
+                            {volume}{this.state.coin.symbol}
                         </div>
                         <div className="col-12 col-md-3">
                             <h3>Circulating Supply</h3>
-                            {listSelector.available_supply / listSelector.price_usd}{listSelector.symbol}
+                            {circulatingSupply}{this.state.coin.symbol}
                         </div>
                         <div className="col-12 col-md-3">
                             <h3>Max Supply</h3>
-                            {listSelector.total_supply / listSelector.price_usd}{listSelector.symbol}
+                            {maxSupply}{this.state.coin.symbol}
                         </div>
                     </div>
                 </div>
                 <div className="col-12 col-sm-4">
-                    <h3>{listSelector.name} Quicklinks:</h3>
+                    <h3>{this.state.coin.name} Quicklinks:</h3>
                     <ul>
                         <li>Sample Link 1</li>
                         <li>Sample Link 2</li>
@@ -137,5 +124,4 @@ export class DetailView extends React.Component{
             </div>
         );
     }
-
 }

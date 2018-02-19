@@ -48,7 +48,7 @@ export class Layout extends React.Component{
         
         this.state = {
             username: '',
-            isLoggedIn: false,
+            isLoggedIn: this.loginStatus,
         };   
         
         this.handleChange = this.handleChange.bind(this);
@@ -74,12 +74,12 @@ export class Layout extends React.Component{
                     <Navbar />
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Route exact path='/dashboard' component={Dashboard} props={this.state,this.state.username} />
-                        <Route exact path='/coin' component={Dashboard} props={this.state} />
+                        <Route exact path='/dashboard' component={Dashboard} />
+                        <Route exact path='/coin' component={Dashboard} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/register' component={Register} props={this.state}/>
-                        <Route exact path='/profile' component={Profile} props={this.state}/>
-                        <Route exact path='/editprofile' component={editProfile} props={this.state}/>
+                        <Route exact path='/register' component={Register} />
+                        <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/editprofile' component={editProfile} />
                         <Route component={Error} error={"404"}/>
                     </Switch>
                 </div>

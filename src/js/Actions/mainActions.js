@@ -2,20 +2,11 @@ import mainDispatcher from '../Dispatchers/mainDispatcher';
 import thinkCrypto from '../Utils/ThinkCryptoAPI.js';
 
 
-export function setStorePosition(position){
-      mainDispatcher.dispatch({
-        actionType: 'SET_STORE_POSITION',
-        position: position
-      });
-}
-
 export function initalizeData(username){
       GetCurrencies();
       GetUserWatchlist(username);
-      mainDispatcher.dispatch({
-        actionType: 'INITIALIZED'
-      });
 }
+
 
 //***********************************
 // Begin User Actions
