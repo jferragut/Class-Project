@@ -3,7 +3,6 @@
 // *********************** 
  
 import React from 'react';
-import { connect, PromiseState } from 'react-refetch';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 // components
@@ -17,6 +16,7 @@ import { Login } from './login.jsx';
 import { Register } from './register.jsx';
 import { Profile } from './profile.jsx';
 import { editProfile } from './editprofile.jsx';
+import { CP } from './cp.jsx';
 
 // Stores
 import mainStore from '../Stores/mainStore.js';
@@ -77,9 +77,10 @@ export class Layout extends React.Component{
                         <Route exact path='/dashboard' component={Dashboard} />
                         <Route exact path='/coin' component={Dashboard} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/register' component={Register} />
-                        <Route exact path='/profile' component={Profile} />
-                        <Route exact path='/editprofile' component={editProfile} />
+                        <Route exact path='/register' component={Register} props={this.state}/>
+                        <Route exact path='/profile' component={Profile} props={this.state}/>
+                        <Route exact path='/editprofile' component={editProfile} props={this.state}/>
+                        <Route exact path='/CP' component={CP} props={this.state}/>
                         <Route component={Error} error={"404"}/>
                     </Switch>
                 </div>

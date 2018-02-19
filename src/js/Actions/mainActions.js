@@ -31,7 +31,7 @@ export function UserValidate(history, username, password) {
       
       mainDispatcher.dispatch({
         actionType: 'VALIDATE_USER',
-        data: {
+        actionData: {
           username: username, 
           password: password, 
         }
@@ -51,7 +51,9 @@ export function UserValidate(history, username, password) {
 // Action to Confirm Login
 
 
-
+//******
+// (PUT) INFORMATION ADDED IN SPECIFIED USER PROFILE
+//******
 
 export function RegisterConfirm(history, username, first_name, last_name, email, password, is_active, email_contact, subscription_status) {
   
@@ -75,7 +77,7 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
       
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
-          data: {
+          actionData: {
             username: username,
             first_name: first_name,
             last_name: last_name,
@@ -90,6 +92,7 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
         history.push('/profile');
 
       }
+      
     };
     
     xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/", true);
@@ -98,6 +101,11 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
     });
     xhttp.send(JSON.stringify(requestBody));
 }
+
+//******
+//  (POST) INFORMATION CHANGE IN SPECIFIED USER PROFILE
+//******
+
 export function EditProfileConfirm(history, username, first_name, last_name, email, password, passwordRetry, email_contact, subscription_status) {
   
   var requestBody = {
@@ -105,7 +113,6 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
   "first_name": first_name,
   "last_name": last_name,
   "email": email,
-  "password": password,
   "email_contact": email_contact,
   "subscription_status": subscription_status
   };
@@ -118,12 +125,11 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
       
       mainDispatcher.dispatch({
           actionType: 'EDITPROFILE_CONFIRM',
-          data: {
+          actionData: {
             username: username,
             first_name: first_name,
             last_name: last_name,
             email: email,
-            password: password,
             email_contact: email_contact,
             subscription_status: subscription_status
           }
@@ -134,6 +140,38 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
     };
     
     xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
+    xhttp.addEventListener('error', function(error) {
+      console.log("ERROR on the response!!! ", error);
+    });
+    xhttp.send(JSON.stringify(requestBody));
+}
+// (POST) A PASSWORD CHANGE FOR SPECIFIED USER
+export function PasswordResetConfirm(history, username, password) {
+  
+  var requestBody = {
+  "username": username,
+  "password": password,
+  };
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200 ) {
+      
+      ///success!!!!
+      
+      mainDispatcher.dispatch({
+          actionType: 'PASSWORD_RESET_CONFIRM',
+          actionData: {
+            username: username,
+            password: password,
+          }
+        });
+          history.push('/profile');
+
+      }
+    };
+    
+    xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/user/" + username + "/cp", true);
     xhttp.addEventListener('error', function(error) {
       console.log("ERROR on the response!!! ", error);
     });
@@ -167,7 +205,18 @@ export function GetCurrencies(){
 
 // (GET) - Gets the user watchlist
 export function GetUserWatchlist(username){
+
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(response) {
+        
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log("The response came back successfully: ",this);
+            
+            const dataReadyToSave = JSON.parse(this.response);
+
     thinkCrypto.getWatchlist(username).then(function(dataReadyToSave){
+
             mainDispatcher.dispatch({
               actionType: 'GET_USER_WATCHLIST',
               actionData: dataReadyToSave

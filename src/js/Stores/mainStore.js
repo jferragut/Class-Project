@@ -38,8 +38,6 @@ class MainStore extends EventEmmiter{
     }
     
     // Return methods
-    
-    
     getUserProfile(){
         return this.model.profile;
     }
@@ -80,9 +78,9 @@ class MainStore extends EventEmmiter{
                 first_name: data.first_name,
                 last_name: data.last_name,
                 email: data.email,
+                password: data.password,
+                passwordRetry: data.passwordRetry,
                 is_active: data.is_active,
-                last_login: data.last_login,
-                date_joined: data.date_joined,
                 email_contact: data.email_contact,
                 subscription_status: data.subscription_status 
             }
@@ -90,13 +88,39 @@ class MainStore extends EventEmmiter{
     }
     
     editProfileConfirm(data){
-        this.setModel({ profile: data });
+        this.setModel({ 
+            profile: {
+                username: data.username,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+                is_active: data.is_active,
+                email_contact: data.email_contact,
+                subscription_status: data.subscription_status         
+            }
+            
+        });
+    }
+    
+    passwordResetConfirm(data){
+        this.setModel({ 
+            profile: {
+                password: data.password,
+                passwordRetry: data.passwordRetry,
+            }
+        });
     }
     
     logUserIn(){
         if(mainStore.registerConfirm == true){
+<<<<<<< HEAD
             this.isLoggedIn = true;
             this.emit('change');
+=======
+        this.isLoggedIn = true;
+        
+>>>>>>> 0816cc4448b800b22525d96dda12ee6a441ac073
         }
         else{
             this.isLoggedIn =false; 
@@ -110,7 +134,7 @@ class MainStore extends EventEmmiter{
         }else{
             this.isLoggedIn = false;
         }
-        this.emit('change');
+        
     }
   
     handleActions(action){
@@ -119,8 +143,9 @@ class MainStore extends EventEmmiter{
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
             case "VALIDATE_USER": this.validateUser(action.actionData); break;
-            case "REGISTER_CONFIRM": this.registerConfirm(action); break;
-            case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action); break;
+            case "REGISTER_CONFIRM": this.registerConfirm(action.actionData); break;
+            case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action.actionData); break;
+            case "PASSWORD_RESET_CONFIRM": this.passwordResetConfirm(action.actionData); break;
         }
     }
 }
