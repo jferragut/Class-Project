@@ -1,6 +1,6 @@
 //Include Fonts
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-@import url('https://fonts.googleapis.com/css?family=Michroma');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Michroma:400');
 
 //Include Partials
 @import '~bootstrap/scss/bootstrap.scss';
@@ -24,10 +24,13 @@
 
 body, html {
     font-family: 'Oswald', sans-serif;
+    font-weight: 400;
     height: 100%;
     background-repeat: no-repeat;
     background: linear-gradient(rgb(248,249,250), rgb(255, 204, 0));
-
+    .percent{
+        font-family: 'Oswald', sans-serif;
+    }
 }
 
 
@@ -37,7 +40,6 @@ body, html {
     @include media-breakpoint-down(md){
         margin-bottom: 25px;
     }
-    background-image: linear-gradient(rgb(248,249,250), rgb(255, 204, 0));
 }
 
 

@@ -41,7 +41,7 @@ export class TableData extends React.Component{
     }
     
     isItMobile(){
-        if(window.innerWidth <= 768) return false; else return true;
+        if(window.innerWidth <= 880) return false; else return true;
     }
     
     RenderAsTable(){
@@ -59,7 +59,7 @@ export class TableData extends React.Component{
         
         return(
             <div>
-                <table className="table table-dark table-hover">
+                <table className="table table-dark table-hover tableData">
                         <thead>
                             <tr>
                                 <th>#</th>

@@ -9,21 +9,43 @@ export class Navbar extends React.Component{
     
         super();
         
-        this.theMenu = {
-            horizontal: [
-                this.addItem('Dashboard', '/dashboard'),
-                this.addItem('Login', '/login')
-            ],
-            vertical:[
-                this.addItem('Home', '/'),
-                this.addItem('Contact Us', '/'),
-                this.addItem('About Us', '/'),
-                this.addItem('Blog', '/')
-            ]
+        this.state = {
+            view: this.isItMobile(),
+            theMenu: {
+                mobile: [
+                    this.addItem('Home', '/'),
+                    this.addItem('Dashboard', '/dashboard'),
+                    this.addItem('Login', '/login'),
+                    this.addItem('Contact Us', '/'),
+                    this.addItem('About Us', '/'),
+                    this.addItem('Blog', '/')
+                ],
+                desktop:[
+                    this.addItem('Home', '/'),
+                    this.addItem('Contact Us', '/'),
+                    this.addItem('About Us', '/'),
+                    this.addItem('Blog', '/')
+                ]
+            }
         };
         
-        //  console.log(this.theMenu);     
-            
+        
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.isItMobile = this.isItMobile.bind(this);
+    }
+    
+    componentDidMount() {
+        //window resize listener
+        window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+    }
+    
+    componentWillUnmount() {
+        //unload listeners
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({view:this.isItMobile()});
     }
     
     addItem(itemName, itemURL, itemLinks = null) {
@@ -47,10 +69,10 @@ export class Navbar extends React.Component{
     
     render(){
         return (
-            <nav className="navbar fixed-top navbar-light bg-light py-0">
+            <nav className="container-fluid navbar fixed-top navbar-light bg-light py-0">
                    <a className="navbar-brand" ><img className="logo" src= { 'public/'+tc_logo }  />Think Crypto</a>
                     
-                    <div className="navbar-nav ml-auto px-3 d-inline-block">
+                    <div className="navbar-nav ml-auto px-3 d-none">
                         <ul className="no-list-style">
                             <li><NavLink className="nav-item active nav-link" to="/dashboard" >Dashboard</NavLink></li>
                             <li><NavLink className="nav-item active nav-link" to="/login" >Login </NavLink></li>
@@ -60,27 +82,25 @@ export class Navbar extends React.Component{
                             <span className="navbar-toggler-icon my-toggler"></span>
                     </button>
                     
-                    {this.renderLikeAHamburger(this.theMenu.vertical)}
+                    {(this.state.view===true) ? this.renderLikeAHamburger(this.state.theMenu.desktop) : this.renderLikeAHamburger(this.state.theMenu.mobile)}
             </nav>
         );
     }
     
+    isItMobile(){
+        if(window.innerWidth <= 880) return false; else return true;
+    }
+    
     renderMenuItems(menuData){
-    var items = menuData.map((item) => {
-        return this.renderNavItem(item);
-    });
-    
-    // console.log("The Menu Data",items);
-    return items;
-    
-  }
-    
-  
+        var items = menuData.map((item) => {
+            return this.renderNavItem(item);
+        });
+        return items;
+    }
     
     renderLikeAHamburger(listOfNavitems){
-        
         var links = listOfNavitems.map(function(currentElement){
-         return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement}>{currentElement.label}</a></li>;
+            return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement}>{currentElement.label}</a></li>;
         });
         
         return (
@@ -89,8 +109,8 @@ export class Navbar extends React.Component{
                         {links}
                     </ul>
                 </div>
-                );
-  }
+        );
+    }
   
   
 }

@@ -1,5 +1,5 @@
 .navbar{
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid $gray-shadow;
     
     .logo{
         height: 3em;
@@ -21,5 +21,8 @@
         li.nav-item {
             margin-left: 20px;
         }
+    }
+    @media only screen and (min-width: 880px){
+        display: inline-block !important;
     }
 }

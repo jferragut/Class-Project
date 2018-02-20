@@ -3,7 +3,7 @@
 // *********************** 
  
 import React from 'react';
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 // components
 import { Error } from '../Components/error.jsx';
@@ -12,6 +12,8 @@ import { Navbar } from '../Components/navbar.jsx';
 // views
 import { Home } from './home.jsx';
 import { Dashboard } from './dashboard';
+import { DetailView } from '../Components/detailview.jsx';
+import { TableData } from '../Components/tabledata.jsx';
 import { Login } from './login.jsx';
 import { Register } from './register.jsx';
 import { Profile } from './profile.jsx';
@@ -81,7 +83,7 @@ export class Layout extends React.Component{
                         <Route exact path='/profile' component={Profile} props={this.state}/>
                         <Route exact path='/editprofile' component={editProfile} props={this.state}/>
                         <Route exact path='/CP' component={CP} props={this.state}/>
-                        <Route component={Error} error={"404"}/>
+                        <Redirect to="/" />
                     </Switch>
                 </div>
             </BrowserRouter>

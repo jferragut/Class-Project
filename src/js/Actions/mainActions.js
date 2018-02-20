@@ -12,22 +12,13 @@ export function initalizeData(username){
 // Begin User Actions
 //***********************************
 
-
-// Function to validate the User Login
-
+// (GET) Function to validate the User Login
 export function UserValidate(history, username, password) {
-  
   var formData = new FormData();
   formData.append("username", username);
   formData.append("password", password);
-//   console.log('User info sent');
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       console.log("The response came back successfully: ", this);
-      
-      GetUserWatchlist(username);
+  thinkCrypto.userValidate().then(function(dataReadyToSave){
       
       mainDispatcher.dispatch({
         actionType: 'VALIDATE_USER',
@@ -37,24 +28,11 @@ export function UserValidate(history, username, password) {
         }
       });
       history.push('/profile');
-    }
-  };
-    
-                            //need to add link of crypto api 
-  xhttp.open("GET", "https://class-project-backend-jonnywrites.c9users.io/api/user/", true);
-  xhttp.addEventListener('error', function(error) {
-    console.log("ERROR on the response!!! ", error);
   });
-  xhttp.send(formData);
 }
 
-// Action to Confirm Login
 
-
-//******
 // (PUT) INFORMATION ADDED IN SPECIFIED USER PROFILE
-//******
-
 export function RegisterConfirm(history, username, first_name, last_name, email, password, is_active, email_contact, subscription_status) {
   
   var requestBody = {
@@ -68,13 +46,7 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
   "subscription_status": subscription_status
   };
   
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200 ) {
-      
-      ///success!!!!
-      console.log('Register confirm');
-      
+  thinkCrypto.registerConfirm().then(function(dataReadyToSave){
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
           actionData: {
@@ -88,24 +60,12 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
             subscription_status: subscription_status
           }
         });
-          
         history.push('/profile');
-
-      }
-      
-    };
-    
-    xhttp.open("PUT", "https://class-project-backend-innecco9.c9users.io/api/user/", true);
-    xhttp.addEventListener('error', function(error) {
-      console.log("ERROR on the response!!! ", error);
     });
-    xhttp.send(JSON.stringify(requestBody));
 }
 
-//******
-//  (POST) INFORMATION CHANGE IN SPECIFIED USER PROFILE
-//******
 
+// (POST) INFORMATION CHANGE IN SPECIFIED USER PROFILE
 export function EditProfileConfirm(history, username, first_name, last_name, email, password, passwordRetry, email_contact, subscription_status) {
   
   var requestBody = {
@@ -117,12 +77,7 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
   "subscription_status": subscription_status
   };
   
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200 ) {
-      
-      ///success!!!!
-      
+  thinkCrypto.registerConfirm(requestBody).then(function(dataReadyToSave){
       mainDispatcher.dispatch({
           actionType: 'EDITPROFILE_CONFIRM',
           actionData: {
@@ -134,55 +89,34 @@ export function EditProfileConfirm(history, username, first_name, last_name, ema
             subscription_status: subscription_status
           }
         });
-          history.push('/profile');
-
-      }
-    };
-    
-    xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/user/"+username, true);
-    xhttp.addEventListener('error', function(error) {
-      console.log("ERROR on the response!!! ", error);
+        history.push('/profile');
     });
-    xhttp.send(JSON.stringify(requestBody));
 }
+
+
 // (POST) A PASSWORD CHANGE FOR SPECIFIED USER
 export function PasswordResetConfirm(history, username, password) {
-  
   var requestBody = {
   "username": username,
   "password": password,
   };
   
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200 ) {
-      
-      ///success!!!!
-      
+  thinkCrypto.passwordResetConfirm(requestBody).then(function(dataReadyToSave){
       mainDispatcher.dispatch({
-          actionType: 'PASSWORD_RESET_CONFIRM',
-          actionData: {
-            username: username,
-            password: password,
-          }
-        });
-          history.push('/profile');
-
-      }
-    };
-    
-    xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/user/" + username + "/cp", true);
-    xhttp.addEventListener('error', function(error) {
-      console.log("ERROR on the response!!! ", error);
-    });
-    xhttp.send(JSON.stringify(requestBody));
+        actionType: 'PASSWORD_RESET_CONFIRM',
+        actionData: {
+          username: username,
+          password: password,
+        }
+      });
+      history.push('/profile');
+  });
 }
 
 
 //***********************************
 // Begin Currency Actions
 //***********************************
-
 
 // (GET) Gets the list of all Currencies in the database
 export function GetCurrencies(){
@@ -202,21 +136,9 @@ export function GetCurrencies(){
 // Begin Watchlist Actions
 //***********************************
 
-
 // (GET) - Gets the user watchlist
 export function GetUserWatchlist(username){
-
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(response) {
-        
-        if (this.readyState == 4 && this.status == 200) {
-            // console.log("The response came back successfully: ",this);
-            
-            const dataReadyToSave = JSON.parse(this.response);
-
     thinkCrypto.getWatchlist(username).then(function(dataReadyToSave){
-
             mainDispatcher.dispatch({
               actionType: 'GET_USER_WATCHLIST',
               actionData: dataReadyToSave

@@ -34,6 +34,11 @@ export class Dashboard extends React.Component{
     componentWillMount(){
         this.handleStoreChange();
         this.createAd();
+        
+        this.props.history.listen((evt)=>{
+            if(evt.pathname==="/dashboard") this.setState({viewTable:true});
+            else if(evt.pathname==="/coin") this.setState({viewTable:false});
+        });
     }
     
     componentDidMount() {
@@ -87,28 +92,15 @@ export class Dashboard extends React.Component{
             <div className="dashboard">
                 <div className="topBarRegion">
                     <Alert />   
-                    <Ticker />  
+                    <Ticker coins={this.state.currencyList}/>  
                 </div>
-                <div className="middleContent">
+                <div className="middleContent px-3">
                     <div className="row">
-                        <BrowserRouter>
-                                <Switch>
-                                    <Route exact path='/dashboard' props={this.props}>
-                                        <DataArea   className={this.state.dataAlign} 
-                                                    history={this.props.history} 
-                                                    viewTable={true} 
-                                                    currencyList={this.state.currencyList}
-                                                    username={this.state.username}/> 
-                                    </Route>
-                                    <Route exact path='/coin' props={this.props}>
-                                        <DataArea   className={this.state.dataAlign} 
-                                                    history={this.props.history} 
-                                                    viewTable={false} 
-                                                    currencyList={this.state.currencyList}
-                                                    username={this.state.username}/> 
-                                    </Route>
-                                </Switch>
-                        </BrowserRouter>
+                        <DataArea   className={this.state.dataAlign} 
+                                    history={this.props.history} 
+                                    viewTable={this.state.viewTable} 
+                                    currencyList={this.state.currencyList}
+                                    username={this.state.username}/> 
                         <AdBarZone createAd={this.createAd} />   
                     </div>
                 </div>

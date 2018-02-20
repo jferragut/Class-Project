@@ -48,9 +48,33 @@ var ThinkCryptoAPI = {
             
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/'
+            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/',
             );
         
+        },
+        
+        userValidate: function(formData) {
+            return this.callMethod(
+            'GET',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            formData
+            );
+        },
+        
+        registerConfirm: function(requestBody) {
+            return this.callMethod(
+            'PUT',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            requestBody
+            );
+        },
+        
+        editProfileConfirm: function(requestBody) {
+            return this.callMethod(
+            'POST',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            requestBody
+            );
         },
         
         getWatchlist: function(username) {

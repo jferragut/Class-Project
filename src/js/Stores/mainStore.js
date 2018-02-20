@@ -66,7 +66,6 @@ class MainStore extends EventEmmiter{
             theWatchlist.forEach((watchlistCoin)=>{
                 if(theCoin.symbol===watchlistCoin.symbol) theCoin.beingWatched=true;
             });
-            console.log(theCoin,theCoin.beingWatched);
         });
         this.emit('change');
     }   
@@ -114,13 +113,8 @@ class MainStore extends EventEmmiter{
     
     logUserIn(){
         if(mainStore.registerConfirm == true){
-<<<<<<< HEAD
             this.isLoggedIn = true;
             this.emit('change');
-=======
-        this.isLoggedIn = true;
-        
->>>>>>> 0816cc4448b800b22525d96dda12ee6a441ac073
         }
         else{
             this.isLoggedIn =false; 
