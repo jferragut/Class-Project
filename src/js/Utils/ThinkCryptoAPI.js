@@ -77,6 +77,14 @@ var ThinkCryptoAPI = {
             );
         },
         
+        passwordResetConfirm: function(requestBody) {
+            return this.callMethod(
+            'POST',
+            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+ requestBody.username + "/cp",
+            requestBody
+            );
+        },
+        
         getWatchlist: function(username) {
             return this.callMethod(
             'GET',
