@@ -91,7 +91,7 @@ export class Profile extends React.Component {
         </div>
         
         <div className = "container" >
-          <div className="row profileRow">
+          <div className="row">
             <div className="col-sm-12">
               <div className="card card-block text-xs-left">
                 <h5 className="profileheaders"><i className="fa fa-user fa-fw"></i>Overview</h5>
@@ -100,7 +100,7 @@ export class Profile extends React.Component {
               </div>
             </div>
           </div>
-          <div className = "row profileRow" >
+          <div className = "row" >
             <div className="col-sm-12">
               <div className="card card-block">
                 <h5 className="profileheaders" ><i className="fa fa-rocket fa-fw"></i>Watchlist</h5>

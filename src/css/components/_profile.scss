@@ -5,7 +5,10 @@ img{
   margin-top: 40px;
 }
 
-.watchlistRow {
+.card.watchlistRow {
+    margin: 7px 0;
+    padding: 7px 5px;
+
   .card-header{
     background: none;
     border: none;
@@ -67,4 +70,5 @@ h5, .fa-circle{
 
 .profileheaders{
   color: black;
+  margin: 0 0 20px 0;
 }
