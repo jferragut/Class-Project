@@ -100,7 +100,7 @@ export class Navbar extends React.Component{
     
     renderLikeAHamburger(listOfNavitems){
         var links = listOfNavitems.map(function(currentElement){
-            return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement}>{currentElement.label}</a></li>;
+            return <li key={currentElement.id} className="nav-item active"><a className="nav-link" href={currentElement.url}>{currentElement.label}</a></li>;
         });
         
         return (
