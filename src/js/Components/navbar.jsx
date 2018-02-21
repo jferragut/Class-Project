@@ -16,13 +16,13 @@ export class Navbar extends React.Component{
                     this.addItem('Home', '/'),
                     this.addItem('Dashboard', '/dashboard'),
                     this.addItem('Login', '/login'),
-                    this.addItem('Contact Us', '/'),
+                    this.addItem('Contact Us', '/contact'),
                     this.addItem('About Us', '/'),
                     this.addItem('Blog', '/')
                 ],
                 desktop:[
                     this.addItem('Home', '/'),
-                    this.addItem('Contact Us', '/'),
+                    this.addItem('Contact Us', '/contact'),
                     this.addItem('About Us', '/'),
                     this.addItem('Blog', '/')
                 ]

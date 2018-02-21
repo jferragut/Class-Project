@@ -17,9 +17,13 @@ export class editProfile extends React.Component {
         passwordRetry: null,
         is_active: null,
         email_contact: null,
-        subscription_status: null 
+        subscription_status: null,
+        view: this.isItMobile()
+        
         
     };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.isItMobile = this.isItMobile.bind(this);
     this.isLoggedIn = null;
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,11 +34,21 @@ export class editProfile extends React.Component {
    componentWillMount(){
       this.handleChange();
     }
+    
+    componentWillUnmount() {
+        //unload listeners
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({view:this.isItMobile()});
+    }
         
    componentDidMount(){
+    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
     MainStore.on('change',this.handleChange.bind(this));
-    
   }
+  
   
   handleChange(){
       var userInfo = MainStore.getUserProfile();
@@ -69,6 +83,8 @@ export class editProfile extends React.Component {
       else return true;
       
   }
+  
+  
   
 
     
@@ -129,7 +145,7 @@ export class editProfile extends React.Component {
                 <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label"></label>
                     <div className="col-lg-9">
-                        <button className="btn btn-lg btn-secondary btn-block"  href="/profile" >CANCEL</button>
+                        <Link className="btn btn-lg btn-secondary btn-block"  to="/profile" >CANCEL</Link>
                         <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit" >SAVE CHANGES</button>
                         
                     </div>
@@ -148,6 +164,10 @@ export class editProfile extends React.Component {
     
 </div>
         );
+    }
+    
+    isItMobile(){
+        if(window.innerWidth <= 880) return false; else return true;
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from '../Components/carousel.jsx';
 import cryp from '../../images/cryp.jpg';
 import matrix from '../../images/matrix.jpg';
-
+import { Link } from 'react-router-dom';
 
 export class Home extends React.Component{
     
@@ -38,7 +38,8 @@ export class Home extends React.Component{
             <p className="lead text-center">Choose between a free or paid account.</p>
             <hr className="my-4"/>
             <p className="lead joinbtn">
-                <a className="btn btn-primary btn-lg" href="/register" role="button">REGISTER</a>
+                <div> <Link className="btn btn-primary btn-lg" to="/register" role="button">REGISTER</Link>
+                </div>
             </p>
         </div>
         

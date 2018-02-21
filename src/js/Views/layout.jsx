@@ -19,6 +19,8 @@ import { Register } from './register.jsx';
 import { Profile } from './profile.jsx';
 import { editProfile } from './editprofile.jsx';
 import { CP } from './cp.jsx';
+import { RSP } from './rsp.jsx';
+import { Contact } from './contact.jsx';
 
 // Stores
 import mainStore from '../Stores/mainStore.js';
@@ -83,6 +85,8 @@ export class Layout extends React.Component{
                         <Route exact path='/profile' component={Profile} props={this.state}/>
                         <Route exact path='/editprofile' component={editProfile} props={this.state}/>
                         <Route exact path='/CP' component={CP} props={this.state}/>
+                        <Route exact path='/rsp' component={RSP} props={this.state}/>
+                        <Route exact path='/contact' component={Contact} props={this.state}/>
                         <Redirect to="/" />
                     </Switch>
                 </div>

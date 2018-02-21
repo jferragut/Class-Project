@@ -1,17 +1,38 @@
 import React from 'react';
-import mainStore from '../Stores/mainStore.js';
+import MainStore from '../Stores/mainStore.js';
 import * as MainActions from '../Actions/mainActions.js';
-
+import { Link } from 'react-router-dom';
 
 export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: null,
-            password: null
+            password: null,
+            view: this.isItMobile()
         };
         
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.isItMobile = this.isItMobile.bind(this);
+        
     }
+    
+     componentWillMount(){
+      window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+    }
+    
+    componentWillUnmount() {
+        //unload listeners
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({view:this.isItMobile()});
+    }
+        
+   
+    
+    
     
     userValidate(){
         MainActions.UserValidate(this.history, this.state.username, this.state.password);
@@ -47,9 +68,8 @@ export class Login extends React.Component {
                 
                 <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.userValidate() } type="submit"  >SIGN IN</button>
             </form>
-            <a href="/rsp" className="forgot-password">
-                Forgot password?
-            </a>
+            <div> <Link className="btn btn-md" to="/cp" role="button">Forgot Password?</Link>
+                </div>
         </div>
     </div>
     
@@ -57,6 +77,10 @@ export class Login extends React.Component {
     
 </div>
         );
+    }
+    
+    isItMobile(){
+        if(window.innerWidth <= 880) return false; else return true;
     }
 }
 

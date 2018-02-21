@@ -15,9 +15,30 @@ export class Register extends React.Component {
            passwordRetry:null,
            is_active: true,
            email_contact:null,
-           subscription_status:null
+           subscription_status:null,
+           view: this.isItMobile()
        };
+       this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+       this.isItMobile = this.isItMobile.bind(this);
     }
+    
+    componentWillMount(){
+      
+      window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+    }
+    
+    componentWillUnmount() {
+        //unload listeners
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({view:this.isItMobile()});
+    }
+        
+   
+  
+  
     
     
   
@@ -39,13 +60,6 @@ export class Register extends React.Component {
       else return true;
       
   }
-  
-  
-  
-
-  
-  
-  
   
   
 
@@ -87,6 +101,10 @@ export class Register extends React.Component {
     
 </div>
         );
+    }
+    
+    isItMobile(){
+        if(window.innerWidth <= 880) return false; else return true;
     }
 }
 
