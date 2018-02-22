@@ -75,7 +75,7 @@ export class Contact extends React.Component {
                 <div className="container bg">
                   <div className="col-sm-12 card card-container">
                     <div >
-                      <div className="col-sm-8 col-sm-offset-2">
+                      <div className="col-sm-8 col-sm-offset-2 cent">
                         <div>
                           <h2 className="contact" >CONTACT US</h2>
                         </div>
