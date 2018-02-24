@@ -9,7 +9,7 @@ export class Profile extends React.Component {
     super();
 
     this.state = {
-      username: 'test',
+      username: null,
       first_name: null,
       last_name: null,
       email: null,

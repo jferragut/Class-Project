@@ -48,7 +48,7 @@ var ThinkCryptoAPI = {
             
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/',
+            process.env.HOST+'currencies/',
             );
         
         },
@@ -56,7 +56,7 @@ var ThinkCryptoAPI = {
         userValidate: function(formData) {
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            process.env.HOST+ 'user/',
             formData
             );
         },
@@ -64,7 +64,7 @@ var ThinkCryptoAPI = {
         registerConfirm: function(requestBody) {
             return this.callMethod(
             'PUT',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            process.env.HOST+'user/',
             requestBody
             );
         },
@@ -72,7 +72,7 @@ var ThinkCryptoAPI = {
         editProfileConfirm: function(requestBody) {
             return this.callMethod(
             'POST',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            process.env.HOST+'user/',
             requestBody
             );
         },
@@ -80,7 +80,7 @@ var ThinkCryptoAPI = {
         passwordResetConfirm: function(requestBody) {
             return this.callMethod(
             'POST',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+ requestBody.username + "/cp",
+            process.env.HOST+ 'user/'+ requestBody.username + "/cp",
             requestBody
             );
         },
@@ -88,21 +88,21 @@ var ThinkCryptoAPI = {
         getWatchlist: function(username) {
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist'
+            process.env.HOST+ 'user/'+username+'/watchlist'
             );
         },
         
         addToWatchlist: function(symbol, username) {
             return this.callMethod(
             'PUT',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            process.env.HOST+'user/'+username+'/watchlist/'+symbol
             );
         },
         
         removeFromWatchlist: function(symbol, username) {
             return this.callMethod(
             'DELETE',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            process.env.HOST+'user/'+username+'/watchlist/'+symbol
             );
         }
 };
