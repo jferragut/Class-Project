@@ -7,6 +7,8 @@ export class Contact extends React.Component {
     constructor() {
         super();
         this.state = {
+            username:null,
+            email:null,
             view: this.isItMobile(),
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -44,20 +46,19 @@ export class Contact extends React.Component {
   
    handleChange(){
        var userInfo = MainStore.getUserProfile();
+       
          this.setState({
             username:userInfo.username,
-             password: userInfo.password,
-             passwordRetry: userInfo.passwordRetry
+            email:userInfo.email,
             
          });
      }
     
-    passwordResetConfirm(evt){
-      evt.preventDefault();
-       if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
-       else MainActions.PasswordResetConfirm(this.history, this.username, this.state.password);
-   	  console.log("edit profile confirm  is sending " + this.username, this.state.password) ;
-   }
+//     contactRequest(evt){
+//       evt.preventDefault();
+//       MainActions.ContactConfirm(this.history, this.username, this.state.email, this.state.message);
+//   	  console.log("contact request is sending " + this.username, this.state.password) ;
+//   }
     
     
 
@@ -75,7 +76,6 @@ export class Contact extends React.Component {
                 <div className="container bg">
                   <div className="col-sm-12 card card-container">
                     <div >
-                      <div className="col-sm-8 col-sm-offset-2 cent">
                         <div>
                           <h2 className="contact" >CONTACT US</h2>
                         </div>
@@ -95,7 +95,7 @@ export class Contact extends React.Component {
                             <button type="submit" className="btn btn-lg btn-signin">CONTACT US</button>
                           </div>
                         </form>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
