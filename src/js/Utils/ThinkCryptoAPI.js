@@ -35,6 +35,7 @@ var ThinkCryptoAPI = {
                 xhttp.addEventListener('error',(error) => {
                     this.removePendingPromise(callPromise);
                     console.log("ERROR on the response!!! ",error);
+                    alert('Check the request! there is an error happening on the backend!');
                     reject('ERROR on the response!!! ',error);
                 });
                 xhttp.send(JSON.stringify(requestBodyData));

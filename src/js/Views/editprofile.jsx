@@ -69,7 +69,7 @@ export class editProfile extends React.Component {
     editProfileConfirm(evt){
       evt.preventDefault();
       if(this.state.password != this.state.passwordRetry) alert('Your passwords do not match');
-      else MainActions.RegisterConfirm(this.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.isTrueEmail(), this.isTrueSub());
+      else MainActions.EditProfileConfirm(this.history, this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.isTrueEmail(), this.isTrueSub());
   	  console.log("edit profile confirm  is sending " + this.state.username, this.state.first_name, this.state.last_name, this.state.email, this.state.isTrueEmail(), this.isTrueSub()) ;
   }
   

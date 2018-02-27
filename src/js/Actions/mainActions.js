@@ -42,11 +42,11 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
   "email": email,
   "password": password,
   "is_active": is_active,
-  "email_contact": email_contact,
-  "subscription_status": subscription_status
+  "email_contact": String(email_contact),
+  "subscription_status": String(subscription_status)
   };
   
-  thinkCrypto.registerConfirm().then(function(dataReadyToSave){
+  thinkCrypto.registerConfirm(requestBody).then(function(requestBody){
       mainDispatcher.dispatch({
           actionType: 'REGISTER_CONFIRM',
           actionData: {
@@ -60,8 +60,10 @@ export function RegisterConfirm(history, username, first_name, last_name, email,
             subscription_status: subscription_status
           }
         });
-        history.push('/profile');
+    }).catch(function(){
+      console.log('error');
     });
+    history.push('/profile');
 }
 
 

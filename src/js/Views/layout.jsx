@@ -76,6 +76,7 @@ export class Layout extends React.Component{
             <BrowserRouter>
                 <div className="container-fluid no-gutters px-0">
                     <Navbar />
+                    <Alert />
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/dashboard' component={Dashboard} />

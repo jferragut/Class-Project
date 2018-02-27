@@ -37,10 +37,10 @@ export class Home extends React.Component{
             <h1 className="display-4 text-center par ">So what are you waiting for? Join Today!</h1>
             <p className="lead text-center">Choose between a free or paid account.</p>
             <hr className="my-4"/>
-            <p className="lead joinbtn">
+            <div> className="lead joinbtn">
                 <div> <Link className="btn btn-primary btn-lg" to="/register" role="button">REGISTER</Link>
                 </div>
-            </p>
+            </div>
         </div>
         
         

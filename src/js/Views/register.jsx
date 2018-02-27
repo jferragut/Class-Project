@@ -80,12 +80,12 @@ export class Register extends React.Component {
                 <input type="password" id="pass" className="form-control" placeholder="Password" min="8" max="20" onChange={(evt)=> this.setState({password: evt.target.value})} required/>
                 <input type="password" id="pass" className="form-control" placeholder="Re-enter Password" min="8" max="20" onChange={(evt)=> this.setState({passwordRetry: evt.target.value})}  required/>
             
-                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Email Contact ?</label>
+                    <label className="mr-sm-2" htmlFor="emailcontactSelect">Email Contact ?</label>
                         <select className="custom-select mb-2 mr-sm-2 " onChange={(evt)=> this.setState({email_contact: evt.target.value})} id="inlineFormCustomSelect">
                             <option value="true" >Yes</option>
                             <option value="false"  >No</option>
                         </select>
-                    <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Account Type ? </label>
+                    <label className="mr-sm-2" htmlFor="subcriptionSelect">Account Type ? </label>
                         <select className="custom-select mb-2 mr-sm-2 "  onChange={(evt)=> this.setState({subscription_status: evt.target.value})} id="inlineFormCustomSelect">
                             <option value="false" >Free</option>
                             <option value="true"  >Paid</option>
