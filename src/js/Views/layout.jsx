@@ -8,6 +8,7 @@ import { Redirect, BrowserRouter, Route, Switch, withRouter } from 'react-router
 // components
 import { Error } from '../Components/error.jsx';
 import { Navbar } from '../Components/navbar.jsx';
+import { Alert } from '../Components/alert.jsx';
 
 // views
 import { Home } from './home.jsx';

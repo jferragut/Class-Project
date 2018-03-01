@@ -26,6 +26,10 @@ class MainStore extends EventEmmiter{
                 date_joined:null,
                 email_contact: null,
                 subscription_status: null
+            },
+            auth: {
+                client_id: null,
+                client_secret:null
             }
         };
         
@@ -122,12 +126,16 @@ class MainStore extends EventEmmiter{
         } 
     }
     
-    validateUser(data){
-        if(data=="true"){
-            this.isLoggedIn = true;
-        }else{
-            this.isLoggedIn = false;
-        }
+    userLogin(data){
+        this.setModel({ 
+            profile: {
+                username: data.username,
+            },
+            auth:{
+                client_id: data.client_id,
+                client_secret: data.client_secret
+            }
+        });
         
     }
   
@@ -136,10 +144,11 @@ class MainStore extends EventEmmiter{
         {
             case "SET_STORE_POSITION": this.setStorePosition(action.position); break;
             case "GET_CURRENCIES": this.setCurrencyList(action.actionData); break;
-            case "VALIDATE_USER": this.validateUser(action.actionData); break;
+            // case "VALIDATE_USER": this.validateUser(action.actionData); break;
             case "REGISTER_CONFIRM": this.registerConfirm(action.actionData); break;
             case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action.actionData); break;
             case "PASSWORD_RESET_CONFIRM": this.passwordResetConfirm(action.actionData); break;
+            case "USER_LOGIN": this.userLogin(action.actionData); break;
         }
     }
 }

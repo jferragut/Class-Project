@@ -53,6 +53,7 @@
     "react-router-dom": "^4.2.2",
     "react-sparklines": "^1.7.0",
     "react-tap-event-plugin": "^3.0.2",
+    "simple-oauth2": "^1.5.0",
     "url-loader": "^0.6.2",
     "webpack-dev-server": "^2.9.2"
   }

@@ -77,16 +77,16 @@ export class Register extends React.Component {
                 <input className="place" type="firstname" id="firstname" className="form-control" min="4" max="15" placeholder="First Name" onChange={(evt)=> this.setState({first_name: evt.target.value})} required autoFocus/>
                 <input className="place" type="lastname" id="lastname" className="form-control" min="4" max="15" placeholder="Last Name" onChange={(evt)=> this.setState({last_name: evt.target.value})} required/>
                 <input className="place" type="email" id="email" className="form-control" min="4" max="20" placeholder="Email" onChange={(evt)=> this.setState({email: evt.target.value})} required/>
-                <input type="password" id="pass" className="form-control" placeholder="Password" min="8" max="20" onChange={(evt)=> this.setState({password: evt.target.value})} required/>
-                <input type="password" id="pass" className="form-control" placeholder="Re-enter Password" min="8" max="20" onChange={(evt)=> this.setState({passwordRetry: evt.target.value})}  required/>
+                <input type="password" id="enterpassword" className="form-control" placeholder="Password" min="8" max="20" onChange={(evt)=> this.setState({password: evt.target.value})} required/>
+                <input type="password" id="passwordretry" className="form-control" placeholder="Re-enter Password" min="8" max="20" onChange={(evt)=> this.setState({passwordRetry: evt.target.value})}  required/>
             
                     <label className="mr-sm-2" htmlFor="emailcontactSelect">Email Contact ?</label>
-                        <select className="custom-select mb-2 mr-sm-2 " onChange={(evt)=> this.setState({email_contact: evt.target.value})} id="inlineFormCustomSelect">
+                        <select className="custom-select mb-2 mr-sm-2 " onChange={(evt)=> this.setState({email_contact: evt.target.value})} id="inlineFormCustomSelectContact">
                             <option value="true" >Yes</option>
                             <option value="false"  >No</option>
                         </select>
                     <label className="mr-sm-2" htmlFor="subcriptionSelect">Account Type ? </label>
-                        <select className="custom-select mb-2 mr-sm-2 "  onChange={(evt)=> this.setState({subscription_status: evt.target.value})} id="inlineFormCustomSelect">
+                        <select className="custom-select mb-2 mr-sm-2 "  onChange={(evt)=> this.setState({subscription_status: evt.target.value})} id="inlineFormCustomSelectAcctType">
                             <option value="false" >Free</option>
                             <option value="true"  >Paid</option>
                         </select>

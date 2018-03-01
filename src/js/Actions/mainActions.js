@@ -1,4 +1,4 @@
-import mainDispatcher from '../Dispatchers/mainDispatcher';
+import mainDispatcher from '../Dispatchers/mainDispatcher.js';
 import thinkCrypto from '../Utils/ThinkCryptoAPI.js';
 
 
@@ -12,24 +12,6 @@ export function initalizeData(username){
 // Begin User Actions
 //***********************************
 
-// (GET) Function to validate the User Login
-export function UserValidate(history, username, password) {
-  var formData = new FormData();
-  formData.append("username", username);
-  formData.append("password", password);
-
-  thinkCrypto.userValidate().then(function(dataReadyToSave){
-      
-      mainDispatcher.dispatch({
-        actionType: 'VALIDATE_USER',
-        actionData: {
-          username: username, 
-          password: password, 
-        }
-      });
-      history.push('/profile');
-  });
-}
 
 
 // (PUT) INFORMATION ADDED IN SPECIFIED USER PROFILE
@@ -168,4 +150,44 @@ export function AddToWatchlist(symbol, username){
     });
 }
 
-
+// (POST) Validate User Login with oAuth
+export function UserLogin(history, username, password, client_id, client_secret){
+    var logInBody = {
+        grant_type: 'password',
+        username: username,
+        password: password,
+        client_id: client_id,
+        client_secret: client_secret
+    };
+   let serialize = function(obj) {
+      var str = [];
+      for(var p in obj)
+        if (obj.hasOwnProperty(p)) {
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+      return str.join("&");
+    };
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            console.log("The response came back successfully: ", this);
+            var responseBody = JSON.parse(xhttp.responseText);
+            
+            thinkCrypto.accessToken = responseBody.access_token;
+            mainDispatcher.dispatch({
+              actionType: 'USER_LOGIN',
+              actionData: {
+                username: username
+              } //data 
+            }); //dispatch 
+            history.push('/profile');
+      } //If statement
+    }; 
+    //function
+    xhttp.open("POST", "https://class-project-backend-innecco9.c9users.io/api/o/token/", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.addEventListener('error', function(error) {
+    console.log("ERROR on the response!!! ", error);
+  });
+    xhttp.send(serialize(logInBody));
+}

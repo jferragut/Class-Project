@@ -93,12 +93,12 @@ export class editProfile extends React.Component {
     render() {
         return (
         <div>
-        <div className="container editp">
+        <div className="container editp card card-container">
     <div className="row m-y-2 ">
         
-        <div className="col-lg-4 text-lg-center">
+        
             <h2 className="edit-title" > Edit Profile</h2>
-        </div>
+        
         
         <div className="col-lg-8 push-lg-4 personal-info">
              <form role="form" className="formcenter" onSubmit={(evt) => this.editProfileConfirm(evt)}>

@@ -3,6 +3,7 @@ import * as mainActions from '../Actions/mainActions.js';
 var ThinkCryptoAPI = {
         // *runtime* context of which API to call
         pendingPromises: [],
+        accessToken: null,
       
         removePendingPromise: function(element) {
             const index = this.pendingPromises.indexOf(element);
@@ -32,6 +33,7 @@ var ThinkCryptoAPI = {
                     }
                 };
                 xhttp.open(methodType, url, true);
+                xhttp.setRequestHeader('Authorization', 'Bearer ' + this.accessToken);
                 xhttp.addEventListener('error',(error) => {
                     this.removePendingPromise(callPromise);
                     console.log("ERROR on the response!!! ",error);
@@ -54,13 +56,6 @@ var ThinkCryptoAPI = {
         
         },
         
-        userValidate: function(formData) {
-            return this.callMethod(
-            'GET',
-            process.env.HOST+ 'user/',
-            formData
-            );
-        },
         
         registerConfirm: function(requestBody) {
             return this.callMethod(
