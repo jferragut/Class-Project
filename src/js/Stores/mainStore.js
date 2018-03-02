@@ -26,7 +26,8 @@ class MainStore extends EventEmmiter{
                 date_joined:null,
                 email_contact: null,
                 subscription_status: null
-            }
+            },
+            reddit: {}
         };
         
         watchlistStore.on("change",this.handleWatchlistChange.bind(this));
@@ -48,6 +49,10 @@ class MainStore extends EventEmmiter{
     
     getLoginStatus(){
         return this.isLoggedIn;
+    }
+    
+    getSubredditResults(){
+        return this.model.reddit;
     }
     
     // Functions that process action data
@@ -111,6 +116,12 @@ class MainStore extends EventEmmiter{
         });
     }
     
+    setSubredditResults(data){
+        this.setModel({ 
+            reddit: data
+        });
+    }
+    
     logUserIn(){
         if(mainStore.registerConfirm == true){
             this.isLoggedIn = true;
@@ -130,6 +141,7 @@ class MainStore extends EventEmmiter{
         }
         
     }
+    
   
     handleActions(action){
         switch(action.actionType)
@@ -140,6 +152,7 @@ class MainStore extends EventEmmiter{
             case "REGISTER_CONFIRM": this.registerConfirm(action.actionData); break;
             case "EDITPROFILE_CONFIRM": this.editProfileConfirm(action.actionData); break;
             case "PASSWORD_RESET_CONFIRM": this.passwordResetConfirm(action.actionData); break;
+            case "SUBREDDIT_RESULTS": this.setSubredditResults(action.actionData); break;
         }
     }
 }

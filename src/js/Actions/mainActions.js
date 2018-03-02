@@ -167,3 +167,16 @@ export function AddToWatchlist(symbol, username){
 }
 
 
+//***********************************
+// Begin Reddit Action
+//***********************************
+
+// (GET) - Gets the requested subreddit
+export function GetSubreddit(query){
+    thinkCrypto.getSubreddit(query).then(function(dataReadyToSave){
+            mainDispatcher.dispatch({
+              actionType: 'SUBREDDIT_RESULTS',
+              actionData: dataReadyToSave
+            });
+    });
+}

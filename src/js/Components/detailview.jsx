@@ -5,6 +5,7 @@ import watchlistStore from '../Stores/watchlistStore.js';
 import * as mainActions from '../Actions/mainActions.js';
 import { watchlistUtils } from '../Utils/watchlist.js';
 import stockConfig from '../Utils/stockConfig.js';
+import {Social} from './social.jsx';
 
 var ReactHighstock = require('react-highcharts/ReactHighstock.src');
 
@@ -18,7 +19,8 @@ export class DetailView extends React.Component{
         this.state = {
             username: this.props.username,
             queryParameter: window.location.search.split("=")[1],
-            path: window.location.pathname.substr(1)
+            path: window.location.pathname.substr(1),
+            coin: []
         };
         
         stockConfig.run = stockConfig.run.bind(this);
@@ -44,10 +46,12 @@ export class DetailView extends React.Component{
       }
     
     render(){
+        mainActions.GetSubreddit(this.state.coin.name);
         var marketCap = Number(this.state.coin.market_cap_usd) / Number(this.state.coin.price_usd) ;
         var volume = Number(this.state.coin.volume_24h_usd) / Number(this.state.coin.price_usd) ; 
         var circulatingSupply = Number(this.state.coin.available_supply) / Number(this.state.coin.price_usd) ;
         var maxSupply = Number(this.state.coin.total_supply) / Number(this.state.coin.price_usd) ;
+        this.results = mainStore.getSubredditResults(this);
         return(
             <div className="row">
                 <div className="col-12 col-sm-8">
@@ -117,7 +121,7 @@ export class DetailView extends React.Component{
                         Market data goes here
                         </div>
                         <div className="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
-                        Social data goes here
+                            <Social coin={this.state.coin.name} result={this.results}/>
                         </div>
                     </div>
                 </div>

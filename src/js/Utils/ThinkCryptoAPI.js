@@ -104,6 +104,13 @@ var ThinkCryptoAPI = {
             'DELETE',
             'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
             );
+        },
+        
+        getSubreddit: function(query) {
+            return this.callMethod(
+            'GET',
+            'https://class-project-backend-jonnywrites.c9users.io/api/reddit/'+query
+            );
         }
 };
 
