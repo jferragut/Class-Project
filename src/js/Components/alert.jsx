@@ -1,5 +1,5 @@
 import React from 'react';
-
+import * as MainActions from '../Actions/mainActions.js';
 
 export class Alert extends React.Component{
     
@@ -30,3 +30,5 @@ export class Alert extends React.Component{
             );
     }
 }
+
+export default Alert;

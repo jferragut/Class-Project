@@ -3,6 +3,7 @@ import * as mainActions from '../Actions/mainActions.js';
 var ThinkCryptoAPI = {
         // *runtime* context of which API to call
         pendingPromises: [],
+        accessToken: null,
       
         removePendingPromise: function(element) {
             const index = this.pendingPromises.indexOf(element);
@@ -32,9 +33,11 @@ var ThinkCryptoAPI = {
                     }
                 };
                 xhttp.open(methodType, url, true);
+                xhttp.setRequestHeader('Authorization', 'Bearer ' + this.accessToken);
                 xhttp.addEventListener('error',(error) => {
                     this.removePendingPromise(callPromise);
                     console.log("ERROR on the response!!! ",error);
+                    alert('Check the request! there is an error happening on the backend!');
                     reject('ERROR on the response!!! ',error);
                 });
                 xhttp.send(JSON.stringify(requestBodyData));
@@ -48,23 +51,16 @@ var ThinkCryptoAPI = {
             
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/currencies/',
+            process.env.HOST+'currencies/',
             );
         
         },
         
-        userValidate: function(formData) {
-            return this.callMethod(
-            'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
-            formData
-            );
-        },
         
         registerConfirm: function(requestBody) {
             return this.callMethod(
             'PUT',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            process.env.HOST+'user/',
             requestBody
             );
         },
@@ -72,7 +68,7 @@ var ThinkCryptoAPI = {
         editProfileConfirm: function(requestBody) {
             return this.callMethod(
             'POST',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/',
+            process.env.HOST+'user/',
             requestBody
             );
         },
@@ -80,7 +76,7 @@ var ThinkCryptoAPI = {
         passwordResetConfirm: function(requestBody) {
             return this.callMethod(
             'POST',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+ requestBody.username + "/cp",
+            process.env.HOST+ 'user/'+ requestBody.username + "/cp",
             requestBody
             );
         },
@@ -88,21 +84,21 @@ var ThinkCryptoAPI = {
         getWatchlist: function(username) {
             return this.callMethod(
             'GET',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist'
+            process.env.HOST+ 'user/'+username+'/watchlist'
             );
         },
         
         addToWatchlist: function(symbol, username) {
             return this.callMethod(
             'PUT',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            process.env.HOST+'user/'+username+'/watchlist/'+symbol
             );
         },
         
         removeFromWatchlist: function(symbol, username) {
             return this.callMethod(
             'DELETE',
-            'https://class-project-backend-jonnywrites.c9users.io/api/user/'+username+'/watchlist/'+symbol
+            process.env.HOST+'user/'+username+'/watchlist/'+symbol
             );
         },
         

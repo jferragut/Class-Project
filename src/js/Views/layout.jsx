@@ -8,6 +8,7 @@ import { Redirect, BrowserRouter, Route, Switch, withRouter } from 'react-router
 // components
 import { Error } from '../Components/error.jsx';
 import { Navbar } from '../Components/navbar.jsx';
+import { Alert } from '../Components/alert.jsx';
 
 // views
 import { Home } from './home.jsx';
@@ -76,6 +77,7 @@ export class Layout extends React.Component{
             <BrowserRouter>
                 <div className="container-fluid no-gutters px-0">
                     <Navbar />
+                    <Alert />
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/dashboard' component={Dashboard} />

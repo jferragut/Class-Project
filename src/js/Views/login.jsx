@@ -1,6 +1,6 @@
 import React from 'react';
 import MainStore from '../Stores/mainStore.js';
-import * as MainActions from '../Actions/mainActions.js';
+import * as mainActions from '../Actions/mainActions.js';
 import { Link } from 'react-router-dom';
 
 export class Login extends React.Component {
@@ -9,6 +9,8 @@ export class Login extends React.Component {
         this.state = {
             username: null,
             password: null,
+            client_id: "Vid2RpiaqWUtD8YQyUyaDxDxEl6Fyqo1ycY3mCvR",
+            client_secret: "3NyQBkTUIL1iEiZ2W1sQ3OK9TsqjrtZ9J3XSJXZCKURSFarEHRv7Cs1wUSDzAC2U9zDih4VaXOvS3uTtALeYAOpIutONhd1CitkypmKhtSWOmeteerMgTr8G6u41gKki",
             view: this.isItMobile()
         };
         
@@ -34,19 +36,12 @@ export class Login extends React.Component {
     
     
     
-    userValidate(){
-        MainActions.UserValidate(this.history, this.state.username, this.state.password);
+    userLogin(evt){
+        mainActions.UserLogin(this.props.history, this.state.username, this.state.password, this.state.client_id, this.state.client_secret);
         console.log('attempting to login');
     }
     
-    /*login(e) {
-    e.preventDefault();
-    // Here, we call an external AuthService. We’ll create it in the next step
-    Auth.login(this.state.username, this.state.password)
-      .catch(function(err) {
-        console.log( “Error”);
-      });
-  }*/
+   
 
   
   
@@ -63,10 +58,10 @@ export class Login extends React.Component {
             <h1 className="signin"> SIGN IN </h1>
             <form className="form-signin">
                 <span id="reauth-email" className="reauth-email"></span>
-                <input type="text" id="inputEmail" min= "4" max="15" className="form-control" placeholder="Username" onChange={(evt)=> this.setState({username: evt.target.value})} required autoFocus/>
-                <input type="password" id="inputPassword" min= "8" max="15"  className="form-control" placeholder="Password" onChange={(evt)=> this.setState({password: evt.target.value})} required />
+                <input type="text" id="inputEmail" className="form-control" placeholder="Username" onChange={(evt)=> this.setState({username: evt.target.value})} required autoFocus/>
+                <input type="password" id="inputPassword"  className="form-control" placeholder="Password" onChange={(evt)=> this.setState({password: evt.target.value})} required />
                 
-                <button className="btn btn-lg btn-primary btn-block btn-signin" onClick = {()=> this.userValidate() } type="submit"  >SIGN IN</button>
+                <button className="btn btn-lg btn-primary btn-block btn-signin"  type="button" onClick={(evt) => this.userLogin(evt)} >SIGN IN</button>
             </form>
             <div> <Link className="btn btn-md" to="/cp" role="button">Forgot Password?</Link>
                 </div>
