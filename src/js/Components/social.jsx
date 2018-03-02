@@ -33,8 +33,8 @@ export class Social extends React.Component{
             height: "100px"
         };
         
-        var theResponse = this.results.data;
-        return theResponse;
+        // var theResponse = this.results.data;
+        // return theResponse;
         // if(typeof(theResponse)!='undefined'){
         //     return theResponse.map((item,index)=>{
         //     var link= item.children[index].data.permalink;

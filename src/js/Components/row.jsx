@@ -8,6 +8,7 @@ import {watchlistUtils} from '../Utils/watchlist.js';
 
 export class RenderRow extends React.Component{
     render(){
+        var theTicker = this.props.data.ticker_history.split(',').map((price)=>parseFloat(price));
         return(
         <tr>
             <td>{this.props.data.rank}</td>
@@ -21,7 +22,7 @@ export class RenderRow extends React.Component{
             <td>{this.props.data.available_supply}</td>
             <td>{this.props.data.percent_change_24h}</td>
             <td>
-                <Sparklines data={this.props.data.ticker_history.split(',')}>
+                <Sparklines data={theTicker}>
                     <SparklinesLine color="white" />
                     <SparklinesReferenceLine type="mean" />
                 </Sparklines>

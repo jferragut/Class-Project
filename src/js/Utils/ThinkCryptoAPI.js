@@ -3,7 +3,7 @@ import * as mainActions from '../Actions/mainActions.js';
 var ThinkCryptoAPI = {
         // *runtime* context of which API to call
         pendingPromises: [],
-        accessToken: null,
+        accessToken: "u8yime2L8sHX6fE01rDiyfzJm8uL6J",
       
         removePendingPromise: function(element) {
             const index = this.pendingPromises.indexOf(element);
